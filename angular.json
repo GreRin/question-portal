@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "registration-form": {
@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "registration-form"
+    }
+  },
+  "defaultProject": "registration-form",
+  "cli": {
+    "analytics": "5479e9f5-cc57-416e-8bc8-a00449a89d6a"
+  }
 }
