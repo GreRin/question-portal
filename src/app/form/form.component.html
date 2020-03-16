@@ -1,31 +1,28 @@
-<div class="col-xs-8 col-xs-offset-2">
-	<form action="">
-		<img src="../../assets/img/dev-incubator-logo.png" alt="Dev Incubator logo">
-		<div class="form-grope">
-			<label>Email</label>
-			<input 
-				type="text" 
-				class="form-control"
-				ngModel
-				name="email"
-			>
-		</div>
-		<div class="form-grope">
-			<label>Password</label>
-			<input 
-				type="password" 
-				class="form-control"
-				ngModel
-				name="password"
-			>
-		</div>
-		<div class="appAuth">
-			<button class='appAuth-btn'><i class="fab fa-facebook-f"></i></button>
-			<button class='appAuth-btn'><img src="https://img.icons8.com/color/28/000000/google-logo.png"></button>
-			<button class='appAuth-btn'><i class="fab fa-vk"></i></button>
-		</div>
-		<button type="submit" class="btn btn-info">
-			Submit
-		</button>
-	</form>
-</div>
+<form (ngSubmit)="submitForm(form)" #form="ngForm">
+	<div class="form-group">
+		<label>Email</label>
+		<input 
+			type="text" 
+			class="form-control"
+			ngModel
+			name="email"
+		>
+	</div>
+	<div class="form-group">
+		<label>Password</label>
+		<input 
+			type="password" 
+			class="form-control"
+			ngModel
+			name="password"
+		>
+	</div>
+	<div class="appAuth">
+		<button class='appAuth-btn'><i class="fab fa-facebook-f"></i></button>
+		<button class='appAuth-btn'><img src="https://img.icons8.com/color/28/000000/google-logo.png"></button>
+		<button class='appAuth-btn'><i class="fab fa-vk"></i></button>
+	</div>
+	<button type="submit" class="btn btn-info">
+		Submit
+	</button>
+</form>

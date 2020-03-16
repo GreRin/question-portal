@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -13,6 +14,15 @@ export class FormComponent implements OnInit {
 		type: 'on',
 		text: 'Нет'
 	}]
+
+	// @HostListener ('click') onMouseEnter() {
+	// 	console.log('Hello!');
+	// }
+	
+	submitForm(form: NgForm) {
+		console.log('Submited!', form);
+	}
+
   constructor() { }
 
   ngOnInit(): void {

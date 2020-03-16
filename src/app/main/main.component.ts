@@ -11,9 +11,5 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
 	}
-	
-	@HostListener ('click') onMouseEnter() {
-		console.log('Hello!');
-	}
 
 }
