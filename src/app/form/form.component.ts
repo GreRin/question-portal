@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -8,32 +8,15 @@ import { NgForm } from '@angular/forms';
 })
 
 export class FormComponent implements OnInit {
-	// @ViewChild('form') form: NgForm;
-
-	user: {
-		email: '',
-		password: ''		
-	}
-
-	formData = {};
-	isSubmited = false;
-
-	submitForm(form: NgForm) {
-		this.isSubmited = true;
-		this.formData = form.value;
-		console.log(form.value);
-		form.reset();
-	}
-
-  constructor() {}
-
+	form: FormGroup;
   ngOnInit(): void {
-		// this.form.setValue({
-		// 	user: {
-		// 		pass: '',
-		// 		email: ''
-		// 	}
-		// });	
+		this.form = new FormGroup({
+			email: new FormControl(''),
+			password: new FormControl('')
+		})
   }
 
+	onSubmit() {
+		console.log(this.form);
+	}
 }
