@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -6,26 +6,34 @@ import { NgForm } from '@angular/forms';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.less']
 })
-export class FormComponent implements OnInit {
-	answer = [{
-		type: 'yes',
-		text: 'Да'
-	}, {
-		type: 'on',
-		text: 'Нет'
-	}]
 
-	// @HostListener ('click') onMouseEnter() {
-	// 	console.log('Hello!');
-	// }
-	
-	submitForm(form: NgForm) {
-		console.log('Submited!', form);
+export class FormComponent implements OnInit {
+	// @ViewChild('form') form: NgForm;
+
+	user: {
+		email: '',
+		password: ''		
 	}
 
-  constructor() { }
+	formData = {};
+	isSubmited = false;
+
+	submitForm(form: NgForm) {
+		this.isSubmited = true;
+		this.formData = form.value;
+		console.log(form.value);
+		form.reset();
+	}
+
+  constructor() {}
 
   ngOnInit(): void {
+		// this.form.setValue({
+		// 	user: {
+		// 		pass: '',
+		// 		email: ''
+		// 	}
+		// });	
   }
 
 }

@@ -23,6 +23,6 @@ import { AuthDirective } from './directives/auth.directive';
 		FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
