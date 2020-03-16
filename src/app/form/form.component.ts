@@ -6,7 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form.component.less']
 })
 export class FormComponent implements OnInit {
-
+	answer = [{
+		type: 'yes',
+		text: 'Да'
+	}, {
+		type: 'on',
+		text: 'Нет'
+	}]
   constructor() { }
 
   ngOnInit(): void {
