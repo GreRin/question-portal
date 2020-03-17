@@ -9,7 +9,10 @@
 				required
 				formControlName="email"
 			>
-			<p *ngIf="form.get('user.email').invalid && form.get('user.email').touched">Write correct email</p>
+			<p *ngIf="form.get('user.email').invalid && form.get('user.email').touched">
+				<span *ngIf="form.get('user.email').errors['email']">Enter correct email</span>
+				<span *ngIf="form.get('user.email').errors['emailIsUsed']">Email exist!</span>
+			</p>
 		</div>
 		<div class="form-group">
 			<label>Password</label>
@@ -20,7 +23,7 @@
 				formControlName="password"
 			>
 			<p *ngIf="form.get('user.password').invalid && form.get('user.password').touched">
-				<span *ngIf="form.get('user.password').errors['required']">Write correct password</span>
+				<span *ngIf="form.get('user.password').errors['required']">Enter correct password</span><br>
 				<span *ngIf="form.get('user.password').errors['lengthError']">Password less than 4 characters!</span>
 			</p>
 		</div>
