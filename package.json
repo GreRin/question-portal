@@ -19,9 +19,12 @@
     "@angular/platform-browser": "~9.0.5",
     "@angular/platform-browser-dynamic": "~9.0.5",
     "@angular/router": "~9.0.5",
+    "angularfire2": "^5.4.2",
     "bootstrap": "^4.4.1",
+    "firebase": "^7.11.0",
     "ngx-bootstrap": "^5.5.0",
-    "rxjs": "~6.5.4",
+    "rxjs": "^6.5.4",
+    "rxjs-compat": "^6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
