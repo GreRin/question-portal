@@ -1,27 +1,4 @@
-<!-- 
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '{1:912380236631:web:9f6b82e5ce92d0ebb7a412}',
-      cookie     : true,
-      xfbml      : true,
-      version    : '{v6.0}'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script> -->
-
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()">
 	<img class="dev-incubator-logo" src="../../assets/img/dev-incubator-logo.png" alt="Dev Incubator logo">
 	<h4>Sign Up</h4>
 	<div formGroupName="user">
@@ -51,6 +28,19 @@
 				<span *ngIf="form.get('user.password').errors['lengthError']">Password less than 4 characters!</span>
 			</p>
 		</div>
+		<div class="form-group">
+			<label>Repeat password</label>
+			<input 
+				type="password" 
+				class="form-control"
+				required
+				formControlName="password"
+			>
+			<p *ngIf="form.get('user.password').invalid && form.get('user.password').touched">
+				<span *ngIf="form.get('user.password').errors['required']">Enter correct password</span><br>
+				<span *ngIf="form.get('user.password').errors['lengthError']">Password less than 4 characters!</span>
+			</p>
+		</div>
 	</div>
 	<div class="appAuth">
 		<button class='appAuth-btn'><i class="fab fa-facebook-f"></i></button>
@@ -61,5 +51,6 @@
 		type="submit" 
 		class="btn btn-info"
 		[disabled]="form.invalid"
-	>sign up</button>
+	>Sign Up</button>
 </form>
+

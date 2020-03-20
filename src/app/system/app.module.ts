@@ -5,20 +5,17 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule  } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from 'src/environments/environment';
-import { AuthService } from './shared/auth.service';
+import { AuthService } from '../auth/auth.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FormComponent } from './form/form.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { AboutUsComponent } from './about-us/about-us.component';
+import { HomePageComponent } from '../home-page/home-page.component';
+import { AboutUsComponent } from '../about-us/about-us.component';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FormComponent,
     HomePageComponent,
     AboutUsComponent,
   ],
@@ -26,10 +23,10 @@ import { AboutUsComponent } from './about-us/about-us.component';
     BrowserModule,
 		AppRoutingModule,
 		ReactiveFormsModule,
-		AppRoutingModule,
 		AngularFireModule.initializeApp(environment.firebase, 'letslearn-dev'),
 		AngularFireDatabaseModule,
-		AngularFireAuthModule
+		AngularFireAuthModule,
+		AuthModule
   ],
   providers: [AuthService],
 	bootstrap: [AppComponent]

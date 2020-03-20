@@ -1,14 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
-import { rejects } from 'assert';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.less']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.less']
 })
+export class RegistrationComponent implements OnInit {
 
-export class FormComponent implements OnInit {
 	form: FormGroup;
   ngOnInit(): void {
 		this.form = new FormGroup({
@@ -47,4 +46,5 @@ export class FormComponent implements OnInit {
 			}, 1000)
 		});
 	}
+
 }
