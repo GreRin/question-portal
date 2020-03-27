@@ -3,13 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "registration-form": {
+    "FirebaseAuthSample": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "less"
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -17,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/registration-form",
+            "outputPath": "dist/FirebaseAuthSample",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -29,7 +25,7 @@
             ],
             "styles": [
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.less"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -67,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "registration-form:build"
+            "browserTarget": "FirebaseAuthSample:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "registration-form:build:production"
+              "browserTarget": "FirebaseAuthSample:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "registration-form:build"
+            "browserTarget": "FirebaseAuthSample:build"
           }
         },
         "test": {
@@ -93,7 +89,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.css"
             ],
             "scripts": []
           }
@@ -115,19 +111,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "registration-form:serve"
+            "devServerTarget": "FirebaseAuthSample:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "registration-form:serve:production"
+              "devServerTarget": "FirebaseAuthSample:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "registration-form",
+  "defaultProject": "FirebaseAuthSample",
   "cli": {
-    "analytics": "5479e9f5-cc57-416e-8bc8-a00449a89d6a"
+    "analytics": false
   }
 }

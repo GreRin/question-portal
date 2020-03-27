@@ -1,0 +1,43 @@
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-light">
+			<h1>Dev Incubator</h1>
+			
+			<button class="btn btn-primary" (click)="toggleSignInMode()" *ngIf="hideLoginButton()">
+				<i class="far fa-envelope"></i> {{ authService.signInMode ? "Sign Up":"Sign In" }}
+			</button>
+
+			<div class="add-question" *ngIf='afAuth.authState | async as user'>
+				<button class="btn btn-primary">
+					Add question
+				</button>
+				<div class="btn-group">
+					<div class="user-photo">
+						<img class="card-img-top" [src]="user.photoURL" alt="Card image cap">
+					</div>
+					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						User
+					</button>
+					<div class="dropdown-menu">
+						<button class="dropdown-item" href="#">Profile</button>
+						<div class="dropdown-divider"></div>
+						<button class="dropdown-item" (click)="logout()">Sign Out</button>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<ng-template #loginOptions>
+			<div class="form">
+				<app-signin-signup></app-signin-signup>
+			</div>
+		</ng-template>
+		<div *ngIf='afAuth.authState | async as user; else login'>
+			<app-user-details></app-user-details>
+		</div>
+		<ng-template #login>
+			<div class="row" *ngIf="authService.phoneSignIn; else loginOptions">
+				<app-phone-signin></app-phone-signin>
+			</div>
+		</ng-template>
+	</main>

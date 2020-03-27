@@ -1,0 +1,28 @@
+<div>
+	<form>
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input 
+				name="email" 
+				type="text" 
+				class="form-control"
+				[(ngModel)]="email"
+			>
+			<!-- <p *ngIf="form.get('email').invalid && form.get('email').touched">
+				<span *ngIf="form.get('email').errors['email']">Enter correct email</span>
+				<span *ngIf="form.get('email').errors['emailIsUsed']">Email exist!</span>
+			</p> -->
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input 
+				name="password" 
+				type="password" 
+				class="form-control"
+				[(ngModel)]="password"
+			>
+		</div>
+		<app-login-options></app-login-options>
+		<button class="btn btn-primary btn-block" (click)="signInOrSignUp()">{{ authService.signInMode ? "Sign In" :  "Sign Up"}}</button>
+	</form>
+</div>

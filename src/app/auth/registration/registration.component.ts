@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -9,6 +12,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class RegistrationComponent implements OnInit {
 
 	form: FormGroup;
+	providers = environment.providers;
+	modes = environment.modes;
+
+	constructor(
+		private authServise: AuthService,
+	) {}
+	
   ngOnInit(): void {
 		this.form = new FormGroup({
 			user: new FormGroup({
@@ -45,6 +55,10 @@ export class RegistrationComponent implements OnInit {
 				}
 			}, 1000)
 		});
+	}
+
+	signInWithModeAndProvider(mode: string, provider: string) {
+		this.authServise.signIn(mode, provider);
 	}
 
 }

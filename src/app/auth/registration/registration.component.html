@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
 	<img class="dev-incubator-logo" src="../../assets/img/dev-incubator-logo.png" alt="Dev Incubator logo">
 	<h4>Sign Up</h4>
 	<div formGroupName="user">
@@ -43,9 +43,19 @@
 		</div>
 	</div>
 	<div class="appAuth">
-		<button class='appAuth-btn'><i class="fab fa-facebook-f"></i></button>
-		<button class='appAuth-btn'><img src="https://img.icons8.com/color/28/000000/google-logo.png"></button>
-		<button class='appAuth-btn'><i class="fab fa-vk"></i></button>
+		<button 
+			class='appAuth-btn'
+			(click)="signInWithModeAndProvider(modes.POPUP, providers.GOOGLE)"
+		><i class="fab fa-facebook-f"></i>
+		</button>
+		<button 
+			class='appAuth-btn'
+		><img src="https://img.icons8.com/color/28/000000/google-logo.png">
+		</button>
+		<button 
+			class='appAuth-btn'
+		><i class="fab fa-github"></i>
+		</button>
 	</div>
 	<button 
 		type="submit" 

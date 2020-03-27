@@ -1,0 +1,27 @@
+.line {
+
+}
+
+.appAuth {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 20px 0;
+}
+
+.fa-github {
+	font-size: 1.8rem;
+}
+
+.fa-facebook-f, .fa-phone {
+	font-size: 1.4rem;
+	color: #117a8b;
+}
+
+.appAuth-btn {
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	outline: none;
+	margin: 0 30px;
+}
