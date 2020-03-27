@@ -22,3 +22,11 @@ input {
 label {
 	color: #3da0af;
 }
+
+input.ng-invalid.ng-touched {
+	border-color: red;
+}
+
+input.ng-valid.ng-touched {
+	border-color: green;
+}

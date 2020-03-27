@@ -1,5 +1,5 @@
 <div>
-	<form>
+	<form [formGroup]="form">
 		<i class="fab fa-angrycreative"></i>
 		<div class="form-group">
 			<label for="email">Email</label>
@@ -8,22 +8,35 @@
 				type="text" 
 				class="form-control"
 				[(ngModel)]="email"
+				formControlName="mail"
+				required
 			>
-			<!-- <p *ngIf="form.get('email').invalid && form.get('email').touched">
-				<span *ngIf="form.get('email').errors['email']">Enter correct email</span>
-				<span *ngIf="form.get('email').errors['emailIsUsed']">Email exist!</span>
-			</p> -->
+			<p *ngIf="form.get('mail').invalid && form.get('mail').touched">
+				<span *ngIf="form.get('mail').errors['required']">Enter correct email</span>
+				<!-- <span *ngIf="form.get('mail').errors['emailIsUsed']">Email exist!</span> -->
+			</p>
 		</div>
-		<div class="form-group">
+		<div class="form-group"
+				[ngClass]=""
+		>
 			<label for="password">Password</label>
 			<input 
 				name="password" 
 				type="password" 
 				class="form-control"
 				[(ngModel)]="password"
+				formControlName="pass"
+				required
 			>
+			<p *ngIf="form.get('pass').invalid && form.get('pass').touched">
+				<span *ngIf="form.get('pass').errors['required']">Enter correct password</span>
+				<span *ngIf="form.get('pass').errors['lengthError']">Password must be 6 symbols length.</span>
+			</p>
 		</div>
 		<app-login-options></app-login-options>
-		<button class="btn btn-primary btn-block" (click)="signInOrSignUp()">{{ authService.signInMode ? "Sign In" :  "Sign Up"}}</button>
+		<button class="btn btn-primary btn-block"
+					
+						(click)="signInOrSignUp()">{{ authService.signInMode ? "Sign In" :  "Sign Up"}}
+		</button>
 	</form>
 </div>
