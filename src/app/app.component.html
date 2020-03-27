@@ -12,7 +12,9 @@
 				</button>
 				<div class="btn-group">
 					<div class="user-photo">
-						<img class="card-img-top" [src]="user.photoURL" alt="Card image cap">
+						<img class="card-img-top" src="user.photoURL" alt="Card image cap"
+								onerror="this.src='../assets/img/profile-picture.png';"
+						>
 					</div>
 					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						User
