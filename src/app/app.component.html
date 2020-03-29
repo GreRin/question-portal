@@ -12,15 +12,21 @@
 				</button>
 				<div class="btn-group">
 					<div class="user-photo">
-						<img class="card-img-top" src="user.photoURL" alt="Card image cap"
+						<img class="card-img-top" [src]="user.photoURL" alt="Card image cap"
 								onerror="this.src='../assets/img/profile-picture.png';"
 						>
 					</div>
-					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button type="button" 
+									class="btn btn-primary dropdown-toggle" 
+									data-toggle="dropdown" 
+									aria-haspopup="true" 
+									aria-expanded="false"
+					>
 						User
 					</button>
 					<div class="dropdown-menu">
-						<button class="dropdown-item" href="#">Profile</button>
+						<button class="dropdown-item" routerLink="/">Main</button>
+						<button class="dropdown-item" routerLink="/user-profile">Profile</button>
 						<div class="dropdown-divider"></div>
 						<button class="dropdown-item" (click)="logout()">Sign Out</button>
 					</div>
@@ -35,7 +41,7 @@
 			</div>
 		</ng-template>
 		<div *ngIf='afAuth.authState | async as user; else login'>
-			<app-user-details></app-user-details>
+			<router-outlet></router-outlet>
 		</div>
 		<ng-template #login>
 			<div class="row" *ngIf="authService.phoneSignIn; else loginOptions">

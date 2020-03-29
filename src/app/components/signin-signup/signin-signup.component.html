@@ -29,7 +29,7 @@
 				required
 			>
 			<p *ngIf="form.get('pass').invalid && form.get('pass').touched">
-				<span *ngIf="form.get('pass').errors['required']">Enter correct password</span>
+				<span *ngIf="form.get('pass').errors['required']">Enter correct password. </span>
 				<span *ngIf="form.get('pass').errors['lengthError']">Password must be 6 symbols length.</span>
 			</p>
 		</div>
