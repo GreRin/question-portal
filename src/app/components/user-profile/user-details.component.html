@@ -1,11 +1,12 @@
-<div 
-	class="card" 
-	style="width: 18rem;"
-	*ngIf="afAuth.authState | async as user"
->
-	<img class="card-img-top" [src]="user.photoURL" alt="Card image cap">
-	<div class="card-body">
-		<h5 class="card-title">{{ user.displayName }}</h5>
-		<p class="card-text">{{ user.email }}</p>
+<div class="wrapper">
+	<div 
+		class="card" 
+		*ngIf="afAuth.authState | async as user"
+	>
+		<img class="card-img-top" [src]="user.photoURL" alt="Card image cap">
+		<div class="card-body">
+			<h5 class="card-title">{{ user.displayName }}</h5>
+			<p class="card-text">{{ user.email }}</p>
+		</div>
 	</div>
 </div>

@@ -7,7 +7,7 @@
 			</button>
 
 			<div class="add-question" *ngIf='afAuth.authState | async as user'>
-				<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+				<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="toggleAddQuestionBtn">
 					Add question
 				</button>
 				<div class="btn-group">
@@ -25,8 +25,8 @@
 						User
 					</button>
 					<div class="dropdown-menu">
-						<button class="dropdown-item" routerLink="/">Main</button>
-						<button class="dropdown-item" routerLink="/user-profile">Profile</button>
+						<button class="dropdown-item" routerLink="/" (click)="showAddQuestionButton()">Main</button>
+						<button class="dropdown-item" routerLink="/user-profile" (click)="hideAddQuestionButton()">Profile</button>
 						<div class="dropdown-divider"></div>
 						<button class="dropdown-item" (click)="logout()">Sign Out</button>
 					</div>
@@ -36,20 +36,24 @@
 	</header>
 	<main>
 		<ng-template #loginOptions>
-			<div class="form">
-				<app-signin-signup></app-signin-signup>
+			<div class="wrapper">
+				<div class="form">
+					<app-signin-signup></app-signin-signup>
+				</div>
 			</div>
 		</ng-template>
 
-		<div *ngIf='afAuth.authState | async as user; else login'>
+		<ng-template #login>
+			<div class="wrapper">
+				<div class="row" *ngIf="authService.phoneSignIn; else loginOptions">
+					<app-phone-signin></app-phone-signin>
+				</div>
+			</div>
+		</ng-template>
+
+		<div class="main-wrapper" *ngIf='afAuth.authState | async as user; else login'>
 			<router-outlet></router-outlet>
 		</div>
 
-		<ng-template #login>
-			<div class="row" *ngIf="authService.phoneSignIn; else loginOptions">
-				<app-phone-signin></app-phone-signin>
-			</div>
-		</ng-template>
-		
 		<app-new-question></app-new-question>
 	</main>

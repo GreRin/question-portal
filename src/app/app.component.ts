@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
 
 	phoneSignIn: boolean = true;
 	windowRef: any;
+	toggleAddQuestionBtn: boolean = true;
 
 	constructor (
 		public afAuth: AngularFireAuth,
@@ -28,6 +29,14 @@ export class AppComponent implements OnInit {
 	
 	toggleSignInMode() {
 		this.authService.signInMode = !this.authService.signInMode
+	}
+
+	showAddQuestionButton() {
+		this.toggleAddQuestionBtn = true;
+	}
+
+	hideAddQuestionButton() {
+		this.toggleAddQuestionBtn = false;
 	}
 
 	logout() {

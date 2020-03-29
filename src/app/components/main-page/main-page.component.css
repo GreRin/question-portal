@@ -1,0 +1,28 @@
+.filters {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+}
+
+.btn-primary, .btn-secondary {
+	background-color: #3da0af;
+	border-color: #3da0af;
+}
+
+.questions {
+	display: flex;
+	flex-direction: row;
+}
+
+.card {
+	display: flex;
+	width: 18rem;
+	margin: 20px;
+}
+
+.card img {
+	align-self: center;
+	width: 5rem;
+	margin-top: 10px;
+}

@@ -6,7 +6,7 @@
 }
 
 .fa-angrycreative {
-	font-size: 3rem;
+	font-size: 4rem;
 	color: #9e8978;
 }
 
@@ -30,12 +30,24 @@
 	border-bottom-left-radius: 5px;
 }
 
-main {
+.wrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
 	height: 90vh;
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	width: 100%;
+	height: 90vh;
+}
+
+.main-wrapper {
+	width: 100%;
 }
 
 .form {
