@@ -53,7 +53,9 @@
 
 		<div class="main-wrapper" *ngIf='afAuth.authState | async as user; else login'>
 			<router-outlet></router-outlet>
+			<app-new-question></app-new-question>
+			<button class="btn btn-primary plus" data-toggle="modal" data-target="#exampleModal" *ngIf="toggleAddQuestionBtn">
+				<i class="fas fa-plus"></i>
+			</button>
 		</div>
-
-		<app-new-question></app-new-question>
 	</main>

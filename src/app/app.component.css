@@ -58,3 +58,18 @@ main {
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
+
+.plus {
+	position: absolute;
+	bottom: 50px;
+	right: 50px;
+	background-color: transparent;
+	border-radius: 50%;
+	border: 2px solid #9e8978;
+}
+
+.fa-plus {
+	font-size: 3rem;
+	color: #3da0af;
+	margin: 3px 0;
+}
