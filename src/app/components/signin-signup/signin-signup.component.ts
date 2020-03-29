@@ -23,13 +23,13 @@ export class SigninSignupComponent implements OnInit {
   ngOnInit(): void {
 		this.form = new FormGroup({
 			mail: new FormControl("", [Validators.required, Validators.email]),
-			pass: new FormControl("", [Validators.required, this.checkForLength])
+			pass: new FormControl("", [Validators.required, Validators.minLength(6)])
 		})
 	}
 	
 	signInOrSignUp() {
 		this.authService.signInOrSignUp(this.email, this.password);
-		console.log(this.afAuth.auth);
+		console.log(this.form);
 	}
 
 	checkForLength(control: FormControl) {
