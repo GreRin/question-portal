@@ -7,7 +7,7 @@
 			</button>
 
 			<div class="add-question" *ngIf='afAuth.authState | async as user'>
-				<button class="btn btn-primary">
+				<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 					Add question
 				</button>
 				<div class="btn-group">
@@ -40,12 +40,16 @@
 				<app-signin-signup></app-signin-signup>
 			</div>
 		</ng-template>
+
 		<div *ngIf='afAuth.authState | async as user; else login'>
 			<router-outlet></router-outlet>
 		</div>
+
 		<ng-template #login>
 			<div class="row" *ngIf="authService.phoneSignIn; else loginOptions">
 				<app-phone-signin></app-phone-signin>
 			</div>
 		</ng-template>
+		
+		<app-new-question></app-new-question>
 	</main>
