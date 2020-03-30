@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import 'firebase/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
+import '@firebase/firestore'
 
 @Component({
   selector: 'app-main-page',
@@ -11,7 +11,6 @@ import 'firebase/firestore';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-
 
 	users: Observable<any[]>;
 
@@ -27,7 +26,6 @@ export class MainPageComponent implements OnInit {
 	
 	openMainPage() {
 		this.router.navigate(['/']);
-		console.log(this.users);
 	}
 
 }

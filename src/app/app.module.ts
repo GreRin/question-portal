@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppFirebaseModule } from './app-firebase/app-firebase.module';
 
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 import { WindowService } from './common/window/window.service';
 import { AuthService } from './common/auth/auth.service';
 
@@ -33,6 +35,7 @@ import { AuthRoutingModule } from './auth-routing-module';
 		FormsModule,
 		ReactiveFormsModule,
 		AuthRoutingModule,
+		AngularFirestoreModule
   ],
   providers: [
 		AuthService,
@@ -40,4 +43,5 @@ import { AuthRoutingModule } from './auth-routing-module';
 	],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
