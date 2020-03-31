@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from 'src/app/common/auth/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AngularFireAuth } from 'angularfire2/auth';
+
+import { constants } from '../../../common/utils/constants';
 
 @Component({
   selector: 'app-signin-signup',
@@ -14,10 +15,11 @@ export class SigninSignupComponent implements OnInit {
 	email: string;
 	password: string;
 	form: FormGroup;
+	providers = constants.providers;
+	modes = constants.modes;
 
 	constructor(
 		public authService: AuthService,
-		private afAuth: AngularFireAuth
 	) {}
 
   ngOnInit(): void {
@@ -29,6 +31,14 @@ export class SigninSignupComponent implements OnInit {
 	
 	signInOrSignUp() {
 		this.authService.signInOrSignUp(this.email, this.password);
+	}
+
+	signInWithModeAndProvider(mode: string, provider: string) {
+		this.authService.signIn(mode, provider);
+	}
+		
+	togglePhoneSignIn() {
+		this.authService.phoneSignIn = !this.authService.phoneSignIn
 	}
 
 	checkForLength(control: FormControl) {

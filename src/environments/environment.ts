@@ -13,14 +13,6 @@ export const environment = {
     messagingSenderId: "912380236631",
     appId: "1:912380236631:web:9f6b82e5ce92d0ebb7a412"
 	},
-	modes: {
-		POPUP: 'popup'
-	},
-	providers: {
-		GOOGLE: 'google',
-		FACEBOOK: 'facebook',
-		GITHUB: 'github'
-	}
 };
 
 /*

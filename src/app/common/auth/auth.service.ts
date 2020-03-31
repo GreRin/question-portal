@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFireAuth } from 'angularfire2/auth';
-import { environment } from 'src/environments/environment';
+import { constants } from '../utils/constants';
 import { auth } from 'firebase';
 
 @Injectable()
@@ -17,13 +17,13 @@ export class AuthService {
 		let providerInstance;
 
 		switch(provider) {
-			case environment.providers.GOOGLE:
+			case constants.providers.GOOGLE:
 				providerInstance = new auth.GoogleAuthProvider();
 				break;
-			case environment.providers.FACEBOOK:
+			case constants.providers.FACEBOOK:
 				providerInstance = new auth.FacebookAuthProvider();
 				break;
-			case environment.providers.GITHUB:
+			case constants.providers.GITHUB:
 				providerInstance = new auth.GithubAuthProvider();
 				break;
 			default:
@@ -33,7 +33,7 @@ export class AuthService {
 	}
 	
 	signIn(mode: string, provider: string) {
-		mode === environment.modes.POPUP ? this.afAuth.auth.signInWithPopup(this.getProviderInstance(provider))
+		mode === constants.modes.POPUP ? this.afAuth.auth.signInWithPopup(this.getProviderInstance(provider))
 				: this.afAuth.auth.signInWithRedirect(this.getProviderInstance(provider));
 	}
 

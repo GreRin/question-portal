@@ -30,3 +30,27 @@ input.ng-invalid.ng-touched {
 input.ng-valid.ng-touched {
 	border-color: green;
 }
+
+.appAuth {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 20px 0;
+}
+
+.fa-github {
+	font-size: 1.8rem;
+}
+
+.fa-facebook-f, .fa-phone {
+	font-size: 1.4rem;
+	color:#3da0af;
+}
+
+.appAuth-btn {
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	outline: none;
+	margin: 0 30px;
+}

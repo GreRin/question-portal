@@ -16,7 +16,7 @@ export class NewQuestionComponent implements OnInit {
 
 	title: any;
 	text: any;
-	// priority: any;
+	priority: any;
 	isSubmitted = false;
 	newQuestionForm: FormGroup;
 
@@ -35,16 +35,14 @@ export class NewQuestionComponent implements OnInit {
 		this.newQuestionForm = new FormGroup({
 			title: new FormControl("", [Validators.required]),
 			text: new FormControl("", [Validators.required]),
-			// priotiry: new FormControl("", [Validators.required]),
+			priority: new FormControl("", [Validators.required]),
 		})
 	}
 
 	resetFields() {
-		this.newQuestionForm = new FormGroup({
-			title: new FormControl("", [Validators.required]),
-			text: new FormControl("", [Validators.required]),
-			// priotiry: new FormControl("", [Validators.required]),
-		})
+		if(this.newQuestionForm.valid) {
+			this.newQuestionForm.reset()
+		}
   }
 	
 	onSubmit(value) {
