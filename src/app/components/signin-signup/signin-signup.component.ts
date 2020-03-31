@@ -29,7 +29,6 @@ export class SigninSignupComponent implements OnInit {
 	
 	signInOrSignUp() {
 		this.authService.signInOrSignUp(this.email, this.password);
-		console.log(this.form);
 	}
 
 	checkForLength(control: FormControl) {

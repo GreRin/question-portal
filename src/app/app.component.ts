@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-// import { AngularFirestore } from '@angular/fire/firestore';
-// import { Observable } from 'rxjs';
-// import 'firebase/firestore';
-
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { WindowService } from './common/window/window.service';
