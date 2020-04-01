@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-sm navbar-light">
+	<i class="fab fa-angrycreative" routerLink="/" (click)="showAddQuestionButton()"></i>
+	
+	<button class="btn btn-primary" (click)="toggleSignInMode()" *ngIf="hideLoginButton()">
+		<i class="far fa-envelope"></i> {{ authService.signInMode ? "Sign Up":"Sign In" }}
+	</button>
+
+	<div class="add-question" *ngIf='afAuth.authState | async as user'>
+		<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="toggleAddQuestionBtn">
+			Add question
+		</button>
+		<div class="btn-group">
+			<div class="user-photo">
+				<img class="card-img-top" [src]="user.photoURL || '../assets/img/profile-picture.png'" alt="Card image cap">
+			</div>
+			<button type="button" 
+							class="btn btn-primary dropdown-toggle" 
+							data-toggle="dropdown" 
+							aria-haspopup="true" 
+							aria-expanded="false"
+			>
+				User
+			</button>
+			<div class="dropdown-menu">
+				<button class="dropdown-item" routerLink="/user-profile" (click)="hideAddQuestionButton()">Profile</button>
+				<div class="dropdown-divider"></div>
+				<button class="dropdown-item" (click)="logout()">Sign Out</button>
+			</div>
+		</div>
+	</div>
+</nav>

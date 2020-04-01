@@ -3,7 +3,7 @@
 		class="card" 
 		*ngIf="afAuth.authState | async as user"
 	>
-		<img class="card-img-top" [src]="user.photoURL" alt="Card image cap">
+		<img class="card-img-top" [src]="user.photoURL || '../../../assets/img/profile-picture.png'" alt="Card image cap">
 		<div class="card-body">
 			<h5 class="card-title">{{ user.displayName }}</h5>
 			<p class="card-text">{{ user.email }}</p>

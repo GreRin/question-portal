@@ -19,6 +19,7 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { NewQuestionComponent } from './components/new-question/new-question.component';
 
 import { AuthRoutingModule } from './auth-routing-module';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthRoutingModule } from './auth-routing-module';
     PhoneSigninComponent,
     UserDetailsComponent,
     MainPageComponent,
-    NewQuestionComponent
+    NewQuestionComponent,
+    HeaderComponent
   ],
   imports: [
 		BrowserModule,

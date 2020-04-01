@@ -28,6 +28,12 @@ export class SigninSignupComponent implements OnInit {
 			pass: new FormControl("", [Validators.required, Validators.minLength(6)])
 		})
 	}
+
+	resetFields() {
+		if(this.form.valid) {
+			this.form.reset()
+		}
+  }
 	
 	signInOrSignUp() {
 		this.authService.signInOrSignUp(this.email, this.password);
