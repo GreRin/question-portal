@@ -36,7 +36,7 @@ export class SigninSignupComponent implements OnInit {
   }
 	
 	signInOrSignUp() {
-		this.authService.signInOrSignUp(this.email, this.password);
+		this.authService.signInOrSignUp(this.email, this.password)
 	}
 
 	signInWithModeAndProvider(mode: string, provider: string) {

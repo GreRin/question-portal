@@ -10,6 +10,7 @@ export class AuthService {
 
 	signInMode = false;
 	phoneSignIn = false;
+	signInError = false;
 
 	constructor(private afAuth: AngularFireAuth) {}
 
@@ -38,8 +39,21 @@ export class AuthService {
 	}
 
 	signInOrSignUp(email, password) {
-		this.signInMode ? this.afAuth.auth.signInWithEmailAndPassword(email, password)
-										: this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+		if(this.signInMode) {
+			this.afAuth.auth.signInWithEmailAndPassword(email, password).then(function(ref) {
+				console.log(ref)
+			}).catch(function(error) {
+				console.log('Failed: ' + error);
+			});
+		} else {
+			this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(function(ref) {
+				console.log(ref);
+			}).catch(function(error) {
+				console.log('Failed: ' + error);
+			});
+		}
+		// this.signInMode ? this.afAuth.auth.signInWithEmailAndPassword(email, password)
+		// 								: this.afAuth.auth.createUserWithEmailAndPassword(email, password)
 	}
 
 	logOut() {

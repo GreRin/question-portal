@@ -27,5 +27,4 @@ export class MainPageComponent implements OnInit {
 	openMainPage() {
 		this.router.navigate(['/']);
 	}
-
 }
