@@ -34,8 +34,19 @@ export class AuthService {
 	}
 	
 	signIn(mode: string, provider: string) {
-		mode === constants.modes.POPUP ? this.afAuth.auth.signInWithPopup(this.getProviderInstance(provider))
-				: this.afAuth.auth.signInWithRedirect(this.getProviderInstance(provider));
+		if(mode === constants.modes.POPUP) {
+			this.afAuth.auth.signInWithPopup(this.getProviderInstance(provider)).then(function(ref) {
+				console.log(ref)
+			}).catch(function(error) {
+				console.log('Failed: ' + error);
+			})
+		} else {
+			this.afAuth.auth.signInWithRedirect(this.getProviderInstance(provider)).then(function(ref) {
+				console.log(ref)
+			}).catch(function(error) {
+				console.log('Failed: ' + error);
+			})
+		}
 	}
 
 	signInOrSignUp(email, password) {
@@ -52,8 +63,6 @@ export class AuthService {
 				console.log('Failed: ' + error);
 			});
 		}
-		// this.signInMode ? this.afAuth.auth.signInWithEmailAndPassword(email, password)
-		// 								: this.afAuth.auth.createUserWithEmailAndPassword(email, password)
 	}
 
 	logOut() {

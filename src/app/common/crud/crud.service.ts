@@ -16,7 +16,9 @@ export class CrudService {
     return this.firestore.collection('newQuestion').add({
       title: value.title,
       text: value.text,
-      priority: value.priority
+      java: value.java,
+			salesforce: value.salesforce,
+			frontend: value.frontend
   	});
 	}
 }

@@ -16,7 +16,9 @@ export class NewQuestionComponent implements OnInit {
 
 	title: any;
 	text: any;
-	priority: any;
+	java: string;
+	salesforce: string;
+	frontend: string;
 	isSubmitted = false;
 	newQuestionForm: FormGroup;
 
@@ -35,7 +37,9 @@ export class NewQuestionComponent implements OnInit {
 		this.newQuestionForm = new FormGroup({
 			title: new FormControl("", [Validators.required]),
 			text: new FormControl("", [Validators.required]),
-			priority: new FormControl("", [Validators.required]),
+			java: new FormControl(""),
+			salesforce: new FormControl(""),
+			frontend: new FormControl(""),
 		})
 	}
 
