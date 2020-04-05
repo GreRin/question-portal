@@ -5,7 +5,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CrudService } from '../../common/crud/crud.service';
-import '@firebase/firestore'
+import '@firebase/firestore';
+
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-new-question',
@@ -51,7 +53,7 @@ export class NewQuestionComponent implements OnInit {
 	
 	onSubmit(value) {
 		this.isSubmitted = true;
-    if(!this.newQuestionForm.valid) {
+    if(!this.newQuestionForm.value) {
       return false;
     }
 		console.log(this.newQuestionForm);

@@ -13,15 +13,22 @@ import '@firebase/firestore'
 export class MainPageComponent implements OnInit {
 
 	users: Observable<any[]>;
+	questions: Observable<any[]>;
 
 	constructor(
 		private router: Router,
 		firestore: AngularFirestore
 	) {
 		this.users = firestore.collection('users').valueChanges();
+		this.questions = firestore.collection('questions').snapshotChanges();
 	}
 
   ngOnInit(): void {
+		this.getDataFromDatabase()
+	}
+
+	getDataFromDatabase() {
+		console.log(this.questions);
 	}
 	
 	openMainPage() {
