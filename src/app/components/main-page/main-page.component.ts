@@ -15,11 +15,6 @@ import '@firebase/firestore'
 })
 export class MainPageComponent implements OnInit {
 
-	// questions: AngularFireList<any[]>;
-	// text: Array<any>;
-	// java: Array<any>;
-	// salesforce: Array<any>;
-	// frontend: Array<any>;
 	users: Observable<any[]>;
 	questions: Observable<any[]>;
 

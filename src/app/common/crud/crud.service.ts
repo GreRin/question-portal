@@ -28,8 +28,15 @@ export class CrudService {
       text: value.text,
       java: value.java,
 			salesforce: value.salesforce,
-			frontend: value.frontend
+			frontend: value.frontend,
+			currentDate: this.getDate(),
   	});
+	}
+
+	getDate() {
+		const timestamp = new Date();
+    const time = `${timestamp.getDate()}.${timestamp.getMonth()}.${timestamp.getFullYear()}`;
+    return time;
 	}
 
 	getQuestions() {

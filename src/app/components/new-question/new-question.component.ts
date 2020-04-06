@@ -19,7 +19,6 @@ export class NewQuestionComponent implements OnInit {
 
 	title: any;
 	text: any;
-	date: string;
 	java: string;
 	salesforce: string;
 	frontend: string;
@@ -45,13 +44,8 @@ export class NewQuestionComponent implements OnInit {
 			java: new FormControl(""),
 			salesforce: new FormControl(""),
 			frontend: new FormControl(""),
-			currentDate: new FormControl(this.getDate()),
+			// currentDate: new FormControl(this.getDate()),
 		})
-	}
-
-	getDate() {
-		this.currentDate = "10.10.1010";
-		return this.currentDate
 	}
 
 	resetFields() {
