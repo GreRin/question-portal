@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { CrudService } from '../../common/crud/crud.service';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import '@firebase/firestore'
 
 @Component({
@@ -12,15 +15,21 @@ import '@firebase/firestore'
 })
 export class MainPageComponent implements OnInit {
 
+	// questions: AngularFireList<any[]>;
+	// text: Array<any>;
+	// java: Array<any>;
+	// salesforce: Array<any>;
+	// frontend: Array<any>;
 	users: Observable<any[]>;
 	questions: Observable<any[]>;
 
 	constructor(
 		private router: Router,
-		firestore: AngularFirestore
+		public firestore: AngularFirestore,
+		public crudService: CrudService,
 	) {
 		this.users = firestore.collection('users').valueChanges();
-		this.questions = firestore.collection('questions').snapshotChanges();
+		this.questions = firestore.collection('newQuestion').snapshotChanges();
 	}
 
   ngOnInit(): void {
@@ -29,6 +38,15 @@ export class MainPageComponent implements OnInit {
 
 	getDataFromDatabase() {
 		console.log(this.questions);
+		this.crudService.getQuestions()
+		.subscribe(result => {
+			// this.questions = result;
+			// this.text = result;
+			// this.java = result;
+			// this.salesforce = result;
+			// this.frontend = result;
+			console.log(result);
+		})
 	}
 	
 	openMainPage() {

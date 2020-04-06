@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CrudService } from '../../common/crud/crud.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 import '@firebase/firestore';
 
 import * as _ from "lodash";
@@ -18,6 +19,7 @@ export class NewQuestionComponent implements OnInit {
 
 	title: any;
 	text: any;
+	date: string;
 	java: string;
 	salesforce: string;
 	frontend: string;
@@ -28,7 +30,7 @@ export class NewQuestionComponent implements OnInit {
 
   constructor(
 		private router: Router,
-		public crudService: CrudService
+		public crudService: CrudService,
 	) {}
 
   ngOnInit(): void {

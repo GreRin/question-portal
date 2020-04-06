@@ -27,3 +27,7 @@
 	width: 5rem;
 	margin-top: 10px;
 }
+
+.card-buttons {
+	display: inline-flex;
+}

@@ -32,12 +32,14 @@
 </div>
 
 <section class="questions">
-	<div class="card" *ngFor="let user of users | async">
-		<img class="card-img-top" src="../../../assets/img/dev-incubator-logo.png" alt="Card image cap">
+	<div class="card" *ngFor="let question of questions | async">
 		<div class="card-body">
-			<h5 class="card-title">{{ user.email }}</h5>
-			<p class="card-text">{{ user.password }}</p>
-			<a href="#" class="btn btn-primary">Go somewhere</a>
+			<h5 class="card-title">{{ question.payload.doc.data().title }}</h5>
+			<p class="card-text">{{ question.payload.doc.data().java }}</p>
+			<div class="card-buttons">
+				<a href="#" class="btn btn-primary">Approve</a>
+				<a href="#" class="btn btn-primary">Delete</a>
+			</div>
 		</div>
 	</div>
 </section>

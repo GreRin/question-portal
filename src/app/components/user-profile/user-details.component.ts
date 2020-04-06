@@ -21,5 +21,4 @@ export class UserDetailsComponent implements OnInit {
 	openUserProfile() {
 		this.router.navigate(['/user-profile']);
 	}
-
 }
