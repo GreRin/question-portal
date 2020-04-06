@@ -28,16 +28,35 @@ main {
 }
 
 .plus {
-	position: absolute;
+	position: fixed;
 	bottom: 50px;
 	right: 50px;
 	background-color: transparent;
 	border-radius: 50%;
 	border: 2px solid #9e8978;
+	background-color: #fff;
 }
 
 .fa-plus {
 	font-size: 3rem;
 	color: #3da0af;
 	margin: 3px 0;
+}
+
+@media(max-width: 576px) {
+	.plus {
+		position: fixed;
+		bottom: 50px;
+		right: 50px;
+		background-color: transparent;
+		border-radius: 50%;
+		border: 2px solid #9e8978;
+		background-color: #fff;
+	}
+	
+	.fa-plus {
+		font-size: 1rem;
+		color: #3da0af;
+		margin: 3px 0;
+	}
 }

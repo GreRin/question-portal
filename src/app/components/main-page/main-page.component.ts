@@ -40,11 +40,6 @@ export class MainPageComponent implements OnInit {
 		console.log(this.questions);
 		this.crudService.getQuestions()
 		.subscribe(result => {
-			// this.questions = result;
-			// this.text = result;
-			// this.java = result;
-			// this.salesforce = result;
-			// this.frontend = result;
 			console.log(result);
 		})
 	}

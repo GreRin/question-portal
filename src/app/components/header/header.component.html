@@ -6,7 +6,7 @@
 	</button>
 
 	<div class="add-question" *ngIf='afAuth.authState | async as user'>
-		<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="toggleAddQuestionBtn">
+		<button class="btn btn-primary hidden" data-toggle="modal" data-target="#exampleModal" *ngIf="toggleAddQuestionBtn">
 			Add question
 		</button>
 		<div class="btn-group">

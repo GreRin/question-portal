@@ -5,6 +5,10 @@
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
+.add-question-hidden {
+	display: none;
+}
+
 .fa-angrycreative {
 	font-size: 4rem;
 	color: #9e8978;
@@ -30,4 +34,10 @@
 	width: 2.4rem;
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
+}
+
+@media(max-width: 414px) {
+	.hidden {
+		display: none;
+	}
 }
