@@ -22,7 +22,6 @@ export class NewQuestionComponent implements OnInit {
 	java: string;
 	salesforce: string;
 	frontend: string;
-	currentDate: string;
 	isSubmitted = false;
 	newQuestionForm: FormGroup;
 
@@ -44,7 +43,6 @@ export class NewQuestionComponent implements OnInit {
 			java: new FormControl(""),
 			salesforce: new FormControl(""),
 			frontend: new FormControl(""),
-			// currentDate: new FormControl(this.getDate()),
 		})
 	}
 

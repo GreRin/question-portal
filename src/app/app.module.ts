@@ -21,6 +21,8 @@ import { NewQuestionComponent } from './components/new-question/new-question.com
 import { AuthRoutingModule } from './auth-routing-module';
 import { HeaderComponent } from './components/header/header.component';
 
+import { ColorPickerModule } from 'ngx-color-picker';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,8 @@ import { HeaderComponent } from './components/header/header.component';
 		FormsModule,
 		ReactiveFormsModule,
 		AuthRoutingModule,
-		AngularFirestoreModule
+		AngularFirestoreModule,
+		ColorPickerModule
 	],
 	exports: [
 		AngularFireModule,

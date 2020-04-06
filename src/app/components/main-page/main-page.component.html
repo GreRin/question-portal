@@ -26,7 +26,13 @@
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
 			<button class="dropdown-item" type="button">Tiled/Row</button>
-			<button class="dropdown-item" type="button">Color theme</button>
+			<input class="color-picker" class="colorTheme" 
+				[(colorPicker)]="color" 
+				[style.background]="color"
+				[cpPosition]="'left'"
+				placeholder="Color theme"
+				[value]=color
+			>
 		</div>
 	</div>
 </div>
@@ -61,7 +67,7 @@
 	</div>
 </div>
 
-<section class="questions">
+<section class="questions" [style.background]="this.color">
 	<div class="row">
 		<div class="col-sm-4 col-md-3 col-xl-2 card" *ngFor="let question of questions | async">
 			<div class="card-body">

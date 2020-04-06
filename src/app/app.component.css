@@ -43,6 +43,11 @@ main {
 	margin: 3px 0;
 }
 
+.color-picker {
+	top: -5px !important;
+	right: 200px !important;
+}
+
 @media(max-width: 576px) {
 	.plus {
 		position: fixed;

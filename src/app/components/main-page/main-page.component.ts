@@ -3,9 +3,7 @@ import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { CrudService } from '../../common/crud/crud.service';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import '@firebase/firestore'
 
 @Component({
@@ -15,6 +13,7 @@ import '@firebase/firestore'
 })
 export class MainPageComponent implements OnInit {
 
+	color: any;
 	users: Observable<any[]>;
 	questions: Observable<any[]>;
 
