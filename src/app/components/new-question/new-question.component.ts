@@ -5,7 +5,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CrudService } from '../../common/crud/crud.service';
-import { AngularFirestore } from '@angular/fire/firestore';
 import '@firebase/firestore';
 
 import * as _ from "lodash";

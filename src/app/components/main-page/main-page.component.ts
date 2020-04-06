@@ -13,7 +13,10 @@ import '@firebase/firestore'
 })
 export class MainPageComponent implements OnInit {
 
-	color: any;
+	color = '#f5f5f5';
+	tiled = true;
+	tiledToggle;
+	row = "col-xl-12";
 	users: Observable<any[]>;
 	questions: Observable<any[]>;
 
@@ -36,6 +39,11 @@ export class MainPageComponent implements OnInit {
 		.subscribe(result => {
 			console.log(result);
 		})
+	}
+
+	tiledRowToggle() {
+		this.tiled = !this.tiled;
+		this.tiled ? this.tiledToggle="col-sm-4 col-md-3 col-xl-2" : this.tiledToggle="col-sm-12 col-md-12 col-xl-12 card-row";
 	}
 	
 	openMainPage() {

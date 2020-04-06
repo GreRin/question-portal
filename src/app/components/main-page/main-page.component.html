@@ -25,12 +25,13 @@
 			Settings
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
-			<button class="dropdown-item" type="button">Tiled/Row</button>
+			<button class="dropdown-item" type="button" (click)="tiledRowToggle()">Tiled/Row</button>
+			<hr>
+			<p>Color theme</p>
 			<input class="color-picker" class="colorTheme" 
 				[(colorPicker)]="color" 
 				[style.background]="color"
 				[cpPosition]="'left'"
-				placeholder="Color theme"
 				[value]=color
 			>
 		</div>
@@ -69,25 +70,28 @@
 
 <section class="questions" [style.background]="this.color">
 	<div class="row">
-		<div class="col-sm-4 col-md-3 col-xl-2 card" *ngFor="let question of questions | async">
+		<div class="{{ tiledToggle }} card" *ngFor="let question of questions | async">
 			<div class="card-body">
 				<h5 class="card-title">{{ question.payload.doc.data().title }}</h5>
-				<div class="line"></div>
-				<div class="card-category-date">
-					<p class="card-text"><strong>Category:</strong></p>
-					<p class="card-date">{{ question.payload.doc.data().currentDate }}</p>
-				</div>
-				<div class="card-category">
-					<ul>
-						<li *ngIf="question.payload.doc.data().java" class="card-text">Java</li>
-						<li *ngIf="question.payload.doc.data().salesforce" class="card-text">Salesforce</li>
-						<li *ngIf="question.payload.doc.data().frontend" class="card-text">Frontend</li>
-					</ul>
-				</div>
-				<div class="line"></div>
-				<div class="card-buttons">
-					<a href="#" class="btn btn-primary">Approve</a>
-					<a href="#" class="btn btn-primary">Delete</a>
+				<div class="card-wrapper">
+					<div class="line"></div>
+					<div class="card-category-date">
+						<p class="card-date hidden">{{ question.payload.doc.data().currentDate }}</p>
+						<p class="card-text"><strong>Category:</strong></p>
+						<p class="card-date visible">{{ question.payload.doc.data().currentDate }}</p>
+					</div>
+					<div class="card-category">
+						<ul>
+							<li *ngIf="question.payload.doc.data().java" class="card-text">Java</li>
+							<li *ngIf="question.payload.doc.data().salesforce" class="card-text">Salesforce</li>
+							<li *ngIf="question.payload.doc.data().frontend" class="card-text">Frontend</li>
+						</ul>
+					</div>
+					<div class="line"></div>
+					<div class="card-buttons">
+						<a href="#" class="btn btn-primary">Approve</a>
+						<a href="#" class="btn btn-primary">Delete</a>
+					</div>
 				</div>
 			</div>
 		</div>

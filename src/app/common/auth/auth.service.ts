@@ -4,9 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { constants } from '../utils/constants';
 import { auth } from 'firebase';
 
-import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 
 interface User {
 	uid: string;
@@ -27,19 +25,7 @@ export class AuthService {
 
 	user: Observable<User>;
 
-	constructor(
-		private afAuth: AngularFireAuth, 
-		private afs: AngularFirestore) 
-	{
-		// this.user = this.afAuth.authState.pipe(switchMap(user => {
-		// 		if (user) {
-		// 				return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-		// 		} else {
-		// 				return of(null);
-		// 		}
-		// })
-	// );
-	}
+	constructor(private afAuth: AngularFireAuth) {}
 
 	private getProviderInstance(provider: string) {
 		let providerInstance;
