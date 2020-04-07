@@ -22,6 +22,7 @@ import { AuthRoutingModule } from './auth-routing-module';
 import { HeaderComponent } from './components/header/header.component';
 
 import { ColorPickerModule } from 'ngx-color-picker';
+import { QuestionComponent } from './components/question/question.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
     UserDetailsComponent,
     MainPageComponent,
     NewQuestionComponent,
-    HeaderComponent
+    HeaderComponent,
+    QuestionComponent
   ],
   imports: [
 		BrowserModule,

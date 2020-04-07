@@ -1,0 +1,25 @@
+<div class="card-alone" *ngFor="let question of questions | async">
+	<div class="card-body" [routerLink]="['/', id]">
+		<h5 class="card-title">{{ question.payload.doc.data().title }}</h5>
+		<div class="card-wrapper">
+			<div class="line"></div>
+			<div class="card-category-date">
+				<p class="card-date hidden">{{ question.payload.doc.data().currentDate }}</p>
+				<p class="card-text"><strong>Category:</strong></p>
+				<p class="card-date visible">{{ question.payload.doc.data().currentDate }}</p>
+			</div>
+			<div class="card-category">
+				<ul>
+					<li *ngIf="question.payload.doc.data().java" class="card-text">Java</li>
+					<li *ngIf="question.payload.doc.data().salesforce" class="card-text">Salesforce</li>
+					<li *ngIf="question.payload.doc.data().frontend" class="card-text">Frontend</li>
+				</ul>
+			</div>
+			<div class="line"></div>
+			<div class="card-buttons">
+				<a href="#" class="btn btn-primary">Approve</a>
+				<a href="#" class="btn btn-primary">Delete</a>
+			</div>
+		</div>
+	</div>
+</div>

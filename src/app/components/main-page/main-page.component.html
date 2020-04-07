@@ -70,7 +70,7 @@
 
 <section class="questions" [style.background]="this.color">
 	<div class="row">
-		<div class="{{ tiledToggle }} card" *ngFor="let question of questions | async">
+		<div class="{{ tiledToggle }} card" [routerLink]="['/', question.payload.doc.data().title]" *ngFor="let question of questions | async">
 			<div class="card-body">
 				<h5 class="card-title">{{ question.payload.doc.data().title }}</h5>
 				<div class="card-wrapper">

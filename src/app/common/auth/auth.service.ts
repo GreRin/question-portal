@@ -4,28 +4,22 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { constants } from '../utils/constants';
 import { auth } from 'firebase';
 
-import { Observable } from 'rxjs';
-
-interface User {
-	uid: string;
-	email: string;
-	password: string;
-	name: string;
-}
+// import { CrudService } from '../crud/crud.service';
 
 @Injectable({
 	providedIn: 'root'
 })
 
 export class AuthService {
-
+	userData;
 	signInMode = false;
 	phoneSignIn = false;
 	signInError = false;
 
-	user: Observable<User>;
-
-	constructor(private afAuth: AngularFireAuth) {}
+	constructor(
+		private afAuth: AngularFireAuth,
+		// public crudService: CrudService,
+	) {}
 
 	private getProviderInstance(provider: string) {
 		let providerInstance;
@@ -49,13 +43,15 @@ export class AuthService {
 	signIn(mode: string, provider: string) {
 		if(mode === constants.modes.POPUP) {
 			this.afAuth.auth.signInWithPopup(this.getProviderInstance(provider)).then(function(ref) {
-				console.log(ref)
+				console.log(ref.user.uid)
+				// Call function addUser to give it userData
+				// this.crudService.getUserData(ref.user)
 			}).catch(function(error) {
 				console.log('Failed: ' + error);
 			})
 		} else {
 			this.afAuth.auth.signInWithRedirect(this.getProviderInstance(provider)).then(function(ref) {
-				console.log(ref)
+				// console.log(ref);
 			}).catch(function(error) {
 				console.log('Failed: ' + error);
 			})
@@ -65,7 +61,7 @@ export class AuthService {
 	signInOrSignUp(email, password) {
 		if(this.signInMode) {
 			this.afAuth.auth.signInWithEmailAndPassword(email, password).then(function(ref) {
-				console.log(ref)
+				console.log(ref);
 			}).catch(function(error) {
 				console.log('Failed: ' + error);
 			});

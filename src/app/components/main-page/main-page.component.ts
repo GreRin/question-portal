@@ -13,6 +13,7 @@ import '@firebase/firestore'
 })
 export class MainPageComponent implements OnInit {
 
+	id: number;
 	color = '#f5f5f5';
 	tiled = true;
 	tiledToggle;
@@ -30,14 +31,15 @@ export class MainPageComponent implements OnInit {
 	}
 
   ngOnInit(): void {
-		this.getDataFromDatabase()
+		this.id = +this.firestore.collection('newQuestion').stateChanges;
+		this.getDataFromDatabase();
+		this.crudService.getUserData()
 	}
 
 	getDataFromDatabase() {
-		console.log(this.questions);
 		this.crudService.getQuestions()
 		.subscribe(result => {
-			console.log(result);
+			console.log(result)
 		})
 	}
 

@@ -1,24 +1,36 @@
 import { Injectable } from '@angular/core';
  
 import { AngularFirestore  } from '@angular/fire/firestore';
+
+import { AngularFireAuth } from 'angularfire2/auth';
  
 @Injectable({
   providedIn: 'root'
 })
 
 export class CrudService {
+	user: {
+		ownerId: '',
+		displayName: '',
+		email: '',
+	}
+
+	userData: any;
 	questionsList: any;
  
   constructor(
-    private firestore: AngularFirestore
-	) { }
+		private firestore: AngularFirestore,
+		private afAuth: AngularFireAuth,
+	) { 
+		this.userData = this.afAuth.user.subscribe(data => { data.uid })
+	 }
 	
 	addUser(value) {
     return this.firestore.collection('users').add({
-			id: value.id,
+			id: value.uid,
       email: value.email,
       password: value.password,
-			name: value.name,
+			name: value.displayName,
   	});
 	}
  
@@ -30,7 +42,18 @@ export class CrudService {
 			salesforce: value.salesforce,
 			frontend: value.frontend,
 			currentDate: this.getDate(),
+			user: {
+				ownerId: "",
+				displayName: "",
+				email: "",
+			}
   	});
+	}
+
+	getUserData() {
+		this.userData = this.afAuth.user.subscribe(data => { data.uid })
+		console.log(this.userData)
+		return this.userData
 	}
 
 	getDate() {
