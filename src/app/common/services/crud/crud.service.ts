@@ -3,26 +3,31 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore  } from '@angular/fire/firestore';
 
 import { AngularFireAuth } from 'angularfire2/auth';
+
+import { Observable } from 'rxjs';
+
+interface User { 
+	uid: string; 
+	email: string; 
+	photoURL?: string; 
+	displayName?: string; 
+}
  
 @Injectable({
   providedIn: 'root'
 })
 
 export class CrudService {
-	user: {
-		ownerId: '',
-		displayName: '',
-		email: '',
-	}
 
 	userData: any;
 	questionsList: any;
+	user: Observable<User>;
  
   constructor(
 		private firestore: AngularFirestore,
 		private afAuth: AngularFireAuth,
 	) { 
-		this.userData = this.afAuth.user.subscribe(data => { data.uid })
+		// this.userData = this.afAuth.authState.subscribe(data => { data });
 	 }
 	
 	addUser(value) {
@@ -51,9 +56,13 @@ export class CrudService {
 	}
 
 	getUserData() {
-		this.userData = this.afAuth.user.subscribe(data => { data.uid })
-		console.log(this.userData)
-		return this.userData
+		// this.userData = this.afAuth.user.subscribe(data => { data.uid })
+		this.afAuth.authState.subscribe(user => {
+			if(user)
+			this.userData = user.email;
+		})
+		console.log("This user data " + this.userData)
+		// return this.userData
 	}
 
 	getDate() {

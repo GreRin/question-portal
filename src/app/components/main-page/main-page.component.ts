@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { CrudService } from '../../common/crud/crud.service';
+import { CrudService } from '../../common/services/crud/crud.service';
 import '@firebase/firestore'
 
 @Component({
@@ -20,6 +20,7 @@ export class MainPageComponent implements OnInit {
 	row = "col-xl-12";
 	users: Observable<any[]>;
 	questions: Observable<any[]>;
+	questionSnaption: [];
 
 	constructor(
 		private router: Router,

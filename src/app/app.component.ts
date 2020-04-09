@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 
-import { WindowService } from './common/window/window.service';
-import { AuthService } from './common/auth/auth.service';
+import { WindowService } from './common/services/window/window.service';
+import { AuthService } from './common/services/auth/auth.service';
 
 @Component({
   selector: 'app-root',

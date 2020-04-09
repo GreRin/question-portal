@@ -3,8 +3,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 
-import { WindowService } from 'src/app/common/window/window.service';
-import { AuthService } from 'src/app/common/auth/auth.service';
+import { WindowService } from 'src/app/common/services/window/window.service';
+import { AuthService } from 'src/app/common/services/auth/auth.service';
 
 @Component({
   selector: 'app-phone-signin',

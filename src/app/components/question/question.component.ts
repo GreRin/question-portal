@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 
-import { CrudService } from 'src/app/common/crud/crud.service';
+import { CrudService } from 'src/app/common/services/crud/crud.service';
 
 @Component({
   selector: 'app-question',

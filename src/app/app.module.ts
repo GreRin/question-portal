@@ -9,8 +9,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 
-import { WindowService } from './common/window/window.service';
-import { AuthService } from './common/auth/auth.service';
+import { WindowService } from './common/services/window/window.service';
+import { AuthService } from './common/services/auth/auth.service';
 
 import { SigninSignupComponent } from './components/signup-login/signin-signup/signin-signup.component';
 import { PhoneSigninComponent } from './components/signup-login/phone-signin/phone-signin.component';
