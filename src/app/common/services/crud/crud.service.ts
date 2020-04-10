@@ -19,7 +19,9 @@ interface User {
 
 export class CrudService {
 
-	userData: any;
+	id: string;
+	email: string;
+	name: string;
 	questionsList: any;
 	user: Observable<User>;
  
@@ -27,15 +29,16 @@ export class CrudService {
 		private firestore: AngularFirestore,
 		private afAuth: AngularFireAuth,
 	) { 
-		// this.userData = this.afAuth.authState.subscribe(data => { data });
+		this.id = this.afAuth.auth.currentUser.uid;
+		this.name = this.afAuth.auth.currentUser.displayName;
+		this.email = this.afAuth.auth.currentUser.email;
 	 }
 	
-	addUser(value) {
+	addUser() {
     return this.firestore.collection('users').add({
-			id: value.uid,
-      email: value.email,
-      password: value.password,
-			name: value.displayName,
+			ownerId: this.id,
+			displayName: this.name,
+			email: this.email,
   	});
 	}
  
@@ -43,26 +46,21 @@ export class CrudService {
     return this.firestore.collection('newQuestion').add({
       title: value.title,
       text: value.text,
-      java: value.java,
-			salesforce: value.salesforce,
-			frontend: value.frontend,
+      // java: value.java,
+			// salesforce: value.salesforce,
+			// frontend: value.frontend,
+			category: value.category,
 			currentDate: this.getDate(),
 			user: {
-				ownerId: "",
-				displayName: "",
-				email: "",
+				ownerId: this.id,
+				displayName: this.name,
+				email: this.email,
 			}
   	});
 	}
 
 	getUserData() {
-		// this.userData = this.afAuth.user.subscribe(data => { data.uid })
-		this.afAuth.authState.subscribe(user => {
-			if(user)
-			this.userData = user.email;
-		})
-		console.log("This user data " + this.userData)
-		// return this.userData
+		console.log(this.afAuth.auth.currentUser)
 	}
 
 	getDate() {

@@ -9,7 +9,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form [formGroup]="newQuestionForm" novalidate (ngSubmit)="onSubmit(newQuestionForm.valid)">
+						<form [formGroup]="newQuestionForm" validate (ngSubmit)="onSubmit(newQuestionForm.value)">
 							<div class="form-group row">
 								<label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
 								<div class="col-sm-10">
@@ -17,8 +17,8 @@
 												class="form-control" 
 												id="inputTitle" 
 												placeholder="Title" 
-												required
 												formControlName="title"
+												required
 									>
 								</div>
 							</div>
@@ -29,16 +29,16 @@
 												class="form-control" 
 												id="inputText" 
 												placeholder="Text" 
-												required
 												formControlName="text"
+												required
 									>
 								</div>
 							</div>
 							<fieldset class="form-group">
 								<div class="row">
-									<legend class="col-form-label col-sm-2 pt-0">Priority</legend>
+									<legend class="col-form-label col-sm-2 pt-0">Category</legend>
 									<div class="col-sm-10">
-										<div class="form-check">
+										<!-- <div class="form-check">
 											<input class="form-check-input" 
 														type="checkbox" 
 														name="java" 
@@ -73,6 +73,11 @@
 											<label class="form-check-label" for="frontend">
 												Frontend
 											</label>
+										</div> -->
+
+										<div *ngFor="let category of newQuestionForm.controls.category; let i=index;">
+											<input type="checkbox" [formControl]="category">
+											{{category[i].name}}
 										</div>
 									</div>
 								</div>
@@ -80,7 +85,7 @@
 							<div class="form-group row">
 									<div class="col-sm-12 text-center">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-											<button type="submit" class="btn btn-primary" id="addNewTask">Ok</button>
+											<button type="submit" class="btn btn-primary" id="addNewTask" [disabled]="!newQuestionForm.valid">Ok</button>
 									</div>
 							</div>
 						</form>

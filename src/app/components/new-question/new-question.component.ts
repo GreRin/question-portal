@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -16,12 +16,31 @@ import * as _ from "lodash";
 })
 export class NewQuestionComponent implements OnInit {
 
+  category: any = [
+    {
+      name: "Java",
+			value: "java",
+			selected: true
+    },
+    {
+      name: "Salesforce",
+      value: "salesforce",
+      selected: false
+    },
+    {
+      name: "Frontend",
+      value: "frontend",
+      selected: false
+    }
+  ];
+
 	title: any;
 	text: any;
-	java: string;
-	salesforce: string;
-	frontend: string;
+	// java: string;
+	// salesforce: string;
+	// frontend: string;
 	isSubmitted = false;
+	selectedCategoryNames: string[];
 	newQuestionForm: FormGroup;
 
 	users: Observable<any[]>;
@@ -39,11 +58,37 @@ export class NewQuestionComponent implements OnInit {
 		this.newQuestionForm = new FormGroup({
 			title: new FormControl("", [Validators.required]),
 			text: new FormControl("", [Validators.required]),
-			java: new FormControl(""),
-			salesforce: new FormControl(""),
-			frontend: new FormControl(""),
-		})
+			// java: new FormControl(""),
+			// salesforce: new FormControl(""),
+			// frontend: new FormControl(""),
+			category: this.createCategory(this.category)
+		});
+		// this.getSelectedCategory();
 	}
+
+	createCategory(categoryInputs) {
+		const arr = categoryInputs.map(category => {
+			return new FormControl(category.selected || false)
+		});
+		return new FormArray(arr);
+	}
+
+	// getSelectedCategory() {
+	// 	this.selectedCategoryNames = _.map(
+	// 		this.newQuestionForm.controls.category["category"],
+	// 		(cat, i) => {
+	// 			return cat.value && this.category[i].value;
+	// 		}
+	// 	)
+	// }
+
+	// getSelectedHobbiesName() {
+  //   this.selectedCategoryNames = _.filter(this.selectedCategoryNames, function (category) {
+  //     if (category !== false) {
+  //       return category;
+  //     }
+	// 	});
+	// }
 
 	resetFields() {
 		if(this.newQuestionForm.valid) {
