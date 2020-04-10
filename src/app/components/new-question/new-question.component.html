@@ -75,9 +75,9 @@
 											</label>
 										</div> -->
 
-										<div *ngFor="let category of newQuestionForm.controls.category; let i=index;">
+										<div *ngFor="let category of newQuestionForm.controls.categories.controls; let i=index;">
 											<input type="checkbox" [formControl]="category">
-											{{category[i].name}}
+											{{mycategory[i].name}}
 										</div>
 									</div>
 								</div>

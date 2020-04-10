@@ -46,10 +46,10 @@ export class CrudService {
     return this.firestore.collection('newQuestion').add({
       title: value.title,
       text: value.text,
-      // java: value.java,
-			// salesforce: value.salesforce,
-			// frontend: value.frontend,
-			category: value.category,
+      java: value.java,
+			salesforce: value.salesforce,
+			frontend: value.frontend,
+			// category: value.category,
 			currentDate: this.getDate(),
 			user: {
 				ownerId: this.id,
@@ -60,7 +60,7 @@ export class CrudService {
 	}
 
 	getUserData() {
-		console.log(this.afAuth.auth.currentUser)
+		// console.log(this.afAuth.auth.currentUser)
 	}
 
 	getDate() {

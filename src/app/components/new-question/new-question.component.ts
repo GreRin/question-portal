@@ -16,7 +16,7 @@ import * as _ from "lodash";
 })
 export class NewQuestionComponent implements OnInit {
 
-  category: any = [
+  mycategory: any = [
     {
       name: "Java",
 			value: "java",
@@ -61,26 +61,28 @@ export class NewQuestionComponent implements OnInit {
 			// java: new FormControl(""),
 			// salesforce: new FormControl(""),
 			// frontend: new FormControl(""),
-			category: this.createCategory(this.category)
+			categories: this.createCategory(this.mycategory)
 		});
-		// this.getSelectedCategory();
+		this.getSelectedCategory();
 	}
 
 	createCategory(categoryInputs) {
 		const arr = categoryInputs.map(category => {
+			console.log(category.name);
 			return new FormControl(category.selected || false)
 		});
+		console.log(arr);
 		return new FormArray(arr);
 	}
 
-	// getSelectedCategory() {
-	// 	this.selectedCategoryNames = _.map(
-	// 		this.newQuestionForm.controls.category["category"],
-	// 		(cat, i) => {
-	// 			return cat.value && this.category[i].value;
-	// 		}
-	// 	)
-	// }
+	getSelectedCategory() {
+		this.selectedCategoryNames = _.map(
+			this.newQuestionForm.controls.categories["category"],
+			(categ, i) => {
+				return categ.value && this.mycategory[i].value;
+			}
+		)
+	}
 
 	// getSelectedHobbiesName() {
   //   this.selectedCategoryNames = _.filter(this.selectedCategoryNames, function (category) {

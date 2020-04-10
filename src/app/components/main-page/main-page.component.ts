@@ -40,7 +40,7 @@ export class MainPageComponent implements OnInit {
 	getDataFromDatabase() {
 		this.crudService.getQuestions()
 		.subscribe(result => {
-			console.log(result)
+			// console.log(result)
 		})
 	}
 
