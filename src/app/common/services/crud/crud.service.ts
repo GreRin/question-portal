@@ -26,12 +26,13 @@ export class CrudService {
 
  
   createNewQuestion = (value) => {
+		console.log(value);
     return this.firestore.collection('newQuestion').add({
       title: value.title,
       text: value.text,
-      java: value.java,
-			salesforce: value.salesforce,
-			frontend: value.frontend,
+      java: value.categories[0],
+			salesforce: value.categories[1],
+			frontend: value.categories[2],
 			currentDate: this.getDate(),
 			user: {
 				ownerId: this.id,
