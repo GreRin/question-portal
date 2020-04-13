@@ -1,4 +1,4 @@
-<div class="card-alone" *ngFor="let question of questions | async">
+<div class="card-alone" *ngFor="let question of questions">
 	<div class="card-body" [routerLink]="['/', id]">
 		<h5 class="card-title">{{ question.payload.doc.data().title }}</h5>
 		<div class="card-wrapper">

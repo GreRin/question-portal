@@ -33,23 +33,19 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
 		this.id = +this.firestore.collection('newQuestion').stateChanges;
-		this.getDataFromDatabase();
-		this.crudService.getUserData()
+
 	}
 
-	getDataFromDatabase() {
-		this.crudService.getQuestions()
-		.subscribe(result => {
-			// console.log(result)
-		})
+	deleteDataFromDatabase = () => {
+		console.log("Deleted");
 	}
 
-	tiledRowToggle() {
+	tiledRowToggle = () => {
 		this.tiled = !this.tiled;
 		this.tiled ? this.tiledToggle="col-sm-4 col-md-3 col-xl-2" : this.tiledToggle="col-sm-12 col-md-12 col-xl-12 card-row";
 	}
 	
-	openMainPage() {
+	openMainPage = () => {
 		this.router.navigate(['/']);
 	}
 }

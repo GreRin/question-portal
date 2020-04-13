@@ -16,31 +16,31 @@ import * as _ from "lodash";
 })
 export class NewQuestionComponent implements OnInit {
 
-  mycategory: any = [
-    {
-      name: "Java",
-			value: "java",
-			selected: true
-    },
-    {
-      name: "Salesforce",
-      value: "salesforce",
-      selected: false
-    },
-    {
-      name: "Frontend",
-      value: "frontend",
-      selected: false
-    }
-  ];
+  // mycategory: any = [
+  //   {
+  //     name: "Java",
+	// 		value: "java",
+	// 		selected: true
+  //   },
+  //   {
+  //     name: "Salesforce",
+  //     value: "salesforce",
+  //     selected: false
+  //   },
+  //   {
+  //     name: "Frontend",
+  //     value: "frontend",
+  //     selected: false
+  //   }
+  // ];
 
 	title: any;
 	text: any;
-	// java: string;
-	// salesforce: string;
-	// frontend: string;
+	java: string;
+	salesforce: string;
+	frontend: string;
 	isSubmitted = false;
-	selectedCategoryNames: string[];
+	// selectedCategoryNames: string[];
 	newQuestionForm: FormGroup;
 
 	users: Observable<any[]>;
@@ -54,35 +54,35 @@ export class NewQuestionComponent implements OnInit {
 		this.createNewQuestion()
 	}
 
-	createNewQuestion() {
+	createNewQuestion = () => {
 		this.newQuestionForm = new FormGroup({
 			title: new FormControl("", [Validators.required]),
 			text: new FormControl("", [Validators.required]),
-			// java: new FormControl(""),
-			// salesforce: new FormControl(""),
-			// frontend: new FormControl(""),
-			categories: this.createCategory(this.mycategory)
+			java: new FormControl(""),
+			salesforce: new FormControl(""),
+			frontend: new FormControl(""),
+			// categories: this.createCategory(this.mycategory)
 		});
-		this.getSelectedCategory();
+		// this.getSelectedCategory();
 	}
 
-	createCategory(categoryInputs) {
-		const arr = categoryInputs.map(category => {
-			console.log(category.name);
-			return new FormControl(category.selected || false)
-		});
-		console.log(arr);
-		return new FormArray(arr);
-	}
+	// createCategory = (categoryInputs) => {
+	// 	const arr = categoryInputs.map(category => {
+	// 		console.log(category.name);
+	// 		return new FormControl(category.selected || false)
+	// 	});
+	// 	console.log(arr);
+	// 	return new FormArray(arr);
+	// }
 
-	getSelectedCategory() {
-		this.selectedCategoryNames = _.map(
-			this.newQuestionForm.controls.categories["category"],
-			(categ, i) => {
-				return categ.value && this.mycategory[i].value;
-			}
-		)
-	}
+	// getSelectedCategory () => {
+	// 	this.selectedCategoryNames = _.map(
+	// 		this.newQuestionForm.controls.categories["category"],
+	// 		(categ, i) => {
+	// 			return categ.value && this.mycategory[i].value;
+	// 		}
+	// 	)
+	// }
 
 	// getSelectedHobbiesName() {
   //   this.selectedCategoryNames = _.filter(this.selectedCategoryNames, function (category) {
@@ -92,13 +92,13 @@ export class NewQuestionComponent implements OnInit {
 	// 	});
 	// }
 
-	resetFields() {
+	resetFields = () => {
 		if(this.newQuestionForm.valid) {
 			this.newQuestionForm.reset()
 		}
   }
 	
-	onSubmit(value) {
+	onSubmit = (value) => {
 		this.isSubmitted = true;
     if(!this.newQuestionForm.value) {
       return false;

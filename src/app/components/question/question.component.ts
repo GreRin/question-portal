@@ -14,15 +14,13 @@ import { CrudService } from 'src/app/common/services/crud/crud.service';
 export class QuestionComponent implements OnInit {
 	id: number;
 	title: string;
-	questions: Observable<any[]>;
+	questions;
 
 	constructor(
 		private route: ActivatedRoute,
 		public firestore: AngularFirestore,
 		public crudService: CrudService,
-	) {
-		this.questions = firestore.collection('newQuestion').snapshotChanges();
-	}
+	) {}
 
   ngOnInit(): void {
 		this.id = +this.route.snapshot.params['id'];
@@ -30,12 +28,13 @@ export class QuestionComponent implements OnInit {
 		this.getDataFromDatabase()
 	}
 
-	getDataFromDatabase() {
-		console.log(this.route.snapshot);
-		// this.crudService.getQuestions()
-		// .subscribe(result => {
-		// 	console.log(result);
-		// })
+	getDataFromDatabase = () => {
+		// console.log(this.route.snapshot);
+		this.crudService.getQuestions()
+		.subscribe(result => {
+			this.questions = result;
+			console.log(this.questions.question.payload.doc.data());
+		})
 	}
 
 }

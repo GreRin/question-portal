@@ -4,8 +4,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { constants } from '../../utils/constants';
 import { auth } from 'firebase';
 
-// import { CrudService } from '../crud/crud.service';
-
 @Injectable({
 	providedIn: 'root'
 })
@@ -18,10 +16,9 @@ export class AuthService {
 
 	constructor(
 		private afAuth: AngularFireAuth,
-		// public crudService: CrudService,
 	) {}
 
-	private getProviderInstance(provider: string) {
+	private getProviderInstance = (provider: string) => {
 		let providerInstance;
 
 		switch(provider) {
@@ -40,12 +37,10 @@ export class AuthService {
 		return providerInstance;
 	}
 	
-	signIn(mode: string, provider: string) {
+	signIn = (mode: string, provider: string) => {
 		if(mode === constants.modes.POPUP) {
 			this.afAuth.auth.signInWithPopup(this.getProviderInstance(provider)).then((ref) => {
-				console.log(ref.user.uid)
-				// Call function addUser to give it userData
-				// this.crudService.getUserData(ref.user)
+				// console.log(ref.user.uid)
 			}).catch(function(error) {
 				console.log('Failed: ' + error);
 			})
@@ -58,23 +53,23 @@ export class AuthService {
 		}
 	}
 
-	signInOrSignUp(email, password) {
+	signInOrSignUp = (email, password) => {
 		if(this.signInMode) {
 			this.afAuth.auth.signInWithEmailAndPassword(email, password).then((ref) => {
 				console.log(ref);
-			}).catch(function(error) {
+			}).catch((error) => {
 				console.log('Failed: ' + error);
 			});
 		} else {
 			this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((ref) => {
 				console.log(ref);
-			}).catch(function(error) {
+			}).catch((error) => {
 				console.log('Failed: ' + error);
 			});
 		}
 	}
 
-	logOut() {
+	logOut = () => {
 		this.afAuth.auth.signOut();
 	}
 }
