@@ -36,9 +36,6 @@ export class NewQuestionComponent implements OnInit {
 
 	title: any;
 	text: any;
-	// java: string;
-	// salesforce: string;
-	// frontend: string;
 	isSubmitted = false;
 	selectedCategoryNames: string[];
 	newQuestionForm: FormGroup;
@@ -58,9 +55,6 @@ export class NewQuestionComponent implements OnInit {
 		this.newQuestionForm = new FormGroup({
 			title: new FormControl("", [Validators.required]),
 			text: new FormControl("", [Validators.required]),
-			// java: this.createCategory(this.mycategory)[0],
-			// salesforce: this.createCategory(this.mycategory)[1],
-			// frontend: this.createCategory(this.mycategory)[2],
 			categories: this.createCategory(this.mycategory)
 		});
 		this.getSelectedCategory();
@@ -83,14 +77,6 @@ export class NewQuestionComponent implements OnInit {
 			}
 		)
 	}
-
-	// getSelectedHobbiesName() {
-  //   this.selectedCategoryNames = _.filter(this.selectedCategoryNames, function (category) {
-  //     if (category !== false) {
-  //       return category;
-  //     }
-	// 	});
-	// }
 
 	resetFields = () => {
 		if(this.newQuestionForm.valid) {

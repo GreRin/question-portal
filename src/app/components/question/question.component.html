@@ -1,4 +1,4 @@
-<div class="card-alone" *ngFor="let question of questions">
+<div class="card-alone" *ngFor="let question of questionData">
 	<div class="card-body" [routerLink]="['/', id]">
 		<h5 class="card-title">{{ question.title.title }}</h5>
 		<div class="card-wrapper">
@@ -10,9 +10,9 @@
 			</div>
 			<div class="card-category">
 				<ul>
-					<li *ngIf="question.payload.doc.data().java" class="card-text">Java</li>
+					<!-- <li *ngIf="question.payload.doc.data().java" class="card-text">Java</li>
 					<li *ngIf="question.payload.doc.data().salesforce" class="card-text">Salesforce</li>
-					<li *ngIf="question.payload.doc.data().frontend" class="card-text">Frontend</li>
+					<li *ngIf="question.payload.doc.data().frontend" class="card-text">Frontend</li> -->
 				</ul>
 			</div>
 			<div class="line"></div>

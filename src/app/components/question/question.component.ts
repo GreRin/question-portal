@@ -26,8 +26,8 @@ export class QuestionComponent implements OnInit {
 	) {}
 
   ngOnInit(): void {
-		this.id = +this.route.snapshot.params['id'];
-		this.title = this.route.snapshot.params['title'];
+		// this.id = +this.route.snapshot.params['id'];
+		// this.title = this.route.snapshot.params['title'];
 		this.getDataFromDatabase()
 	}
 
@@ -35,7 +35,8 @@ export class QuestionComponent implements OnInit {
 		// console.log(this.route.snapshot);
 		this.crudService.getQuestions()
 		.subscribe(result => {
-			this.questions = result.map(e => {
+			this.questionData = result.map(e => {
+				console.log(e)
 				return {
 					id: e.payload.doc.id,
 					title: e.payload.doc.data()

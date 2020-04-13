@@ -33,7 +33,6 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
 		this.id = +this.firestore.collection('newQuestion').stateChanges;
-
 	}
 
 	deleteDataFromDatabase = () => {

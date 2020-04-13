@@ -38,43 +38,6 @@
 								<div class="row">
 									<legend class="col-form-label col-sm-2 pt-0">Category</legend>
 									<div class="col-sm-10">
-										<!-- <div class="form-check">
-											<input class="form-check-input" 
-														type="checkbox" 
-														name="java" 
-														id="java" 
-														value="java"
-														formControlName="java"
-											>
-											<label class="form-check-label" for="java">
-												Java
-											</label>
-										</div>
-										<div class="form-check">
-											<input class="form-check-input" 
-														type="checkbox" 
-														name="salesforce" 
-														id="salesforce"
-														value="salesforce"
-														formControlName="salesforce"
-											>
-											<label class="form-check-label" for="salesforce">
-												Salesforce
-											</label>
-										</div>
-										<div class="form-check disabled">
-											<input class="form-check-input" 
-														type="checkbox" 
-														name="frontend" 
-														id="frontend" 
-														value="frontend"
-														formControlName="frontend"
-											>
-											<label class="form-check-label" for="frontend">
-												Frontend
-											</label>
-										</div> -->
-
 										<div *ngFor="let category of newQuestionForm.get('categories')['controls']; let i=index;">
 											<input type="checkbox" [formControl]="category">
 											{{ mycategory[i].name }}
