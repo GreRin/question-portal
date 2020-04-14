@@ -70,7 +70,7 @@
 
 <section class="questions" [style.background]="this.color">
 	<div class="row">
-		<div class="{{ tiledToggle }} card" [routerLink]="['/', id]" *ngFor="let question of questionData">
+		<div class="{{ tiledToggle }} card" [routerLink]="['/', question.id]" *ngFor="let question of questionData">
 			<div class="card-body">
 				<h5 class="card-title">{{ question.title }}</h5>
 				<div class="card-wrapper">

@@ -62,10 +62,8 @@ export class NewQuestionComponent implements OnInit {
 
 	createCategory = (categoryInputs) => {
 		const arr = categoryInputs.map(category => {
-			console.log(category.name);
 			return new FormControl(category.selected || false)
 		});
-		console.log(arr);
 		return new FormArray(arr);
 	}
 

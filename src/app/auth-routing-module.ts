@@ -8,7 +8,7 @@ import { QuestionComponent } from './components/question/question.component';
 const routes: Routes = [
 		{ path: 'user-profile', component: UserDetailsComponent },
 		{ path: '', component: MainPageComponent },
-		{ path: ':id', component: QuestionComponent }
+		{ path: ':title', component: QuestionComponent }
 ];
 
 @NgModule({

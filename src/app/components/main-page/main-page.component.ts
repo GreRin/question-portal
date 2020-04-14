@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { CrudService } from '../../common/services/crud/crud.service';
-import '@firebase/firestore';
 
 import { QuestionData } from 'src/app/common/utils/question-data.model';
 
@@ -25,7 +22,6 @@ export class MainPageComponent implements OnInit {
 
 	constructor(
 		private router: Router,
-		public firestore: AngularFirestore,
 		public crudService: CrudService,
 	) {}
 
@@ -52,7 +48,7 @@ export class MainPageComponent implements OnInit {
 
 	tiledRowToggle = () => {
 		this.tiled = !this.tiled;
-		this.tiled ? this.tiledToggle="col-sm-4 col-md-3 col-xl-2" : this.tiledToggle="col-sm-12 col-md-12 col-xl-12 card-row";
+		this.tiledToggle = this.tiled ? "col-sm-4 col-md-3 col-xl-2" : "col-sm-12 col-md-12 col-xl-12 card-row";
 	}
 	
 	openMainPage = () => {
