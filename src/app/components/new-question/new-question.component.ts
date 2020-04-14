@@ -3,9 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { CrudService } from '../../common/services/crud/crud.service';
-import '@firebase/firestore';
 
 import * as _ from "lodash";
 
@@ -40,8 +38,6 @@ export class NewQuestionComponent implements OnInit {
 	selectedCategoryNames: string[];
 	newQuestionForm: FormGroup;
 
-	users: Observable<any[]>;
-
   constructor(
 		private router: Router,
 		public crudService: CrudService,
@@ -51,7 +47,7 @@ export class NewQuestionComponent implements OnInit {
 		this.createNewQuestion()
 	}
 
-	createNewQuestion = () => {
+	createNewQuestion() {
 		this.newQuestionForm = new FormGroup({
 			title: new FormControl("", [Validators.required]),
 			text: new FormControl("", [Validators.required]),
@@ -60,14 +56,14 @@ export class NewQuestionComponent implements OnInit {
 		this.getSelectedCategory();
 	}
 
-	createCategory = (categoryInputs) => {
+	createCategory(categoryInputs) {
 		const arr = categoryInputs.map(category => {
 			return new FormControl(category.selected || false)
 		});
 		return new FormArray(arr);
 	}
 
-	getSelectedCategory = () => {
+	getSelectedCategory() {
 		this.selectedCategoryNames = _.map(
 			this.newQuestionForm.controls.categories["category"],
 			(categ, i) => {
@@ -75,24 +71,17 @@ export class NewQuestionComponent implements OnInit {
 			}
 		)
 	}
-
-	resetFields = () => {
-		if(this.newQuestionForm.valid) {
-			this.newQuestionForm.reset()
-		}
-  }
 	
-	onSubmit = (value) => {
+	onSubmit(value) {
 		this.isSubmitted = true;
     if(!this.newQuestionForm.value) {
       return false;
-    }
-		console.log(this.newQuestionForm);
-
+		}
+		
 		this.crudService.createNewQuestion(value)
 		.then(
 			res => {
-				this.resetFields();
+				this.newQuestionForm.reset()
 				this.router.navigate(['/']);
 			}
 		)

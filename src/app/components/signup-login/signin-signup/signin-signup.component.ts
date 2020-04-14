@@ -29,25 +29,25 @@ export class SigninSignupComponent implements OnInit {
 		})
 	}
 
-	resetFields = () => {
+	resetFields() {
 		if(this.form.valid) {
 			this.form.reset()
 		}
   }
 	
-	signInOrSignUp = () => {
+	signInOrSignUp() {
 		this.authService.signInOrSignUp(this.email, this.password)
 	}
 
-	signInWithModeAndProvider = (mode: string, provider: string) => {
+	signInWithModeAndProvider(mode: string, provider: string) {
 		this.authService.signIn(mode, provider);
 	}
 		
-	togglePhoneSignIn = () => {
+	togglePhoneSignIn() {
 		this.authService.phoneSignIn = !this.authService.phoneSignIn
 	}
 
-	checkForLength = (control: FormControl) => {
+	checkForLength(control: FormControl) {
 		if (control.value.length <= 5) {
 			return {
 				'lengthError': true
@@ -66,5 +66,4 @@ export class SigninSignupComponent implements OnInit {
 			}
 		})
 	}
-
 }

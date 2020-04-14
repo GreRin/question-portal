@@ -25,7 +25,7 @@ export class CrudService {
 	 }
 
  
-  createNewQuestion = (value) => {
+  createNewQuestion (value) {
 		console.log(value);
     return this.firestore.collection('newQuestion').add({
       title: value.title,
@@ -42,24 +42,24 @@ export class CrudService {
   	});
 	}
 
-	getQuestions = () => {
+	getQuestions() {
     return this.firestore.collection('newQuestion').snapshotChanges();
 	}
 
-	createQuestion = (question: QuestionData) => {
+	createQuestion(question: QuestionData) {
     return this.firestore.collection('newQuestion').add(question);
 	}
 
-	updateQuestion = (question: QuestionData) => {
+	updateQuestion(question: QuestionData) {
     delete question.id;
     this.firestore.doc('newQuestion/' + question.id).update(question);
 	}
 	
-	deleteQuestions = (policyId: string) => {
+	deleteQuestions(policyId: string) {
 		this.firestore.doc('newQuestion/' + policyId).delete();
 	}
 	
-	getDate = () => {
+	getDate() {
 		const timestamp = new Date();
     const time = `${timestamp.getDate()}.${timestamp.getMonth()}.${timestamp.getFullYear()}`;
     return time;

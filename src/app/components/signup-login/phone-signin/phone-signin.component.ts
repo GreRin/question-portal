@@ -28,7 +28,7 @@ export class PhoneSigninComponent implements OnInit, AfterViewInit {
 		this.windowRef = this.windowService.windowRef;
 	}
 
-	ngAfterViewInit = () => {
+	ngAfterViewInit() {
     this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
       'size': 'normal',
       'callback': (response) => {
@@ -38,18 +38,18 @@ export class PhoneSigninComponent implements OnInit, AfterViewInit {
     this.windowRef.recaptchaVerifier.render();
   }
 	
-	sendOTP = () => {
+	sendOTP() {
     this.afAuth.auth.signInWithPhoneNumber(this.phoneNumber, this.windowRef.recaptchaVerifier).then((confirmationResult) => {
       this.windowRef.confirmationResult = confirmationResult;
     });
   }
 
-  verifyOTP = () => {
+  verifyOTP() {
     this.windowRef.confirmationResult.confirm(this.otp)
       .then((userCredentials) => console.log(userCredentials));
 	}
 
-	togglePhoneSignIn = () => {
+	togglePhoneSignIn() {
 		this.authService.phoneSignIn = !this.authService.phoneSignIn
 	}
 }

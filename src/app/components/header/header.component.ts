@@ -19,24 +19,24 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 	}
 
-	toggleSignInMode = () => {
+	toggleSignInMode() {
 		this.authService.signInMode = !this.authService.signInMode
 	}
 
-	showAddQuestionButton = () => {
+	showAddQuestionButton() {
 		this.toggleAddQuestionBtn = true;
 	}
 	
 	
-	hideAddQuestionButton = () => {
+	hideAddQuestionButton() {
 		this.toggleAddQuestionBtn = false;
 	}
 
-	logout = () => {
+	logout() {
 		this.authService.logOut();
 	}
 
-	hideLoginButton = () => {
+	hideLoginButton() {
 		if (this.afAuth.auth.currentUser) {
 			return false
 		} else { return true }
