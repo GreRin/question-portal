@@ -13,11 +13,10 @@ import { QuestionData } from '../../common/utils/question-data.model';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-	id: number;
+	id;
 	title: string;
-	questions;
 
-	questionData: QuestionData[];
+	currentQuestion: QuestionData[];
 
 	constructor(
 		private route: ActivatedRoute,
@@ -27,7 +26,7 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit(): void {
 		// this.id = +this.route.snapshot.params['id'];
-		// this.title = this.route.snapshot.params['title'];
+		this.title = this.route.snapshot.params['title'];
 		this.getDataFromDatabase()
 	}
 
@@ -35,12 +34,12 @@ export class QuestionComponent implements OnInit {
 		// console.log(this.route.snapshot);
 		this.crudService.getQuestions()
 		.subscribe(result => {
-			this.questionData = result.map(e => {
-				console.log(e)
+			this.currentQuestion = result.map(e => {
+				// console.log(e.payload.doc.id)
 				return {
 					id: e.payload.doc.id,
-					title: e.payload.doc.data()
-				} as QuestionData
+					...e.payload.doc.data(this.id) as QuestionData
+				}
 			})
 		})
 	}

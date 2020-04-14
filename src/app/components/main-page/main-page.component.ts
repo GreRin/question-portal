@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { CrudService } from '../../common/services/crud/crud.service';
-import '@firebase/firestore'
+import '@firebase/firestore';
+
+import { QuestionData } from 'src/app/common/utils/question-data.model';
 
 @Component({
   selector: 'app-main-page',
@@ -13,26 +15,35 @@ import '@firebase/firestore'
 })
 export class MainPageComponent implements OnInit {
 
-	id: number;
+	id;
 	color = '#f5f5f5';
 	tiled = true;
 	tiledToggle;
 	row = "col-xl-12";
-	users: Observable<any[]>;
-	questions: Observable<any[]>;
-	questionSnaption: [];
+
+	questionData: QuestionData[];
 
 	constructor(
 		private router: Router,
 		public firestore: AngularFirestore,
 		public crudService: CrudService,
-	) {
-		this.users = firestore.collection('users').valueChanges();
-		this.questions = firestore.collection('newQuestion').snapshotChanges();
-	}
+	) {}
 
   ngOnInit(): void {
-		this.id = +this.firestore.collection('newQuestion').stateChanges;
+		this.getDataFromDatabase()
+	}
+
+	getDataFromDatabase = () => {
+		this.crudService.getQuestions()
+		.subscribe(result => {
+			this.questionData = result.map(item => {
+				console.log(item.payload.doc.id)
+				return {
+					id: item.payload.doc.id,
+					...item.payload.doc.data() as QuestionData
+				}
+			})
+		})
 	}
 
 	deleteDataFromDatabase = () => {

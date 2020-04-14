@@ -70,21 +70,21 @@
 
 <section class="questions" [style.background]="this.color">
 	<div class="row">
-		<div class="{{ tiledToggle }} card" [routerLink]="['/', question.payload.doc.data().title]" *ngFor="let question of questions | async">
+		<div class="{{ tiledToggle }} card" [routerLink]="['/', id]" *ngFor="let question of questionData">
 			<div class="card-body">
-				<h5 class="card-title">{{ question.payload.doc.data().title }}</h5>
+				<h5 class="card-title">{{ question.title }}</h5>
 				<div class="card-wrapper">
 					<div class="line"></div>
 					<div class="card-category-date">
-						<p class="card-date hidden">{{ question.payload.doc.data().currentDate }}</p>
+						<p class="card-date hidden">{{ question.currentDate }}</p>
 						<p class="card-text"><strong>Category:</strong></p>
-						<p class="card-date visible">{{ question.payload.doc.data().currentDate }}</p>
+						<p class="card-date visible">{{ question.currentDate }}</p>
 					</div>
 					<div class="card-category">
 						<ul>
-							<li *ngIf="question.payload.doc.data().java" class="card-text">Java</li>
-							<li *ngIf="question.payload.doc.data().salesforce" class="card-text">Salesforce</li>
-							<li *ngIf="question.payload.doc.data().frontend" class="card-text">Frontend</li>
+							<li *ngIf="question.java" class="card-text">Java</li>
+							<li *ngIf="question.salesforce" class="card-text">Salesforce</li>
+							<li *ngIf="question.frontend" class="card-text">Frontend</li>
 						</ul>
 					</div>
 					<div class="line"></div>
