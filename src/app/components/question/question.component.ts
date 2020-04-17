@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { AngularFirestore } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
 
 import { CrudService } from 'src/app/common/services/crud/crud.service';
 
@@ -12,19 +11,20 @@ import { QuestionData } from '../../common/utils/question-data.model';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-	
 	id;
-	isLoaded = false;
+	title: string;
+	isLoaded: true;
+
 	currentQuestion: QuestionData[];
 
 	constructor(
-		public firestore: AngularFirestore,
+		private route: ActivatedRoute,
 		public crudService: CrudService,
 	) {}
 
   ngOnInit(): void {
 		this.getDataFromDatabase();
-		this.isLoadedData();
+		// this.isLoadedData();
 	}
 
 	getDataFromDatabase() {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-user-details',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class UserDetailsComponent implements OnInit {
 
   constructor(
-		public afAuth: AngularFireAuth,
+		private afAuth: AngularFireAuth,
 		private router: Router
 	) { }
 
