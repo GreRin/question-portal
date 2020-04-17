@@ -18,7 +18,7 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
 	}
 	
-	openUserProfile = () => {
+	openUserProfile() {
 		this.router.navigate(['/user-profile']);
 	}
 }

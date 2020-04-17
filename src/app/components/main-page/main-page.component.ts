@@ -29,7 +29,7 @@ export class MainPageComponent implements OnInit {
 		this.getDataFromDatabase()
 	}
 
-	getDataFromDatabase = () => {
+	getDataFromDatabase() {
 		this.crudService.getQuestions()
 		.subscribe(result => {
 			this.questionData = result.map(item => {
@@ -42,16 +42,16 @@ export class MainPageComponent implements OnInit {
 		})
 	}
 
-	deleteDataFromDatabase = () => {
+	deleteDataFromDatabase() {
 		console.log("Deleted");
 	}
 
-	tiledRowToggle = () => {
+	tiledRowToggle() {
 		this.tiled = !this.tiled;
 		this.tiledToggle = this.tiled ? "col-sm-4 col-md-3 col-xl-2" : "col-sm-12 col-md-12 col-xl-12 card-row";
 	}
 	
-	openMainPage = () => {
+	openMainPage() {
 		this.router.navigate(['/']);
 	}
 }

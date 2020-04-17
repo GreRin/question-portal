@@ -14,6 +14,7 @@ import { QuestionData } from '../../common/utils/question-data.model';
 export class QuestionComponent implements OnInit {
 	
 	id;
+	isLoaded = false;
 	currentQuestion: QuestionData[];
 
 	constructor(
@@ -22,10 +23,11 @@ export class QuestionComponent implements OnInit {
 	) {}
 
   ngOnInit(): void {
-		this.getDataFromDatabase()
+		this.getDataFromDatabase();
+		this.isLoadedData();
 	}
 
-	getDataFromDatabase = () => {
+	getDataFromDatabase() {
 		// console.log(this.route.snapshot);
 		this.crudService.getQuestions()
 		.subscribe(result => {
@@ -36,5 +38,11 @@ export class QuestionComponent implements OnInit {
 				}
 			})
 		})
+	}
+
+	isLoadedData() {
+		if(this.currentQuestion) {
+			this.isLoaded = true;
+		}
 	}
 }
