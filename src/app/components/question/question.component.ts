@@ -24,7 +24,7 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit(): void {
 		this.getDataFromDatabase();
-		// this.isLoadedData();
+		this.isLoadedData();
 	}
 
 	getDataFromDatabase() {
