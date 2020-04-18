@@ -78,10 +78,12 @@
 												currentDate: question.currentDate,
 												java: question.java,
 												salesforce: question.salesforce,
-												frontend: question.frontend }"
+												frontend: question.frontend,
+												author: question.user.displayName 
+											}"
 		>
 			<div class="card-body">
-				<h5 class="card-title">{{ question.title }}</h5>
+				<h5 class="card-title">{{  question.title }}</h5>
 				<div class="card-wrapper">
 					<div class="line"></div>
 					<div class="card-category-date">

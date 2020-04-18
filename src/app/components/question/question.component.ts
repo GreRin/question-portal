@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { CrudService } from 'src/app/common/services/crud/crud.service';
 
@@ -13,7 +13,12 @@ import { QuestionData } from '../../common/utils/question-data.model';
 export class QuestionComponent implements OnInit {
 	id;
 	title: string;
-	isLoaded: true;
+	text: string;
+	currentDate: string;
+	java: boolean;
+	salesforce: boolean;
+	frontend: boolean;
+	author: string;
 
 	currentQuestion: QuestionData[];
 
@@ -23,26 +28,28 @@ export class QuestionComponent implements OnInit {
 	) {}
 
   ngOnInit(): void {
-		this.getDataFromDatabase();
-		this.isLoadedData();
-	}
-
-	getDataFromDatabase() {
-		// console.log(this.route.snapshot);
-		this.crudService.getQuestions()
-		.subscribe(result => {
-			this.currentQuestion = result.map(e => {
-				return {
-					id: e.payload.doc.id,
-					...e.payload.doc.data(this.id) as QuestionData
-				}
-			})
+		this.route.params.subscribe((params: Params) => {
+			this.id = params['id'];
 		})
+		this.title = this.route.snapshot.queryParams['title'];
+		this.text = this.route.snapshot.queryParams['text'];
+		this.currentDate = this.route.snapshot.queryParams['currentDate'];
+		this.java = this.route.snapshot.queryParams['java'];
+		this.salesforce = this.route.snapshot.queryParams['salesforce'];
+		this.frontend = this.route.snapshot.queryParams['frontend'];
+		this.author = this.route.snapshot.queryParams['author'];
 	}
 
-	isLoadedData() {
-		if(this.currentQuestion) {
-			this.isLoaded = true;
-		}
-	}
+	// getDataFromDatabase() {
+	// 	this.crudService.getQuestions()
+	// 	.subscribe(result => {
+	// 		this.currentQuestion = result.map(e => {
+	// 			console.log(this.id)
+	// 			console.log(e)
+	// 			return {
+	// 				...e.payload.doc.data() as QuestionData
+	// 			}
+	// 		})
+	// 	})
+	// }
 }
