@@ -12,6 +12,7 @@
 .card-author-date {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 h5 {
@@ -22,6 +23,7 @@ h5 {
 	display: inline-flex;
 	list-style:none;
 	padding: 0;
+	margin: 0;
 }
 
 .card-category ul li {
