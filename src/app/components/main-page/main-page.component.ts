@@ -33,7 +33,6 @@ export class MainPageComponent implements OnInit {
 		this.crudService.getQuestions()
 		.subscribe(result => {
 			this.questionData = result.map(item => {
-				console.log(item.payload.doc.id)
 				return {
 					id: item.payload.doc.id,
 					...item.payload.doc.data() as QuestionData

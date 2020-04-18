@@ -70,7 +70,16 @@
 
 <section class="questions" [style.background]="this.color">
 	<div class="row">
-		<div class="{{ tiledToggle }} card" [routerLink]="['/', question.id]" *ngFor="let question of questionData">
+		<div class="{{ tiledToggle }} card" 
+				[routerLink]="['/', question.id]" 
+				*ngFor="let question of questionData"
+				[queryParams]="{ title: question.title,
+												text: question.text,
+												currentDate: question.currentDate,
+												java: question.java,
+												salesforce: question.salesforce,
+												frontend: question.frontend }"
+		>
 			<div class="card-body">
 				<h5 class="card-title">{{ question.title }}</h5>
 				<div class="card-wrapper">
