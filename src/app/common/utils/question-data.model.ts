@@ -6,4 +6,17 @@ export class QuestionData {
 	frontend: string;
 	java: string;
 	salesforce: string;
+	user: {
+		displayName: string;
+		email: string;
+		ownerId: string;
+	};
+	comments: {
+		message: string;
+		user: {
+			displayName: string;
+			email: string;
+			ownerId: string;
+		};
+	}
 }

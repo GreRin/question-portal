@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 import { CrudService } from 'src/app/common/services/crud/crud.service';
 
@@ -20,6 +21,9 @@ export class QuestionComponent implements OnInit {
 	frontend: boolean;
 	author: string;
 
+	message: any;
+	newComment: FormGroup;
+
 	currentQuestion: QuestionData[];
 
 	constructor(
@@ -30,7 +34,7 @@ export class QuestionComponent implements OnInit {
   ngOnInit(): void {
 		this.route.params.subscribe((params: Params) => {
 			this.id = params['id'];
-		})
+		});
 		this.title = this.route.snapshot.queryParams['title'];
 		this.text = this.route.snapshot.queryParams['text'];
 		this.currentDate = this.route.snapshot.queryParams['currentDate'];
@@ -38,6 +42,36 @@ export class QuestionComponent implements OnInit {
 		this.salesforce = this.route.snapshot.queryParams['salesforce'];
 		this.frontend = this.route.snapshot.queryParams['frontend'];
 		this.author = this.route.snapshot.queryParams['author'];
+
+		this.createComment();
+		this.getComments();
+	}
+
+
+	createComment() {
+		this.newComment = new FormGroup({
+			message: new FormControl()
+		});
+	}
+
+	getComments() {
+		this.crudService.getComments(this.id)
+		.subscribe(result => {
+			console.log(result)
+		})
+	}
+
+	onSubmit(value) {
+    if(!this.newComment.value) {
+      return false;
+		}
+		console.log(this.id);
+		this.crudService.addComment(this.id, value)
+		.then(
+			res => {
+				this.newComment.reset()
+			}
+		)
 	}
 
 	// getDataFromDatabase() {

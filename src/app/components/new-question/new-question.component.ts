@@ -5,8 +5,6 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrudService } from '../../common/services/crud/crud.service';
 
-import * as _ from "lodash";
-
 @Component({
   selector: 'app-new-question',
   templateUrl: './new-question.component.html',
@@ -53,7 +51,6 @@ export class NewQuestionComponent implements OnInit {
 			text: new FormControl("", [Validators.required]),
 			categories: this.createCategory(this.mycategory)
 		});
-		this.getSelectedCategory();
 	}
 
 	createCategory(categoryInputs) {
@@ -61,15 +58,6 @@ export class NewQuestionComponent implements OnInit {
 			return new FormControl(category.selected || false)
 		});
 		return new FormArray(arr);
-	}
-
-	getSelectedCategory() {
-		this.selectedCategoryNames = _.map(
-			this.newQuestionForm.controls.categories["category"],
-			(categ, i) => {
-				return categ.value && this.mycategory[i].value;
-			}
-		)
 	}
 	
 	onSubmit(value) {

@@ -1,4 +1,4 @@
-<div class="card col-lg-10 offset-1">
+<div class="card offset-1 col-10">
 	<div class="card-body">
 		<div class="card-wrapper">
 			<div class="card-author-date">
@@ -8,19 +8,39 @@
 			<h5 class="card-title">{{ title }}</h5>
 			<div class="line"></div>
 			<p>{{ text }}</p>
-					<div class="card-author-date">
+				<div class="card-category-btn">
 					<div class="card-category">
-							<ul>
-								<li *ngIf="java" class="card-text">Java</li>
-								<li *ngIf="salesforce" class="card-text">Salesforce</li>
-								<li *ngIf="frontend" class="card-text">Frontend</li>
-							</ul>
-						</div>
-						<div class="card-buttons">
-							<a href="#" class="btn btn-primary">Approve</a>
-							<a href="#" class="btn btn-primary">Delete</a>
-						</div>
+						<ul>
+							<li *ngIf="java" class="card-text">Java</li>
+							<li *ngIf="salesforce" class="card-text">Salesforce</li>
+							<li *ngIf="frontend" class="card-text">Frontend</li>
+						</ul>
+					</div>
+					<div class="card-buttons">
+						<a href="#" class="btn btn-primary">Approve</a>
+						<a href="#" class="btn btn-primary">Delete</a>
+					</div>
 			</div>
 		</div>
+	</div>
+</div>
+
+<!-- <div class="card" *ngFor="let comment of comments">
+<div class="card-body">
+	<h5 class="card-title">{{  comment.author }}</h5>
+	<div class="card-wrapper">
+		<div class="card-category-date">
+			<p class="card-date hidden">{{ comment.text }}</p>
+			<p class="card-date visible">{{ comment.currentDate }}</p>
+		</div>
+	</div>
+</div> -->
+
+<div class="answer offset-1 col-10">
+	<div class="input-area">
+		<form (ngSubmit)="onSubmit(newComment.value)" name="messageForm" [formGroup]="newComment">
+			<textarea type="text" placeholder="Your message" name="message" id="message" formControlName="message" rows="5"></textarea>
+			<button type="submit" class="btn btn-primary btn-answer">Post your answer</button>
+		</form>
 	</div>
 </div>

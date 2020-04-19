@@ -13,7 +13,6 @@ export class CrudService {
 	id: string;
 	email: string;
 	name: string;
-	questionsList: any;
  
   constructor(
 		private firestore: AngularFirestore,
@@ -26,7 +25,6 @@ export class CrudService {
 
  
   createNewQuestion(value) {
-		console.log(value);
     return this.firestore.collection('newQuestion').add({
       title: value.title,
       text: value.text,
@@ -63,6 +61,23 @@ export class CrudService {
 		const timestamp = new Date();
     const time = `${timestamp.getDate()}.${timestamp.getMonth()}.${timestamp.getFullYear()}`;
     return time;
+	}
+
+	addComment(id, value) {
+    return this.firestore.collection('newQuestion').doc(id).update({
+      comments: {
+				message: value.message,
+				user: {
+					ownerId: this.id,
+					displayName: this.name,
+					email: this.email,
+				}
+			}
+  	});
+	}
+
+	getComments(id) {
+    return this.firestore.collection('newQuestion').doc().snapshotChanges();
 	}
 }
  

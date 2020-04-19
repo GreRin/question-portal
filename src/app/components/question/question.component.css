@@ -9,7 +9,7 @@
 	border-top: 1px solid rgba(0,0,0,.1);
 }
 
-.card-author-date {
+.card-author-date, .card-category-btn {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -30,6 +30,31 @@ h5 {
 	margin-right: 10px;
 }
 
-.btn-primary {
+.btn-primary:nth-child(2) {
 	margin-left: 20px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.answer {
+	margin-top: 30px;
+	padding: 0;
+}
+
+.btn-answer {
+	margin: 20px 0 !important;
+}
+
+@media(max-width: 564px) {
+ .card-category-btn {
+	 flex-direction: column;
+ }
+
+ .btn-primary {
+	margin-top: 20px;
+	}
 }

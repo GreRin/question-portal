@@ -1,28 +1,25 @@
-	<header>
-		<app-header></app-header>
-	</header>
-	<main>
-		<ng-template #loginOptions>
-			<div class="wrapper">
-				<div class="form">
-					<app-signin-signup></app-signin-signup>
-				</div>
+<header>
+	<app-header></app-header>
+</header>
+<main>
+	<ng-template #loginOptions>
+		<div class="wrapper">
+			<div class="form">
+				<app-signin-signup></app-signin-signup>
 			</div>
-		</ng-template>
-
-		<ng-template #login>
-			<div class="wrapper">
-				<div class="row" *ngIf="authService.phoneSignIn; else loginOptions">
-					<app-phone-signin></app-phone-signin>
-				</div>
-			</div>
-		</ng-template>
-
-		<div class="main-wrapper" *ngIf='afAuth.authState | async as user; else login'>
-			<router-outlet></router-outlet>
-			<app-new-question></app-new-question>
-			<button class="btn btn-primary plus" data-toggle="modal" data-target="#exampleModal" *ngIf="toggleAddQuestionBtn">
-				<i class="fas fa-plus"></i>
-			</button>
 		</div>
-	</main>
+	</ng-template>
+
+	<ng-template #login>
+		<div class="wrapper">
+			<div class="row" *ngIf="authService.phoneSignIn; else loginOptions">
+				<app-phone-signin></app-phone-signin>
+			</div>
+		</div>
+	</ng-template>
+
+	<div class="main-wrapper" *ngIf='afAuth.authState | async as user; else login'>
+		<router-outlet></router-outlet>
+		<app-new-question></app-new-question>
+	</div>
+</main>
