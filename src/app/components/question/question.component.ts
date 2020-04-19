@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+
 import { CrudService } from 'src/app/common/services/crud/crud.service';
 
 import { QuestionData } from '../../common/utils/question-data.model';
@@ -23,6 +25,8 @@ export class QuestionComponent implements OnInit {
 
 	message: any;
 	newComment: FormGroup;
+	messageData: any;
+	isComments = false;
 
 	currentQuestion: QuestionData[];
 
@@ -55,9 +59,13 @@ export class QuestionComponent implements OnInit {
 	}
 
 	getComments() {
-		this.crudService.getComments(this.id)
-		.subscribe(result => {
-			console.log(result)
+		return this.crudService.getComments(this.id)
+		.subscribe((result) => {
+			if(result.data().comments) {
+				this.isComments = true;
+				this.messageData = result.data().comments;
+				console.log(this.messageData);
+			}
 		})
 	}
 

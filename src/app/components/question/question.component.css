@@ -49,6 +49,34 @@ form {
 	margin: 20px 0 !important;
 }
 
+.comment-body {
+	display: inline-flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.comment-img-name {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding-top: 10px;
+}
+
+.checkbox-resolve {
+	display: inline-flex;
+	width: 100%;
+	align-items: center;
+}
+
+.comment-date label {
+	margin: 0 0 0 5px;
+}
+
+.user-img {
+	width: 2.4rem;
+	border-radius: 5px;
+}
+
 @media(max-width: 564px) {
  .card-category-btn {
 	 flex-direction: column;

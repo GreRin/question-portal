@@ -13,6 +13,7 @@ export class QuestionData {
 	};
 	comments: {
 		message: string;
+		currentDate: Date;
 		user: {
 			displayName: string;
 			email: string;

@@ -13,6 +13,7 @@ export class CrudService {
 	id: string;
 	email: string;
 	name: string;
+	avatar: string;
  
   constructor(
 		private firestore: AngularFirestore,
@@ -21,6 +22,7 @@ export class CrudService {
 		this.id = this.afAuth.auth.currentUser.uid;
 		this.name = this.afAuth.auth.currentUser.displayName;
 		this.email = this.afAuth.auth.currentUser.email;
+		this.avatar = this.afAuth.auth.currentUser.photoURL;
 	 }
 
  
@@ -64,20 +66,23 @@ export class CrudService {
 	}
 
 	addComment(id, value) {
+		console.log(this.avatar); 
     return this.firestore.collection('newQuestion').doc(id).update({
       comments: {
 				message: value.message,
+				currentDate: this.getDate(),
 				user: {
 					ownerId: this.id,
 					displayName: this.name,
 					email: this.email,
+					avatar: this.avatar
 				}
 			}
   	});
 	}
 
 	getComments(id) {
-    return this.firestore.collection('newQuestion').doc().snapshotChanges();
+    return this.firestore.collection('newQuestion').doc(id).get();
 	}
 }
  
