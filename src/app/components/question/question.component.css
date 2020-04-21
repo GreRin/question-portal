@@ -55,6 +55,10 @@ form {
 	align-items: center;
 }
 
+.comment-body p {
+	justify-content: flex-start ;
+}
+
 .comment-img-name {
 	display: flex;
 	flex-direction: column;

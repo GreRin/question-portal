@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-
-import { AngularFireAuth } from 'angularfire2/auth';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { CrudService } from 'src/app/common/services/crud/crud.service';
 
@@ -14,21 +12,14 @@ import { QuestionData } from '../../common/utils/question-data.model';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-	id;
-	title: string;
-	text: string;
-	currentDate: string;
-	java: boolean;
-	salesforce: boolean;
-	frontend: boolean;
-	author: string;
+	id: string;
 
 	message: any;
 	newComment: FormGroup;
 	messageData: any;
 	isComments = false;
 
-	currentQuestion: QuestionData[];
+	currentQuestion: QuestionData;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -38,17 +29,26 @@ export class QuestionComponent implements OnInit {
   ngOnInit(): void {
 		this.route.params.subscribe((params: Params) => {
 			this.id = params['id'];
+			this.getDataFromDatabase();
 		});
-		this.title = this.route.snapshot.queryParams['title'];
-		this.text = this.route.snapshot.queryParams['text'];
-		this.currentDate = this.route.snapshot.queryParams['currentDate'];
-		this.java = this.route.snapshot.queryParams['java'];
-		this.salesforce = this.route.snapshot.queryParams['salesforce'];
-		this.frontend = this.route.snapshot.queryParams['frontend'];
-		this.author = this.route.snapshot.queryParams['author'];
-
 		this.createComment();
-		this.getComments();
+		// this.getComments();
+	}
+
+	getDataFromDatabase() {
+		this.crudService.getQuestions()
+		.subscribe(result => {
+			this.currentQuestion = result.map(e => {
+				console.log(this.id)
+				return {
+					id: e.payload.doc.id,
+					...e.payload.doc.data() as QuestionData
+				}
+			}).find(e => {
+				return e.id === this.id
+			})
+			console.log(this.currentQuestion)
+		})
 	}
 
 
@@ -62,7 +62,6 @@ export class QuestionComponent implements OnInit {
 		return this.crudService.getComments(this.id)
 		.subscribe((result) => {
 			if(result.data().comments) {
-				this.isComments = true;
 				this.messageData = result.data().comments;
 				console.log(this.messageData);
 			}
@@ -81,17 +80,4 @@ export class QuestionComponent implements OnInit {
 			}
 		)
 	}
-
-	// getDataFromDatabase() {
-	// 	this.crudService.getQuestions()
-	// 	.subscribe(result => {
-	// 		this.currentQuestion = result.map(e => {
-	// 			console.log(this.id)
-	// 			console.log(e)
-	// 			return {
-	// 				...e.payload.doc.data() as QuestionData
-	// 			}
-	// 		})
-	// 	})
-	// }
 }

@@ -14,6 +14,7 @@ export class CrudService {
 	email: string;
 	name: string;
 	avatar: string;
+	comments: [''];
  
   constructor(
 		private firestore: AngularFirestore,
@@ -38,7 +39,8 @@ export class CrudService {
 				ownerId: this.id,
 				displayName: this.name,
 				email: this.email,
-			}
+			},
+			comments: []
   	});
 	}
 

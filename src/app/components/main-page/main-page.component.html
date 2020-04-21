@@ -73,14 +73,6 @@
 		<div class="{{ tiledToggle }} card" 
 				[routerLink]="['/', question.id]" 
 				*ngFor="let question of questionData"
-				[queryParams]="{ title: question.title,
-												text: question.text,
-												currentDate: question.currentDate,
-												java: question.java,
-												salesforce: question.salesforce,
-												frontend: question.frontend,
-												author: question.user.displayName 
-											}"
 		>
 			<div class="card-body">
 				<h5 class="card-title">{{  question.title }}</h5>

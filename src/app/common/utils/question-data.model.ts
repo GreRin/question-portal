@@ -2,7 +2,7 @@ export class QuestionData {
 	id: string;
 	title: string;
 	text: string;
-	creationDate: Date;
+	currentDate: Date;
 	frontend: string;
 	java: string;
 	salesforce: string;
@@ -11,7 +11,7 @@ export class QuestionData {
 		email: string;
 		ownerId: string;
 	};
-	comments: {
+	comments: [{
 		message: string;
 		currentDate: Date;
 		user: {
@@ -19,5 +19,5 @@ export class QuestionData {
 			email: string;
 			ownerId: string;
 		};
-	}
+	}]
 }

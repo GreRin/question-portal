@@ -5,30 +5,17 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrudService } from '../../common/services/crud/crud.service';
 
+import { mycategory } from '../../common/utils/category';
+
 @Component({
   selector: 'app-new-question',
   templateUrl: './new-question.component.html',
-  styleUrls: ['./new-question.component.css']
+	styleUrls: ['./new-question.component.css'],
+	providers: [CrudService]
 })
 export class NewQuestionComponent implements OnInit {
 
-  mycategory: any = [
-    {
-      name: "Java",
-			value: "java",
-			selected: true
-    },
-    {
-      name: "Salesforce",
-      value: "salesforce",
-      selected: false
-    },
-    {
-      name: "Frontend",
-      value: "frontend",
-      selected: false
-    }
-  ];
+  mycat = mycategory;
 
 	title: any;
 	text: any;
@@ -38,7 +25,7 @@ export class NewQuestionComponent implements OnInit {
 
   constructor(
 		private router: Router,
-		public crudService: CrudService,
+		private crudService: CrudService,
 	) {}
 
   ngOnInit(): void {
@@ -49,7 +36,7 @@ export class NewQuestionComponent implements OnInit {
 		this.newQuestionForm = new FormGroup({
 			title: new FormControl("", [Validators.required]),
 			text: new FormControl("", [Validators.required]),
-			categories: this.createCategory(this.mycategory)
+			categories: this.createCategory(mycategory)
 		});
 	}
 
