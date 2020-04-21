@@ -17,30 +17,30 @@
 						</ul>
 					</div>
 					<div class="card-buttons">
-						<a href="#" class="btn btn-primary">Approve</a>
-						<a href="#" class="btn btn-primary">Delete</a>
+						<button class="btn btn-primary">Approve</button>
+						<button class="btn btn-primary" (click)="deleteQuestion()">Delete</button>
 					</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="card offset-1 col-10">
+<!-- <div class="card offset-1 col-10">
 	<div class="comment-body" *ngIf="isComments">
 		<div class="comment-img-name">
-			<img class="user-img" [src]="messageData.user.avatar || '../assets/img/profile-picture.png'" alt="Card image cap">
-			<p class="card-date">{{ messageData.user.displayName }}</p>
+			<img class="user-img" [src]="currentQuestion.comments.user.avatar || '../assets/img/profile-picture.png'" alt="Card image cap">
+			<p class="card-date">{{ currentQuestion.comments.user.displayName }}</p>
 		</div>
-		<p class="comment-text">{{  messageData.message }}</p>
+		<p class="comment-text">{{  currentQuestion.comments.message }}</p>
 		<div class="comment-date">
-			<p>{{ messageData.currentDate }}</p>
+			<p>{{ currentQuestion.comments.currentDate }}</p>
 			<div class="checkbox-resolve">
 				<input type="checkbox" id="resolve">
 				<label for="resolve">resolve</label>
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <div class="answer offset-1 col-10">
 	<div class="input-area">

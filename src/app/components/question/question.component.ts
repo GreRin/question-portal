@@ -9,7 +9,8 @@ import { QuestionData } from '../../common/utils/question-data.model';
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css']
+	styleUrls: ['./question.component.css'],
+	providers: [CrudService]
 })
 export class QuestionComponent implements OnInit {
 	id: string;
@@ -48,7 +49,12 @@ export class QuestionComponent implements OnInit {
 				return e.id === this.id
 			})
 			console.log(this.currentQuestion)
-		})
+		});
+	}
+
+	deleteQuestion() {
+		console.log(this.id)
+		this.crudService.deleteQuestion(this.id);
 	}
 
 
@@ -58,15 +64,15 @@ export class QuestionComponent implements OnInit {
 		});
 	}
 
-	getComments() {
-		return this.crudService.getComments(this.id)
-		.subscribe((result) => {
-			if(result.data().comments) {
-				this.messageData = result.data().comments;
-				console.log(this.messageData);
-			}
-		})
-	}
+	// getComments() {
+	// 	return this.crudService.getComments(this.id)
+	// 	.subscribe((result) => {
+	// 		if(result.data().comments) {
+	// 			this.messageData = result.data().comments;
+	// 			console.log(this.messageData);
+	// 		}
+	// 	})
+	// }
 
 	onSubmit(value) {
     if(!this.newComment.value) {

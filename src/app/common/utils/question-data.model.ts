@@ -6,12 +6,13 @@ export class QuestionData {
 	frontend: string;
 	java: string;
 	salesforce: string;
+	categories: string[];
 	user: {
 		displayName: string;
 		email: string;
 		ownerId: string;
 	};
-	comments: [{
+	comments: {
 		message: string;
 		currentDate: Date;
 		user: {
@@ -19,5 +20,5 @@ export class QuestionData {
 			email: string;
 			ownerId: string;
 		};
-	}]
+	}
 }

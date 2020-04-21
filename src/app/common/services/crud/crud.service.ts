@@ -34,6 +34,7 @@ export class CrudService {
       java: value.categories[0],
 			salesforce: value.categories[1],
 			frontend: value.categories[2],
+			// categories: value.categories,
 			currentDate: this.getDate(),
 			user: {
 				ownerId: this.id,
@@ -48,17 +49,17 @@ export class CrudService {
     return this.firestore.collection('newQuestion').snapshotChanges();
 	}
 
-	createQuestion(question: QuestionData) {
-    return this.firestore.collection('newQuestion').add(question);
-	}
+	// createQuestion(question: QuestionData) {
+  //   return this.firestore.collection('newQuestion').add(question);
+	// }
 
-	updateQuestion(question: QuestionData) {
-    delete question.id;
-    this.firestore.doc('newQuestion/' + question.id).update(question);
-	}
+	// updateQuestion(question: QuestionData) {
+  //   delete question.id;
+  //   this.firestore.doc('newQuestion/' + question.id).update(question);
+	// }
 	
-	deleteQuestions(policyId: string) {
-		this.firestore.doc('newQuestion/' + policyId).delete();
+	deleteQuestion(questionId) {
+		this.firestore.collection('newQuestion').doc(questionId).delete();
 	}
 	
 	getDate() {
@@ -83,8 +84,8 @@ export class CrudService {
   	});
 	}
 
-	getComments(id) {
-    return this.firestore.collection('newQuestion').doc(id).get();
-	}
+	// getComments(id) {
+  //   return this.firestore.collection('newQuestion').doc(id).get();
+	// }
 }
  
