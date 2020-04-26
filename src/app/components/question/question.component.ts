@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { CrudService } from 'src/app/common/services/crud/crud.service';
 
@@ -23,6 +23,7 @@ export class QuestionComponent implements OnInit {
 	currentQuestion: QuestionData;
 
 	constructor(
+		private router: Router,
 		private route: ActivatedRoute,
 		public crudService: CrudService,
 	) {}
@@ -33,14 +34,12 @@ export class QuestionComponent implements OnInit {
 			this.getDataFromDatabase();
 		});
 		this.createComment();
-		// this.getComments();
 	}
 
 	getDataFromDatabase() {
 		this.crudService.getQuestions()
 		.subscribe(result => {
 			this.currentQuestion = result.map(e => {
-				console.log(this.id)
 				return {
 					id: e.payload.doc.id,
 					...e.payload.doc.data() as QuestionData
@@ -48,42 +47,52 @@ export class QuestionComponent implements OnInit {
 			}).find(e => {
 				return e.id === this.id
 			})
-			console.log(this.currentQuestion)
+			// console.log(this.currentQuestion)
 		});
+	}
+
+	editQuestion() {
+		this.crudService.editQuestion(this.id)
+		// console.log(this.crudService.editQuestion(this.id))
 	}
 
 	deleteQuestion() {
-		console.log(this.id)
 		this.crudService.deleteQuestion(this.id);
+		this.router.navigate(['/'])
+      .then(
+        res => {
+          this.router.navigate(['/ErrorPage']);
+        }
+      )
 	}
-
 
 	createComment() {
 		this.newComment = new FormGroup({
-			message: new FormControl()
+			message: new FormControl("",[Validators.required, Validators.minLength(1)])
 		});
 	}
-
-	// getComments() {
-	// 	return this.crudService.getComments(this.id)
-	// 	.subscribe((result) => {
-	// 		if(result.data().comments) {
-	// 			this.messageData = result.data().comments;
-	// 			console.log(this.messageData);
-	// 		}
-	// 	})
-	// }
 
 	onSubmit(value) {
     if(!this.newComment.value) {
       return false;
 		}
-		console.log(this.id);
-		this.crudService.addComment(this.id, value)
-		.then(
-			res => {
-				this.newComment.reset()
-			}
-		)
-	}
+
+    this.currentQuestion.comments.push({
+      message: value.message,
+      currentDate: this.crudService.getDate(),
+      user: {
+        ownerId: this.crudService.id,
+        displayName: this.crudService.name,
+        email: this.crudService.email,
+        avatar: this.crudService.avatar
+      }
+    })
+
+    this.crudService.addComment(this.id, this.currentQuestion.comments)
+      .then(
+        res => {
+          this.newComment.reset()
+        }
+      )
+  }
 }

@@ -34,7 +34,7 @@ export class SigninSignupComponent implements OnInit {
 			this.form.reset()
 		}
   }
-	
+
 	signInOrSignUp() {
 		this.authService.signInOrSignUp(this.email, this.password)
 	}
@@ -42,17 +42,9 @@ export class SigninSignupComponent implements OnInit {
 	signInWithModeAndProvider(mode: string, provider: string) {
 		this.authService.signIn(mode, provider);
 	}
-		
+
 	togglePhoneSignIn() {
 		this.authService.phoneSignIn = !this.authService.phoneSignIn
-	}
-
-	checkForLength(control: FormControl) {
-		if (control.value.length <= 5) {
-			return {
-				'lengthError': true
-			}
-		}
 	}
 
 	checkForEmail(control: FormControl) : Promise<any> {

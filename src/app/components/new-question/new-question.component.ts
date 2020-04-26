@@ -46,20 +46,19 @@ export class NewQuestionComponent implements OnInit {
 		});
 		return new FormArray(arr);
 	}
-	
+
 	onSubmit(value) {
-		this.isSubmitted = true;
-    if(!this.newQuestionForm.value) {
+    this.isSubmitted = true;
+    if (!this.newQuestionForm.value) {
       return false;
-		}
-		
-		this.crudService.createNewQuestion(value)
-		.then(
-			res => {
-				this.newQuestionForm.reset()
-				this.router.navigate(['/']);
-			}
-		)
-	}
-	
+    }
+
+    this.crudService.createNewQuestion(value)
+      .then(
+        res => {
+          this.newQuestionForm.reset()
+          this.router.navigate(['/']);
+        }
+      )
+  }
 }

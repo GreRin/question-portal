@@ -49,7 +49,7 @@ export class MainPageComponent implements OnInit {
 		this.tiled = !this.tiled;
 		this.tiledToggle = this.tiled ? "col-sm-4 col-md-3 col-xl-2" : "col-sm-12 col-md-12 col-xl-12 card-row";
 	}
-	
+
 	openMainPage() {
 		this.router.navigate(['/']);
 	}

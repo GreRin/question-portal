@@ -17,36 +17,46 @@
 						</ul>
 					</div>
 					<div class="card-buttons">
+						<button class="btn btn-primary" (click)="editQuestion()">Edit</button>
 						<button class="btn btn-primary">Approve</button>
 						<button class="btn btn-primary" (click)="deleteQuestion()">Delete</button>
 					</div>
-			</div>
+				</div>
 		</div>
 	</div>
 </div>
 
-<!-- <div class="card offset-1 col-10">
-	<div class="comment-body" *ngIf="isComments">
+<div class="card offset-1 col-10" *ngIf="currentQuestion && currentQuestion.comments && currentQuestion.comments.length">
+	<div class="comment-body" *ngFor="let comment of currentQuestion.comments">
 		<div class="comment-img-name">
-			<img class="user-img" [src]="currentQuestion.comments.user.avatar || '../assets/img/profile-picture.png'" alt="Card image cap">
-			<p class="card-date">{{ currentQuestion.comments.user.displayName }}</p>
+			<img class="user-img" [src]="comment.user.avatar || '../assets/img/profile-picture.png'" alt="Card image cap">
+			<p class="card-date">{{ comment.user.displayName }}</p>
 		</div>
-		<p class="comment-text">{{  currentQuestion.comments.message }}</p>
+		<p class="comment-text">{{  comment.message }}</p>
 		<div class="comment-date">
-			<p>{{ currentQuestion.comments.currentDate }}</p>
+			<p>{{ comment.currentDate }}</p>
 			<div class="checkbox-resolve">
 				<input type="checkbox" id="resolve">
 				<label for="resolve">resolve</label>
 			</div>
 		</div>
 	</div>
-</div> -->
+</div>
 
 <div class="answer offset-1 col-10">
 	<div class="input-area">
 		<form (ngSubmit)="onSubmit(newComment.value)" name="messageForm" [formGroup]="newComment">
-			<textarea type="text" placeholder="Your message" name="message" id="message" formControlName="message" rows="5"></textarea>
-			<button type="submit" class="btn btn-primary btn-answer">Post your answer</button>
+			<textarea type="text"
+                placeholder="Your message"
+                name="message" id="message"
+                formControlName="message"
+                rows="5"
+                required>
+      </textarea>
+			<button type="submit"
+              class="btn btn-primary btn-answer"
+              [disabled]="!newComment.valid"
+      >Post your answer</button>
 		</form>
 	</div>
 </div>

@@ -47,7 +47,7 @@ export class AuthService {
 		} else {
 			this.afAuth.auth.signInWithRedirect(this.getProviderInstance(provider)).then((ref) => {
 				// console.log(ref);
-			}).catch(function(error) {
+			}).catch((error) => {
 				console.log('Failed: ' + error);
 			})
 		}

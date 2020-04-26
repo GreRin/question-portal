@@ -85,10 +85,10 @@
 					</div>
 					<div class="card-category">
 						<ul>
-							<!-- <li *ngFor="let technology of question.categories; let i=index;" class="card-text">{{ technology[i] }}</li> -->
-							<li *ngIf="question.java" class="card-text">Java</li>
+							<li *ngFor="let technology of question.categories" class="card-text">{{ technology }}</li>
+							<!-- <li *ngIf="question.java" class="card-text">Java</li>
 							<li *ngIf="question.salesforce" class="card-text">Salesforce</li>
-							<li *ngIf="question.frontend" class="card-text">Frontend</li>
+							<li *ngIf="question.frontend" class="card-text">Frontend</li> -->
 						</ul>
 					</div>
 					<div class="line"></div>
