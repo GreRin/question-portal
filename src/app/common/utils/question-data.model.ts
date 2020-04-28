@@ -6,9 +6,6 @@ export class QuestionData {
 	title: string;
 	text: string;
 	currentDate: string;
-	frontend: string;
-	java: string;
-	salesforce: string;
 	categories: string[];
 	user: User;
 	comments: Comments[];

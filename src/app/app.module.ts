@@ -24,6 +24,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { QuestionComponent } from './components/question/question.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { EditQuestionComponent } from './components/edit-question/edit-question.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     NewQuestionComponent,
     HeaderComponent,
     QuestionComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    EditQuestionComponent
   ],
   imports: [
 		BrowserModule,

@@ -17,9 +17,6 @@ export class QuestionComponent implements OnInit {
 
 	message: any;
 	newComment: FormGroup;
-	messageData: any;
-	isComments = false;
-
 	currentQuestion: QuestionData;
 
 	constructor(
@@ -52,18 +49,13 @@ export class QuestionComponent implements OnInit {
 	}
 
 	editQuestion() {
-		this.crudService.editQuestion(this.id)
+		this.crudService.editQuestion(this.currentQuestion)
 		// console.log(this.crudService.editQuestion(this.id))
 	}
 
 	deleteQuestion() {
 		this.crudService.deleteQuestion(this.id);
-		this.router.navigate(['/'])
-      .then(
-        res => {
-          this.router.navigate(['/ErrorPage']);
-        }
-      )
+		this.router.navigate(['/']);
 	}
 
 	createComment() {

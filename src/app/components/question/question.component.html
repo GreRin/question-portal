@@ -1,5 +1,5 @@
-<div class="card offset-1 col-10">
-	<div class="card-body">
+<div class="offset-1 col-10">
+	<div class="card card-body">
 		<div class="card-wrapper" *ngIf="currentQuestion">
 			<div class="card-author-date">
 					<p class="card-date hidden">{{ currentQuestion.user.displayName }}</p>
@@ -11,13 +11,11 @@
 				<div class="card-category-btn">
 					<div class="card-category">
 						<ul>
-							<li *ngIf="currentQuestion.java" class="card-text">Java</li>
-							<li *ngIf="currentQuestion.salesforce" class="card-text">Salesforce</li>
-							<li *ngIf="currentQuestion.frontend" class="card-text">Frontend</li>
+              <li *ngFor="let technology of currentQuestion.categories" class="card-text">{{ technology }}</li>
 						</ul>
 					</div>
 					<div class="card-buttons">
-						<button class="btn btn-primary" (click)="editQuestion()">Edit</button>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#editModal" (click)="editQuestion()">Edit</button>
 						<button class="btn btn-primary">Approve</button>
 						<button class="btn btn-primary" (click)="deleteQuestion()">Delete</button>
 					</div>
@@ -26,25 +24,27 @@
 	</div>
 </div>
 
-<div class="card offset-1 col-10" *ngIf="currentQuestion && currentQuestion.comments && currentQuestion.comments.length">
-	<div class="comment-body" *ngFor="let comment of currentQuestion.comments">
-		<div class="comment-img-name">
-			<img class="user-img" [src]="comment.user.avatar || '../assets/img/profile-picture.png'" alt="Card image cap">
-			<p class="card-date">{{ comment.user.displayName }}</p>
-		</div>
-		<p class="comment-text">{{  comment.message }}</p>
-		<div class="comment-date">
-			<p>{{ comment.currentDate }}</p>
-			<div class="checkbox-resolve">
-				<input type="checkbox" id="resolve">
-				<label for="resolve">resolve</label>
-			</div>
-		</div>
+<div class="comment offset-1 col-10" *ngIf="currentQuestion && currentQuestion.comments && currentQuestion.comments.length">
+	<div class="card" *ngFor="let comment of currentQuestion.comments">
+    <div class="comment-body">
+      <div class="comment-img-name">
+        <img class="user-img" [src]="comment.user.avatar || '../assets/img/profile-picture.png'" alt="Card image cap">
+        <p class="card-date">{{ comment.user.displayName }}</p>
+      </div>
+      <p class="comment-text">{{  comment.message }}</p>
+      <div class="comment-date">
+        <p>{{ comment.currentDate }}</p>
+        <div class="checkbox-resolve">
+          <input type="checkbox" id="resolve">
+          <label for="resolve">resolve</label>
+        </div>
+      </div>
+    </div>
 	</div>
 </div>
 
-<div class="answer offset-1 col-10">
-	<div class="input-area">
+<div class="offset-1 col-10">
+	<div class="answer input-area">
 		<form (ngSubmit)="onSubmit(newComment.value)" name="messageForm" [formGroup]="newComment">
 			<textarea type="text"
                 placeholder="Your message"

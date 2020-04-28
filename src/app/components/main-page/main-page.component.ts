@@ -12,12 +12,10 @@ import { QuestionData } from 'src/app/common/utils/question-data.model';
 })
 export class MainPageComponent implements OnInit {
 
-	id;
+	id: string;
 	color = '#f5f5f5';
 	tiled = true;
-	tiledToggle;
-	row = "col-xl-12";
-
+	tiledToggle: string;
 	questionData: QuestionData[];
 
 	constructor(
@@ -41,16 +39,12 @@ export class MainPageComponent implements OnInit {
 		})
 	}
 
-	deleteDataFromDatabase() {
-		console.log("Deleted");
-	}
+  deleteQuestion() {
+    this.crudService.deleteQuestion(this.id);
+  }
 
 	tiledRowToggle() {
 		this.tiled = !this.tiled;
 		this.tiledToggle = this.tiled ? "col-sm-4 col-md-3 col-xl-2" : "col-sm-12 col-md-12 col-xl-12 card-row";
-	}
-
-	openMainPage() {
-		this.router.navigate(['/']);
 	}
 }

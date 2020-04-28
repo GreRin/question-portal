@@ -20,7 +20,6 @@ export class NewQuestionComponent implements OnInit {
 	title: any;
 	text: any;
 	isSubmitted = false;
-	selectedCategoryNames: string[];
 	newQuestionForm: FormGroup;
 
   constructor(
@@ -42,14 +41,14 @@ export class NewQuestionComponent implements OnInit {
 
 	createCategory(categoryInputs) {
 		const arr = categoryInputs.map(category => {
-			return new FormControl(category.selected || false)
+        return new FormControl(category)
 		});
 		return new FormArray(arr);
 	}
 
 	onSubmit(value) {
     this.isSubmitted = true;
-    if (!this.newQuestionForm.value) {
+    if (!this.newQuestionForm.valid) {
       return false;
     }
 

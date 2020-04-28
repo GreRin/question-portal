@@ -31,10 +31,7 @@ export class CrudService {
     return this.firestore.collection('newQuestion').add({
       title: value.title,
       text: value.text,
-      java: value.categories[0],
-			salesforce: value.categories[1],
-			frontend: value.categories[2],
-			// categories: value.categories,
+			categories: value.categories.filter(Boolean),
 			currentDate: this.getDate(),
 			user: {
 				ownerId: this.id,
@@ -50,14 +47,9 @@ export class CrudService {
     return this.firestore.collection('newQuestion').snapshotChanges();
 	}
 
-	editQuestion(questionId) {
-		this.firestore.collection('newQuestion').doc(questionId).get();
+	editQuestion(question: QuestionData) {
+		this.firestore.doc('newQuestion' + question.id).update(question);
 	}
-
-	// updateQuestion(question: QuestionData) {
-  //   delete question.id;
-  //   this.firestore.doc('newQuestion/' + question.id).update(question);
-	// }
 
 	deleteQuestion(questionId) {
 		this.firestore.collection('newQuestion').doc(questionId).delete();

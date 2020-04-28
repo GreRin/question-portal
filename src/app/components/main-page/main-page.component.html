@@ -28,8 +28,8 @@
 			<button class="dropdown-item" type="button" (click)="tiledRowToggle()">Tiled/Row</button>
 			<hr>
 			<p>Color theme</p>
-			<input class="color-picker" class="colorTheme" 
-				[(colorPicker)]="color" 
+			<input class="color-picker" class="colorTheme"
+				[(colorPicker)]="color"
 				[style.background]="color"
 				[cpPosition]="'left'"
 				[value]=color
@@ -70,8 +70,8 @@
 
 <section class="questions" [style.background]="this.color">
 	<div class="row">
-		<div class="{{ tiledToggle }} card" 
-				[routerLink]="['/', question.id]" 
+		<div class="{{ tiledToggle }} card"
+				[routerLink]="['/', question.id]"
 				*ngFor="let question of questionData"
 		>
 			<div class="card-body">
@@ -86,15 +86,12 @@
 					<div class="card-category">
 						<ul>
 							<li *ngFor="let technology of question.categories" class="card-text">{{ technology }}</li>
-							<!-- <li *ngIf="question.java" class="card-text">Java</li>
-							<li *ngIf="question.salesforce" class="card-text">Salesforce</li>
-							<li *ngIf="question.frontend" class="card-text">Frontend</li> -->
 						</ul>
 					</div>
 					<div class="line"></div>
 					<div class="card-buttons">
 						<button class="btn btn-primary">Approve</button>
-						<button class="btn btn-primary" (click)="deleteDataFromDatabase()">Delete</button>
+						<button class="btn btn-primary" (click)="deleteQuestion()">Delete</button>
 					</div>
 				</div>
 			</div>
