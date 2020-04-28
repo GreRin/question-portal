@@ -18,6 +18,7 @@ export class QuestionComponent implements OnInit {
 	message: any;
 	newComment: FormGroup;
 	currentQuestion: QuestionData;
+	openEditModal: Boolean;
 
 	constructor(
 		private router: Router,
@@ -49,8 +50,9 @@ export class QuestionComponent implements OnInit {
 	}
 
 	editQuestion() {
-		this.crudService.editQuestion(this.currentQuestion)
-		// console.log(this.crudService.editQuestion(this.id))
+	  this.openEditModal = true;
+		this.crudService.editableQuestion = this.currentQuestion;
+
 	}
 
 	deleteQuestion() {

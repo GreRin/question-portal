@@ -24,6 +24,8 @@
 	</div>
 </div>
 
+<app-edit-question *ngIf="openEditModal"></app-edit-question>
+
 <div class="comment offset-1 col-10" *ngIf="currentQuestion && currentQuestion.comments && currentQuestion.comments.length">
 	<div class="card" *ngFor="let comment of currentQuestion.comments">
     <div class="comment-body">

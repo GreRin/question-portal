@@ -2,7 +2,7 @@ import { User } from '../utils/usert';
 import {Comments} from './comments';
 
 export class QuestionData {
-	id: string;
+	id?: string;
 	title: string;
 	text: string;
 	currentDate: string;

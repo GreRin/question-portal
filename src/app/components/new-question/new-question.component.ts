@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { CrudService } from '../../common/services/crud/crud.service';
 
 import { mycategory } from '../../common/utils/category';
+import {QuestionData} from '../../common/utils/question-data.model';
 
 @Component({
   selector: 'app-new-question',
@@ -21,6 +22,7 @@ export class NewQuestionComponent implements OnInit {
 	text: any;
 	isSubmitted = false;
 	newQuestionForm: FormGroup;
+  questionData: QuestionData;
 
   constructor(
 		private router: Router,
@@ -52,7 +54,21 @@ export class NewQuestionComponent implements OnInit {
       return false;
     }
 
-    this.crudService.createNewQuestion(value)
+    this.questionData = {
+      title: value.title,
+        text: value.text,
+      categories: value.categories.filter(Boolean),
+      currentDate: this.crudService.getDate(),
+      user: {
+      ownerId: this.crudService.id,
+        displayName: this.crudService.name,
+        email: this.crudService.email,
+        avatar: this.crudService.avatar,
+    },
+      comments: []
+    }
+
+    this.crudService.createNewQuestion(this.questionData)
       .then(
         res => {
           this.newQuestionForm.reset()

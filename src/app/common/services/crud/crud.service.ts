@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore  } from '@angular/fire/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { QuestionData } from '../../utils/question-data.model';
+import { Comments } from '../../utils/comments';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class CrudService {
 	email: string;
 	name: string;
 	avatar: string;
-	comments: [''];
+	comments: Comments[];
+	editableQuestion: QuestionData;
+
 
   constructor(
 		private firestore: AngularFirestore,
@@ -28,27 +31,15 @@ export class CrudService {
 
 
   createNewQuestion(value) {
-    return this.firestore.collection('newQuestion').add({
-      title: value.title,
-      text: value.text,
-			categories: value.categories.filter(Boolean),
-			currentDate: this.getDate(),
-			user: {
-				ownerId: this.id,
-				displayName: this.name,
-				email: this.email,
-        avatar: this.avatar,
-			},
-			comments: []
-  	});
+    return this.firestore.collection('newQuestion').add(value);
 	}
 
 	getQuestions() {
     return this.firestore.collection('newQuestion').snapshotChanges();
 	}
 
-	editQuestion(question: QuestionData) {
-		this.firestore.doc('newQuestion' + question.id).update(question);
+	updateQuestion(editableQuestion) {
+		this.firestore.collection('newQuestion').doc(this.editableQuestion.id).update(editableQuestion);
 	}
 
 	deleteQuestion(questionId) {

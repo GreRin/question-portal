@@ -13,9 +13,7 @@ import { AuthService } from './common/services/auth/auth.service';
 
 export class AppComponent implements OnInit {
 
-	phoneSignIn: boolean = true;
 	windowRef: any;
-	toggleAddQuestionBtn: boolean = true;
 
 	constructor (
 		public afAuth: AngularFireAuth,
@@ -25,9 +23,5 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 		this.windowRef = this.windowService.windowRef;
-	}
-
-	hideAddQuestionButton() {
-		this.toggleAddQuestionBtn = false;
 	}
 }

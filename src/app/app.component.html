@@ -21,6 +21,5 @@
 	<div class="main-wrapper" *ngIf='afAuth.authState | async as user; else login'>
 		<router-outlet></router-outlet>
 		<app-new-question></app-new-question>
-    <app-edit-question></app-edit-question>
 	</div>
 </main>
