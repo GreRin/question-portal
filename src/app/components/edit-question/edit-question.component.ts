@@ -15,12 +15,14 @@ import { QuestionData } from '../../common/utils/question-data.model';
 })
 export class EditQuestionComponent implements OnInit {
 
-  mycat = mycategory;
+  mycat: string[] = mycategory;
   id: string;
   title: string;
   text: string;
   editQuestionForm: FormGroup;
   currentQuestion: QuestionData;
+  questionData: QuestionData;
+  sortedQuestions: string[];
 
   constructor(
     private router: Router,
@@ -30,8 +32,7 @@ export class EditQuestionComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentQuestion = this.crudService.editableQuestion;
-    console.log(this.currentQuestion)
-    this.editQuestion()
+    this.editQuestion();
   }
 
   editQuestion() {
@@ -54,7 +55,18 @@ export class EditQuestionComponent implements OnInit {
       return false;
     }
 
-    this.crudService.updateQuestion(value);
+    this.sortedQuestions = mycategory.filter(
+      (el, index) => value.categories[index] === true
+    );
+
+    this.questionData = {
+      title: value.title,
+      text: value.text,
+      categories: this.sortedQuestions,
+      currentDate: this.crudService.getDate()
+    }
+
+    this.crudService.updateQuestion(this.questionData);
     this.editQuestionForm.reset();
   }
 

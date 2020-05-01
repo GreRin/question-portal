@@ -45,7 +45,6 @@ export class QuestionComponent implements OnInit {
 			}).find(e => {
 				return e.id === this.id
 			})
-			// console.log(this.currentQuestion)
 		});
 	}
 

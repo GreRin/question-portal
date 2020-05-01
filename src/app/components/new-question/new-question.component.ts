@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { CrudService } from '../../common/services/crud/crud.service';
 
 import { mycategory } from '../../common/utils/category';
-import {QuestionData} from '../../common/utils/question-data.model';
+import { QuestionData } from '../../common/utils/question-data.model';
 
 @Component({
   selector: 'app-new-question',
@@ -61,15 +61,15 @@ export class NewQuestionComponent implements OnInit {
 
     this.questionData = {
       title: value.title,
-        text: value.text,
+      text: value.text,
       categories: this.sortedQuestions,
       currentDate: this.crudService.getDate(),
       user: {
-      ownerId: this.crudService.id,
+        ownerId: this.crudService.id,
         displayName: this.crudService.name,
         email: this.crudService.email,
         avatar: this.crudService.avatar,
-    },
+      },
       comments: []
     }
 

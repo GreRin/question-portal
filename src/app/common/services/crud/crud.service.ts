@@ -29,7 +29,6 @@ export class CrudService {
 		this.avatar = this.afAuth.auth.currentUser.photoURL;
 	 }
 
-
   createNewQuestion(value) {
     return this.firestore.collection('newQuestion').add(value);
 	}

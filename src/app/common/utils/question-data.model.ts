@@ -7,6 +7,6 @@ export class QuestionData {
 	text: string;
 	currentDate: string;
 	categories: string[];
-	user: User;
-	comments: Comments[];
+	user?: User;
+	comments?: Comments[];
 }
