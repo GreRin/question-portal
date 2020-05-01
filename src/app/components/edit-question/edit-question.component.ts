@@ -54,8 +54,6 @@ export class EditQuestionComponent implements OnInit {
       return false;
     }
 
-    // this.editQuestion()
-    console.log(value)
     this.crudService.updateQuestion(value);
     this.editQuestionForm.reset();
   }

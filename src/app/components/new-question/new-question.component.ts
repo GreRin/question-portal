@@ -23,6 +23,7 @@ export class NewQuestionComponent implements OnInit {
 	isSubmitted = false;
 	newQuestionForm: FormGroup;
   questionData: QuestionData;
+  sortedQuestions: string[];
 
   constructor(
 		private router: Router,
@@ -43,7 +44,7 @@ export class NewQuestionComponent implements OnInit {
 
 	createCategory(categoryInputs) {
 		const arr = categoryInputs.map(category => {
-        return new FormControl(category)
+        return new FormControl(category.selected || false)
 		});
 		return new FormArray(arr);
 	}
@@ -54,10 +55,14 @@ export class NewQuestionComponent implements OnInit {
       return false;
     }
 
+    this.sortedQuestions = mycategory.filter(
+      (el, index) => value.categories[index] === true
+    );
+
     this.questionData = {
       title: value.title,
         text: value.text,
-      categories: value.categories.filter(Boolean),
+      categories: this.sortedQuestions,
       currentDate: this.crudService.getDate(),
       user: {
       ownerId: this.crudService.id,
