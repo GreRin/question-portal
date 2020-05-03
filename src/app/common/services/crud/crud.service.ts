@@ -18,7 +18,6 @@ export class CrudService {
 	comments: Comments[];
 	editableQuestion: QuestionData;
 
-
   constructor(
 		private firestore: AngularFirestore,
 		private afAuth: AngularFireAuth,
@@ -47,8 +46,7 @@ export class CrudService {
 
 	getDate() {
 		const timestamp = new Date();
-    const time = `${timestamp.getDate()}.${timestamp.getMonth()}.${timestamp.getFullYear()}`;
-    return time;
+    return timestamp;
 	}
 
 	addComment(id, value) {

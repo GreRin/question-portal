@@ -16,10 +16,10 @@ export class MainPageComponent implements OnInit {
 	color = '#f5f5f5';
 	tiled = true;
 	tiledToggle: string;
-	questionData: QuestionData[];
+	questionData: QuestionData[];ъ
+  isSort:boolean = false;
 
 	constructor(
-		private router: Router,
 		public crudService: CrudService,
 	) {}
 
@@ -47,4 +47,17 @@ export class MainPageComponent implements OnInit {
 		this.tiled = !this.tiled;
 		this.tiledToggle = this.tiled ? "col-sm-4 col-md-3 col-xl-2" : "col-sm-12 col-md-12 col-xl-12 card-row";
 	}
+
+	sortQuestion() {
+	  this.isSort = !this.isSort;
+  }
+
+	filterBy(filter: string) {
+	  switch(filter) {
+      case 'Frontend': this.questionData = this.questionData.filter(question => {
+        console.log(question.categories.includes('Frontend'))
+      })
+        break
+    }
+  }
 }

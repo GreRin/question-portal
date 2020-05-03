@@ -5,7 +5,7 @@ export class QuestionData {
 	id?: string;
 	title: string;
 	text: string;
-	currentDate: string;
+	currentDate: Date;
 	categories: string[];
 	user?: User;
 	comments?: Comments[];

@@ -25,6 +25,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { QuestionComponent } from './components/question/question.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { EditQuestionComponent } from './components/edit-question/edit-question.component';
+import { SortQuestionsPipe } from './common/services/pipes/sort-questions.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { EditQuestionComponent } from './components/edit-question/edit-question.
     HeaderComponent,
     QuestionComponent,
     NotFoundComponent,
-    EditQuestionComponent
+    EditQuestionComponent,
+    SortQuestionsPipe
   ],
   imports: [
 		BrowserModule,
