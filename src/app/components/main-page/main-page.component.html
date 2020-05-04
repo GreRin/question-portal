@@ -6,7 +6,7 @@
 		</button>
 		<div class="dropdown-menu dropdown-menu-left">
 			<button class="dropdown-item" type="button">Answered/Not answered</button>
-			<button class="dropdown-item" type="button">Category</button>
+			<button class="dropdown-item" type="button" (click)="filterQuestion()">Category</button>
 			<button class="dropdown-item" type="button">Time</button>
 		</div>
 	</div>
@@ -28,7 +28,10 @@
 			Settings
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
-			<button class="dropdown-item" type="button" (click)="tiledRowToggle()">Tiled/Row</button>
+			<button class="dropdown-item"
+              type="button"
+              (click)="tiledRowToggle()"
+      >Tiled/Row</button>
 			<hr>
 			<p>Color theme</p>
 			<input class="color-picker" class="colorTheme"
@@ -48,7 +51,7 @@
 		</button>
 		<div class="dropdown-menu dropdown-menu-left">
 			<button class="dropdown-item" type="button">Answered/Not answered</button>
-			<button class="dropdown-item" type="button" (click)="filterBy('Frontend')">Category</button>
+			<button class="dropdown-item" type="button" (click)="filterQuestion()">Category</button>
 			<button class="dropdown-item" type="button">Time</button>
 		</div>
 	</div>
@@ -75,7 +78,7 @@
 	<div class="row">
 		<div class="{{ tiledToggle }} card"
 				[routerLink]="['/', question.id]"
-				*ngFor="let question of questionData | sortQuestions: isSort"
+				*ngFor="let question of questionData | sortQuestions: isSort | filterCategory: isFiltered"
 		>
 			<div class="card-body">
 				<h5 class="card-title">{{  question.title }}</h5>

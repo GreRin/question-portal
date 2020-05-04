@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { constants } from '../../utils/constants';
-import { auth } from 'firebase';
+import { auth } from 'firebase/app';
 
 @Injectable({
 	providedIn: 'root'
 })
 
 export class AuthService {
-	userData;
+
 	signInMode = false;
 	phoneSignIn = false;
-	signInError = false;
 
 	constructor(
 		private afAuth: AngularFireAuth,
@@ -36,7 +35,7 @@ export class AuthService {
 		}
 		return providerInstance;
 	}
-	
+
 	signIn(mode: string, provider: string) {
 		if(mode === constants.modes.POPUP) {
 			this.afAuth.auth.signInWithPopup(this.getProviderInstance(provider)).then((ref) => {

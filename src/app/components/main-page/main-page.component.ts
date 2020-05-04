@@ -18,6 +18,7 @@ export class MainPageComponent implements OnInit {
 	tiledToggle: string;
 	questionData: QuestionData[];
   isSort:boolean = false;
+  isFiltered:boolean = false;
 
 	constructor(
 		public crudService: CrudService,
@@ -50,15 +51,17 @@ export class MainPageComponent implements OnInit {
 
 	sortQuestion() {
     this.isSort = !this.isSort;
-    console.log(this.isSort);
   }
 
-	filterBy(filter: string) {
-	  switch(filter) {
-      case 'Frontend': this.questionData = this.questionData.filter(question => {
-        console.log(question.categories.includes('Frontend'))
-      })
-        break
-    }
+	filterQuestion() {
+    this.isFiltered = !this.isFiltered;
+    console.log(this.isFiltered)
+
+    // switch(filter) {
+    //   case 'Frontend': this.questionData = this.questionData.filter(question => {
+    //     console.log(question.categories.includes('Frontend'))
+    //   })
+    //     break
+    // }
   }
 }
