@@ -19,6 +19,7 @@ export class MainPageComponent implements OnInit {
 	questionData: QuestionData[];
   isSort:boolean = false;
   isFiltered:boolean = false;
+  filterTerm: string;
 
 	constructor(
 		public crudService: CrudService,

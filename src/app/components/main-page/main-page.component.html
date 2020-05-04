@@ -5,8 +5,9 @@
 			Filters
 		</button>
 		<div class="dropdown-menu dropdown-menu-left">
-			<button class="dropdown-item" type="button">Answered/Not answered</button>
-			<button class="dropdown-item" type="button" (click)="filterQuestion()">Category</button>
+<!--			<button class="dropdown-item" type="button" (click)="filterQuestion()">Category</button>-->
+      <input type="text" class="form-control" placeholder="Filter By Categories" [(ngModel)]="filterTerm" >
+      <button class="dropdown-item" type="button">Answered/Not answered</button>
 			<button class="dropdown-item" type="button">Time</button>
 		</div>
 	</div>
@@ -78,7 +79,7 @@
 	<div class="row">
 		<div class="{{ tiledToggle }} card"
 				[routerLink]="['/', question.id]"
-				*ngFor="let question of questionData | sortQuestions: isSort | filterCategory: isFiltered"
+				*ngFor="let question of questionData | sortQuestions: isSort | filterCategory: filterTerm"
 		>
 			<div class="card-body">
 				<h5 class="card-title">{{  question.title }}</h5>

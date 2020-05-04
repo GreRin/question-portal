@@ -5,22 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortQuestionsPipe implements PipeTransform {
 
-  transform(items: any, questionData: any): any {
+  transform(items: any, ASC: any): any {
     if(items) {
-      const direction = questionData ? -1 : 1;
-
-      items.sort((a, b) => {
-        let aa = a.currentDate;
-        let bb = b.currentDate;
-        if (aa > bb) {
-          return -1 * direction;
-        }
-        else if (aa < bb) {
-          return 1 * direction;
-        } else {
-          return 0;
-        }
-      })
+      items.sort((a, b) => ASC? a.currentDate - b.currentDate : b.currentDate - a.currentDate)
     }
     return items;
   }

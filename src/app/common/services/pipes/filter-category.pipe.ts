@@ -5,10 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterCategoryPipe implements PipeTransform {
 
-  transform(items: any, questionData: any): any {
-    return questionData
-      ? items.filter(item => item.categories.includes('Java'))
+  transform(items: any, filterTerm: any): any {
+    if (!items || !filterTerm) {
+      return items;
+    }
+
+    return items
+      ? items.filter(item => item.categories.includes(filterTerm))
       : items;
   }
-
 }
