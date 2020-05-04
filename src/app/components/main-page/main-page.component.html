@@ -14,13 +14,10 @@
 	<div class="btn-group">
 		<button type="button"
             class="btn btn-secondary"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
             (click)="sortQuestion()"
     >
-			<i class="fas fa-sort-amount-down-alt"></i>
-			<i class="fas fa-sort-amount-up"></i>
+			<i class="fas fa-sort-amount-down-alt" *ngIf="isSort"></i>
+			<i class="fas fa-sort-amount-up" *ngIf="!isSort"></i>
 			Sort
 		</button>
 	</div>
@@ -78,16 +75,16 @@
 	<div class="row">
 		<div class="{{ tiledToggle }} card"
 				[routerLink]="['/', question.id]"
-				*ngFor="let question of questionData"
+				*ngFor="let question of questionData | sortQuestions: isSort"
 		>
 			<div class="card-body">
 				<h5 class="card-title">{{  question.title }}</h5>
 				<div class="card-wrapper">
 					<div class="line"></div>
 					<div class="card-category-date">
-						<p class="card-date hidden">{{ question.currentDate.toDate() | date:"M/d/yy" }}</p>
+						<p class="card-date hidden">{{ question.currentDate | date:"MMM d, y, h:mm a" }}</p>
 						<p class="card-text"><strong>Category:</strong></p>
-						<p class="card-date visible">{{ question.currentDate.toDate() | date:"M/d/yy" }}</p>
+						<p class="card-date visible">{{ question.currentDate | date:"MMM d, y, h:mm a" }}</p>
 					</div>
 					<div class="card-category">
 						<ul>

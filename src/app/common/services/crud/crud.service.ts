@@ -45,7 +45,7 @@ export class CrudService {
 	}
 
 	getDate() {
-		const timestamp = new Date();
+		const timestamp = new Date().getTime();
     return timestamp;
 	}
 

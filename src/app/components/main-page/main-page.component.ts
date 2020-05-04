@@ -16,7 +16,7 @@ export class MainPageComponent implements OnInit {
 	color = '#f5f5f5';
 	tiled = true;
 	tiledToggle: string;
-	questionData: QuestionData[];ъ
+	questionData: QuestionData[];
   isSort:boolean = false;
 
 	constructor(
@@ -49,7 +49,8 @@ export class MainPageComponent implements OnInit {
 	}
 
 	sortQuestion() {
-	  this.isSort = !this.isSort;
+    this.isSort = !this.isSort;
+    console.log(this.isSort);
   }
 
 	filterBy(filter: string) {

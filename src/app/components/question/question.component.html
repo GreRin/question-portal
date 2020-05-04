@@ -3,7 +3,7 @@
 		<div class="card-wrapper" *ngIf="currentQuestion">
 			<div class="card-author-date">
 					<p class="card-date hidden">{{ currentQuestion.user.displayName }}</p>
-					<p class="card-date hidden">{{ currentQuestion.currentDate.toDate() | date:"M/d/yy" }}</p>
+					<p class="card-date hidden">{{ currentQuestion.currentDate | date:"MMM d, y, h:mm a" }}</p>
 			</div>
 			<h5 class="card-title">{{ currentQuestion.title }}</h5>
 			<div class="line"></div>
@@ -35,7 +35,7 @@
       </div>
       <p class="comment-text">{{  comment.message }}</p>
       <div class="comment-date">
-        <p>{{ comment.currentDate.toDate() | date:"M/d/yy" }}</p>
+        <p>{{ comment.currentDate | date:"MMM d, y, h:mm a" }}</p>
         <div class="checkbox-resolve">
           <input type="checkbox" id="resolve">
           <label for="resolve">resolve</label>

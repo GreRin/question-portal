@@ -10,10 +10,12 @@ export class SortQuestionsPipe implements PipeTransform {
       const direction = questionData ? -1 : 1;
 
       items.sort((a, b) => {
-        if (a.currentDate > b.currentDate) {
+        let aa = a.currentDate;
+        let bb = b.currentDate;
+        if (aa > bb) {
           return -1 * direction;
         }
-        else if (a.currentDate > b.currentDate) {
+        else if (aa < bb) {
           return 1 * direction;
         } else {
           return 0;
@@ -22,5 +24,4 @@ export class SortQuestionsPipe implements PipeTransform {
     }
     return items;
   }
-
 }
