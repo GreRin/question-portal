@@ -33,7 +33,6 @@
         <img class="user-img" [src]="comment.user.avatar || '../assets/img/profile-picture.png'" alt="Card image cap">
         <p class="card-date">{{ comment.user.displayName }}</p>
       </div>
-      <p class="comment-text">{{  comment.message }}</p>
       <div class="comment-date">
         <p>{{ comment.currentDate | date:"MMM d, y, h:mm a" }}</p>
         <div class="checkbox-resolve">
@@ -42,6 +41,7 @@
         </div>
       </div>
     </div>
+    <p class="comment-text">{{  comment.message }}</p>
 	</div>
 </div>
 

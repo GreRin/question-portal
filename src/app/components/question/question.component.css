@@ -9,10 +9,16 @@
 	border-top: 1px solid rgba(0,0,0,.1);
 }
 
-.card-author-date, .card-category-btn {
+.card-author-date {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  flex-direction: column;
+	text-align: right;
+}
+
+.card-category-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 h5 {
@@ -67,6 +73,11 @@ form {
 	padding-top: 10px;
 }
 
+.comment-text {
+  align-self: flex-start;
+  padding: 0 1.25rem;
+}
+
 .checkbox-resolve {
 	display: inline-flex;
 	width: 100%;
@@ -118,4 +129,23 @@ form {
 		justify-content: flex-end;
 		align-items: center;
 	}
+}
+
+@media(max-width: 460px) {
+  .card-date, .card-wrapper p, .card-text, .comment-text, .comment-date p, .checkbox-resolve label {
+    font-size: 0.8rem;
+  }
+
+  .card-title {
+    margin: 12px 0;
+  }
+
+  .card-buttons {
+    display: inline-flex;
+    justify-content: space-between;
+  }
+
+  .btn-primary {
+    font-size: 0.8rem;
+  }
 }

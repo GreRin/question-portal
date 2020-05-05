@@ -114,14 +114,6 @@ ul {
 	margin-top: auto;
 }
 
-.card-buttons a:nth-child(1) {
-	margin: 15px 5px 0 0;
-}
-
-.card-buttons a:nth-child(2) {
-	margin: 15px 0 0 5px;
-}
-
 .line {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
@@ -217,4 +209,8 @@ ul {
 		align-items: center;
 		padding: 10px 20px;
 	}
+
+  .card-date, .card-text, .btn-primary {
+    font-size: 0.8rem;
+  }
 }
