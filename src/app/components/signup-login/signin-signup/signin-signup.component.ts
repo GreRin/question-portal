@@ -29,12 +29,6 @@ export class SigninSignupComponent implements OnInit {
 		})
 	}
 
-	resetFields() {
-		if(this.form.valid) {
-			this.form.reset()
-		}
-  }
-
 	signInOrSignUp() {
 		this.authService.signInOrSignUp(this.email, this.password)
 	}

@@ -39,9 +39,6 @@
 
 .card {
 	display: flex;
-	justify-content: space-between;
-	align-items: stretch;
-	align-content: space-between;
 	width: 18rem;
 	margin: 20px;
 }
@@ -49,10 +46,27 @@
 .card-body {
 	display: flex;
 	flex-direction: column;
+  padding: 1.25rem 1.25rem 0 1.25rem;
 }
 
-.card .card-body .card-wrapper {
-	margin-top: auto;
+.check {
+  position: absolute;
+  right: 1.25rem;
+}
+
+.fa-check {
+  color: green;
+}
+
+.card-wrapper {
+  align-items: stretch;
+  height: 100%;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 1.25rem 1.25rem 1.25rem;
 }
 
 .card-category-date {
@@ -108,19 +122,17 @@ ul {
 	padding: 0;
 }
 
-.card-buttons {
-	display: flex;
-	justify-content: space-around;
-	margin-top: auto;
-}
-
 .line {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
+	margin: 1rem 0;
 	border: 0;
 	border-top: 1px solid rgba(0,0,0,.1);
 }
 
+.line-bottom {
+  margin: 1rem 1.25rem;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,.1);
+}
 
 .plus {
 	position: fixed;

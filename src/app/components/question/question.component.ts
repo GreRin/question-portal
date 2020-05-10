@@ -5,6 +5,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { CrudService } from 'src/app/common/services/crud/crud.service';
 
 import { QuestionData } from '../../common/utils/question-data.model';
+import {Comments} from '../../common/utils/comments';
 
 @Component({
   selector: 'app-question',
@@ -18,7 +19,9 @@ export class QuestionComponent implements OnInit {
 	message: any;
 	newComment: FormGroup;
 	currentQuestion: QuestionData;
-	openEditModal: Boolean;
+	openEditModal: boolean;
+  isSolve:boolean;
+  resolveComment: Comments;
 
 	constructor(
 		private router: Router,
@@ -73,6 +76,7 @@ export class QuestionComponent implements OnInit {
     this.currentQuestion.comments.push({
       message: value.message,
       currentDate: this.crudService.getDate(),
+      resolveComment: false,
       user: {
         ownerId: this.crudService.id,
         displayName: this.crudService.name,
@@ -82,6 +86,19 @@ export class QuestionComponent implements OnInit {
     })
 
     this.crudService.addComment(this.id, this.currentQuestion.comments)
+      .then(
+        res => {
+          this.newComment.reset()
+        }
+      )
+  }
+
+  resComment(event: any) {
+	  this.isSolve = event.target.checked;
+	  console.log(this.isSolve)
+    console.log(this.currentQuestion.comments);
+
+    this.crudService.resolveComment(this.id, this.currentQuestion.comments)
       .then(
         res => {
           this.newComment.reset()

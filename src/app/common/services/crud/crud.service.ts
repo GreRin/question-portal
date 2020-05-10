@@ -4,6 +4,7 @@ import { AngularFirestore  } from '@angular/fire/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { QuestionData } from '../../utils/question-data.model';
 import { Comments } from '../../utils/comments';
+import {resolve} from 'url';
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +55,11 @@ export class CrudService {
       comments: value
   	});
 	}
+
+  resolveComment(id, value) {
+    return this.firestore.collection('newQuestion').doc(id).update({
+      comments: value
+    });
+  }
 
 }

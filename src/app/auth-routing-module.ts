@@ -7,9 +7,10 @@ import { QuestionComponent } from './components/question/question.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 
 const routes: Routes = [
-		{ path: 'user-profile', component: UserDetailsComponent },
-		{ path: '', component: MainPageComponent },
-		{ path: ':id', component: QuestionComponent },
+		{ path: 'user-profile', component: UserDetailsComponent, pathMatch: 'full' },
+		{ path: 'main', component: MainPageComponent, pathMatch: 'full' },
+		{ path: 'main/:id', component: QuestionComponent, pathMatch: 'full' },
+    { path: '', redirectTo: '/main', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent }
 ];
 

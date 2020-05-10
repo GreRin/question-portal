@@ -1,14 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import {QuestionData} from '../utils/question-data.model';
 
 @Pipe({
-  name: 'sortQuestions'
+  name: 'sortData'
 })
-export class SortQuestionsPipe implements PipeTransform {
+export class SortDataPipe implements PipeTransform {
 
-  transform(items: any, ASC: any): any {
+  transform(items: QuestionData[], ASC: boolean): QuestionData[] {
     if(items) {
       items.sort((a, b) => ASC? a.currentDate - b.currentDate : b.currentDate - a.currentDate)
     }
     return items;
   }
+
 }
