@@ -54,7 +54,6 @@ export class QuestionComponent implements OnInit {
 	editQuestion() {
 	  this.openEditModal = true;
 		this.crudService.editableQuestion = this.currentQuestion;
-
 	}
 
 	deleteQuestion() {
@@ -93,16 +92,15 @@ export class QuestionComponent implements OnInit {
       )
   }
 
-  resComment(event: any) {
+  resComment(event: any, i: number) {
 	  this.isSolve = event.target.checked;
 	  console.log(this.isSolve)
-    console.log(this.currentQuestion.comments);
+    console.log(i);
 
-    this.crudService.resolveComment(this.id, this.currentQuestion.comments)
-      .then(
-        res => {
-          this.newComment.reset()
-        }
-      )
+    this.resolveComment =  {
+      resolveComment: event.target.checked
+    }
+
+    this.crudService.resolveComment(this.id, this.resolveComment, i)
   }
 }

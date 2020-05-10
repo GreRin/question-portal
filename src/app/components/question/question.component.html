@@ -27,7 +27,7 @@
 <app-edit-question *ngIf="openEditModal"></app-edit-question>
 
 <div class="comment offset-1 col-10" *ngIf="currentQuestion && currentQuestion.comments && currentQuestion.comments.length">
-	<div class="card" *ngFor="let comment of currentQuestion.comments">
+	<div class="card" *ngFor="let comment of currentQuestion.comments; let i = index">
     <div class="comment-body">
       <div class="comment-img-name">
         <img class="user-img" [src]="comment.user.avatar || '../assets/img/profile-picture.png'" alt="Card image cap">
@@ -36,7 +36,7 @@
       <div class="comment-date">
         <p>{{ comment.currentDate | date:"dd.MM.yyyy hh:mm" }}</p>
         <div class="checkbox-resolve">
-          <input type="checkbox" id="resolve" [(ngModel)]="isSolve" (change)="resComment($event)" >
+          <input type="checkbox" id="resolve" (change)="resComment($event, i)" >
           <label for="resolve">resolve</label>
         </div>
       </div>

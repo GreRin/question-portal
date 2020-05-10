@@ -56,9 +56,9 @@ export class CrudService {
   	});
 	}
 
-  resolveComment(id, value) {
+  resolveComment(id, value, i) {
     return this.firestore.collection('newQuestion').doc(id).update({
-      comments: value
+      // comments: value
     });
   }
 
