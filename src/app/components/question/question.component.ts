@@ -72,15 +72,16 @@ export class QuestionComponent implements OnInit {
       return false;
 		}
 
-    this.currentQuestion.comments.push({
-      message: value.message,
-      currentDate: this.crudService.getDate(),
-      resolveComment: false,
-      user: {
-        ownerId: this.crudService.id,
-        displayName: this.crudService.name,
-        email: this.crudService.email,
-        avatar: this.crudService.avatar
+    this.currentQuestion.comments.push(
+      {
+        message: value.message,
+        currentDate: this.crudService.getDate(),
+        resolveComment: false,
+        user: {
+          ownerId: this.crudService.id,
+          displayName: this.crudService.name,
+          email: this.crudService.email,
+          avatar: this.crudService.avatar
       }
     })
 
@@ -93,14 +94,13 @@ export class QuestionComponent implements OnInit {
   }
 
   resComment(event: any, i: number) {
-	  this.isSolve = event.target.checked;
-	  console.log(this.isSolve)
-    console.log(i);
 
-    this.resolveComment =  {
-      resolveComment: event.target.checked
-    }
+    this.currentQuestion.comments.map( (data, index) => {
+      if(index === i) {
+        data.resolveComment = event.target.checked;
+      }
+    })
 
-    this.crudService.resolveComment(this.id, this.resolveComment, i)
+    this.crudService.addComment(this.id, this.currentQuestion.comments)
   }
 }

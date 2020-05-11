@@ -58,7 +58,7 @@ export class CrudService {
 
   resolveComment(id, value, i) {
     return this.firestore.collection('newQuestion').doc(id).update({
-      // comments: value
+      currentComment: value
     });
   }
 
