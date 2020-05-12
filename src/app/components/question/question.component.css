@@ -55,6 +55,15 @@ form {
 	margin: 20px 0 !important;
 }
 
+.check {
+  position: absolute;
+  right: 1.25rem;
+}
+
+.fa-check {
+  color: green;
+}
+
 .comment-body {
 	display: inline-flex;
 	justify-content: space-between;

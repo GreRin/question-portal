@@ -5,7 +5,6 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { CrudService } from 'src/app/common/services/crud/crud.service';
 
 import { QuestionData } from '../../common/utils/question-data.model';
-import {Comments} from '../../common/utils/comments';
 
 @Component({
   selector: 'app-question',
@@ -20,8 +19,6 @@ export class QuestionComponent implements OnInit {
 	newComment: FormGroup;
 	currentQuestion: QuestionData;
 	openEditModal: boolean;
-  isSolve:boolean;
-  resolveComment: Comments;
 
 	constructor(
 		private router: Router,
@@ -94,10 +91,10 @@ export class QuestionComponent implements OnInit {
   }
 
   resComment(event: any, i: number) {
-
     this.currentQuestion.comments.map( (data, index) => {
       if(index === i) {
         data.resolveComment = event.target.checked;
+        this.crudService.resolveComment = event.target.checked;
       }
     })
 

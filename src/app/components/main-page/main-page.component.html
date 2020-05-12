@@ -1,23 +1,38 @@
 <div class="filters">
 	<div class="btn-group">
-		<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<button type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
 			<i class="fas fa-filter"></i>
 			Filters
 		</button>
 		<div class="dropdown-menu dropdown-menu-left">
       <input type="text" class="form-control" placeholder="Filter By Categories" [(ngModel)]="filterTerm" >
-      <button class="dropdown-item" type="button">Answered/Not answered</button>
-			<button class="dropdown-item" type="button">Time</button>
+      <button
+        class="dropdown-item"
+        type="button"
+        (click)="togglePipeActivation()"
+      >
+        Answered/Not answered
+      </button>
+			<button class="dropdown-item"
+              type="button"
+              (click)="togglePipeActivation()"
+      >
+        Time
+      </button>
 		</div>
 	</div>
 
 	<div class="btn-group">
 		<button type="button"
             class="btn btn-secondary"
-            (click)="sortQuestion()"
+            (click)="togglePipeActivation()"
     >
-			<i class="fas fa-sort-amount-down-alt" *ngIf="isSort"></i>
-			<i class="fas fa-sort-amount-up" *ngIf="!isSort"></i>
+			<i class="fas fa-sort-amount-down-alt" *ngIf="isActive"></i>
+			<i class="fas fa-sort-amount-up" *ngIf="!isActive"></i>
 			Sort
 		</button>
 	</div>
@@ -51,7 +66,13 @@
 		</button>
 		<div class="dropdown-menu dropdown-menu-left">
       <input type="text" class="form-control" placeholder="Filter By Categories" [(ngModel)]="filterTerm" >
-      <button class="dropdown-item" type="button">Answered/Not answered</button>
+      <button
+        class="dropdown-item"
+        type="button"
+        (click)="togglePipeActivation()"
+      >
+        Answered/Not answered
+      </button>
       <button class="dropdown-item" type="button">Time</button>
 		</div>
 	</div>
@@ -59,10 +80,10 @@
 	<div class="btn-group">
     <button type="button"
             class="btn btn-secondary"
-            (click)="sortQuestion()"
+            (click)="togglePipeActivation()"
     >
-      <i class="fas fa-sort-amount-down-alt" *ngIf="isSort"></i>
-      <i class="fas fa-sort-amount-up" *ngIf="!isSort"></i>
+      <i class="fas fa-sort-amount-down-alt" *ngIf="isActive"></i>
+      <i class="fas fa-sort-amount-up" *ngIf="!isActive"></i>
       Sort
     </button>
 	</div>
@@ -93,11 +114,10 @@
 	<div class="row">
 		<div class="{{ tiledToggle }} card"
 				[routerLink]="['/main', question.id]"
-				*ngFor="let question of questionData | sortData: isSort | filterData: filterTerm"
+				*ngFor="let question of questionData | sortData: isActive | filterData: filterTerm | answered: isActive | timeDuration: isActive"
 		>
 			<div class="card-body">
         <h5 class="card-title">{{  question.title }}</h5>
-        <p class="check" *ngIf="isResolve"><i class="fas fa-check"></i></p>
 				<div class="card-wrapper">
 					<div class="line"></div>
 					<div class="card-category-date">

@@ -4,7 +4,6 @@ import { AngularFirestore  } from '@angular/fire/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { QuestionData } from '../../utils/question-data.model';
 import { Comments } from '../../utils/comments';
-import {resolve} from 'url';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +17,7 @@ export class CrudService {
 	avatar: string;
 	comments: Comments[];
 	editableQuestion: QuestionData;
+	resolveComment: boolean;
 
   constructor(
 		private firestore: AngularFirestore,
@@ -46,7 +46,7 @@ export class CrudService {
 	}
 
 	getDate() {
-		const timestamp = new Date().getTime();
+		const timestamp = (+new Date());
     return timestamp;
 	}
 
@@ -55,11 +55,4 @@ export class CrudService {
       comments: value
   	});
 	}
-
-  resolveComment(id, value, i) {
-    return this.firestore.collection('newQuestion').doc(id).update({
-      currentComment: value
-    });
-  }
-
 }

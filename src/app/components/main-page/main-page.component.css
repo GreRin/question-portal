@@ -49,15 +49,6 @@
   padding: 1.25rem 1.25rem 0 1.25rem;
 }
 
-.check {
-  position: absolute;
-  right: 1.25rem;
-}
-
-.fa-check {
-  color: green;
-}
-
 .card-wrapper {
   align-items: stretch;
   height: 100%;

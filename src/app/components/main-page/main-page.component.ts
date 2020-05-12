@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { CrudService } from '../../common/services/crud/crud.service';
 
 import { QuestionData } from 'src/app/common/utils/question-data.model';
+
+import {  } from '../question/question.component';
 
 @Component({
   selector: 'app-main-page',
@@ -17,13 +18,15 @@ export class MainPageComponent implements OnInit {
 	tiled = true;
 	tiledToggle: string;
 	questionData: QuestionData[];
-  isSort:boolean = false;
-  isResolve:boolean = false;
+  isActive:boolean = false;
   filterTerm: string;
+  resolveComment: boolean
 
 	constructor(
 		public crudService: CrudService,
-	) {}
+	) {
+    this.resolveComment = this.crudService.resolveComment;
+  }
 
   ngOnInit(): void {
 		this.getDataFromDatabase()
@@ -50,7 +53,7 @@ export class MainPageComponent implements OnInit {
 		this.tiledToggle = this.tiled ? "col-sm-4 col-md-3 col-xl-2" : "col-sm-12 col-md-12 col-xl-12 card-row";
 	}
 
-	sortQuestion() {
-    this.isSort = !this.isSort;
+	togglePipeActivation() {
+    this.isActive = !this.isActive;
   }
 }

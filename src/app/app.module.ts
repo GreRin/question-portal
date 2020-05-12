@@ -27,6 +27,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { EditQuestionComponent } from './components/edit-question/edit-question.component';
 import { SortDataPipe } from './common/pipes/sort-data.pipe';
 import { FilterDataPipe } from './common/pipes/filter-data.pipe';
+import { AnsweredPipe } from './common/pipes/answered.pipe';
+import { TimeDurationPipe } from './common/pipes/time-duration.pipe';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { FilterDataPipe } from './common/pipes/filter-data.pipe';
     NotFoundComponent,
     EditQuestionComponent,
     SortDataPipe,
-    FilterDataPipe
+    FilterDataPipe,
+    AnsweredPipe,
+    TimeDurationPipe
   ],
   imports: [
 		BrowserModule,

@@ -35,8 +35,9 @@
       </div>
       <div class="comment-date">
         <p>{{ comment.currentDate | date:"dd.MM.yyyy hh:mm" }}</p>
+        <p class="check" *ngIf="comment.resolveComment"><i class="fas fa-check"></i></p>
         <div class="checkbox-resolve">
-          <input type="checkbox" id="resolve" (change)="resComment($event, i)" >
+          <input type="checkbox" id="resolve" (change)="resComment($event, i)" [checked]="comment.resolveComment">
           <label for="resolve">resolve</label>
         </div>
       </div>
