@@ -6,11 +6,14 @@ import {QuestionData} from '../utils/question-data.model';
 })
 export class AnsweredPipe implements PipeTransform {
 
-  transform(items: QuestionData[], ASC: boolean): QuestionData[] {
-    if (!items || !ASC ) {
+  transform(items: QuestionData[], resolve: string): QuestionData[] {
+    if (!items || !resolve ) {
       return items;
     }
-
-    return items.filter(item => item.comments.forEach(item => item.resolveComment === true));
+    if(resolve === 'answered') {
+      return items.filter(item => item.comments.some(item => item));
+    } else if (resolve === 'all') {
+      return items
+    }
   }
 }

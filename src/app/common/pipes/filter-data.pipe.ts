@@ -11,11 +11,7 @@ export class FilterDataPipe implements PipeTransform {
       return items;
     }
 
-    items.map(item => item.categories.forEach(item => {
-      item.toLowerCase()
-    }));
-    console.log(items);
-    return items.filter(item => item.categories.includes(filterTerm));
+    return items.filter(item => item.categories.map(el => el.toLowerCase()).includes(filterTerm.toLowerCase()));
   }
 
 }

@@ -19,6 +19,8 @@ export class MainPageComponent implements OnInit {
 	tiledToggle: string;
 	questionData: QuestionData[];
   isActive:boolean = false;
+  isAnswerActive:string;
+  isTimePipeActive:string;
   filterTerm: string;
   resolveComment: boolean
 
@@ -55,5 +57,13 @@ export class MainPageComponent implements OnInit {
 
 	togglePipeActivation() {
     this.isActive = !this.isActive;
+  }
+
+  togglePipeAnswered($event) {
+    this.isAnswerActive = $event.target.value;
+  }
+
+  togglePipeTime($event) {
+    this.isTimePipeActive = $event.target.value;
   }
 }

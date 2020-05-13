@@ -13,18 +13,75 @@
       <button
         class="dropdown-item"
         type="button"
-        (click)="togglePipeActivation()"
       >
-        Answered/Not answered
+        <div class="form-check">
+          <input class="form-check-input"
+                 type="radio"
+                 name="resolve"
+                 value="all"
+                 id="notanswered"
+                 (change)="togglePipeAnswered($event)"
+          >
+          <label class="form-check-label" for="notanswered">
+            All questions
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                 type="radio"
+                 name="resolve"
+                 value="answered"
+                 id="answered"
+                 checked
+                 (change)="togglePipeAnswered($event)"
+          >
+          <label class="form-check-label" for="answered">
+            Answered questions
+          </label>
+        </div>
       </button>
+
 			<button class="dropdown-item"
               type="button"
-              (click)="togglePipeActivation()"
       >
-        Time
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="date" type="radio"
+                 value="day"
+                 id="day" checked
+                 (change)="togglePipeTime($event)"
+          >
+          <label class="form-check-label" for="day">
+            Day
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="date"
+                 type="radio"
+                 value="week"
+                 id="week"
+                 (change)="togglePipeTime($event)"
+          >
+          <label class="form-check-label" for="week">
+            Week
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="date"
+                 type="radio"
+                 value="month"
+                 id="month"
+                 (change)="togglePipeTime($event)"
+          >
+          <label class="form-check-label" for="month">
+            Month
+          </label>
+        </div>
       </button>
-		</div>
-	</div>
+    </div>
+  </div>
 
 	<div class="btn-group">
 		<button type="button"
@@ -61,7 +118,12 @@
 
 <div class="filters-hidden">
 	<div class="btn-group">
-		<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<button type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+    >
 			<i class="fas fa-filter"></i>
 		</button>
 		<div class="dropdown-menu dropdown-menu-left">
@@ -69,11 +131,69 @@
       <button
         class="dropdown-item"
         type="button"
-        (click)="togglePipeActivation()"
       >
-        Answered/Not answered
+        <div class="form-check">
+          <input class="form-check-input"
+                 type="radio"
+                 name="resolve"
+                 value="all"
+                 checked
+                 (change)="togglePipeAnswered($event)"
+          >
+          <label class="form-check-label" for="notanswered">
+            All questions
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                 type="radio"
+                 name="resolve"
+                 value="answered"
+                 (change)="togglePipeAnswered($event)"
+          >
+          <label class="form-check-label" for="answered">
+            Answered questions
+          </label>
+        </div>
       </button>
-      <button class="dropdown-item" type="button">Time</button>
+
+      <button class="dropdown-item"
+              type="button"
+      >
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="date" type="radio"
+                 value="day"
+                 checked
+                 (change)="togglePipeTime($event)"
+          >
+          <label class="form-check-label" for="day">
+            Day
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="date"
+                 type="radio"
+                 value="week"
+                 (change)="togglePipeTime($event)"
+          >
+          <label class="form-check-label" for="week">
+            Week
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="date"
+                 type="radio"
+                 value="month"
+                 (change)="togglePipeTime($event)"
+          >
+          <label class="form-check-label" for="month">
+            Month
+          </label>
+        </div>
+      </button>
 		</div>
 	</div>
 
@@ -89,7 +209,11 @@
 	</div>
 
   <div class="btn-group">
-    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
       <i class="fas fa-cogs"></i>
       Settings
     </button>
@@ -114,7 +238,10 @@
 	<div class="row">
 		<div class="{{ tiledToggle }} card"
 				[routerLink]="['/main', question.id]"
-				*ngFor="let question of questionData | sortData: isActive | filterData: filterTerm | answered: isActive | timeDuration: isActive"
+				*ngFor="let question of questionData | sortData: isActive
+				                                     | filterData: filterTerm
+				                                     | answered: isAnswerActive
+				                                     | timeDuration: isTimePipeActive"
 		>
 			<div class="card-body">
         <h5 class="card-title">{{  question.title }}</h5>
