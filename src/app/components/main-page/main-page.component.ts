@@ -42,13 +42,10 @@ export class MainPageComponent implements OnInit {
 					id: item.payload.doc.id,
 					...item.payload.doc.data() as QuestionData
 				}
-			})
+			}),
+          error => { error.message; console.log("Something wrong with data!" + error) };
 		})
 	}
-
-  deleteQuestion() {
-    this.crudService.deleteQuestion(this.id);
-  }
 
 	tiledRowToggle() {
 		this.tiled = !this.tiled;

@@ -14,6 +14,7 @@ import { QuestionData } from '../../common/utils/question-data.model';
 	styleUrls: ['./new-question.component.css'],
 	providers: [CrudService]
 })
+
 export class NewQuestionComponent implements OnInit {
 
   mycat = mycategory;
@@ -47,7 +48,7 @@ export class NewQuestionComponent implements OnInit {
         return new FormControl(category.selected || false)
 		});
 		return new FormArray(arr);
-	}
+  }
 
 	onSubmit(value) {
     this.isSubmitted = true;
@@ -76,9 +77,23 @@ export class NewQuestionComponent implements OnInit {
     this.crudService.createNewQuestion(this.questionData)
       .then(
         res => {
+          console.log("1", res)
           this.newQuestionForm.reset()
+          this.closePopup();
           this.router.navigate(['/']);
+        },
+        err => {
+          console.log(err);
+          alert('Responce fail!');
         }
       )
+  }
+
+  closePopup() {
+    const closeButton = document.getElementById('exampleModal');
+    const modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
+    closeButton.classList.toggle('show');
+    closeButton.setAttribute('style', 'display:none');
+    modalBackdrop.remove();
   }
 }

@@ -67,7 +67,15 @@ export class EditQuestionComponent implements OnInit {
     }
 
     this.crudService.updateQuestion(this.questionData);
-    this.editQuestionForm.reset();
+    // this.editQuestionForm.reset();
+    this.closePopup();
   }
 
+  closePopup() {
+    const closeButton = document.getElementById('editModal');
+    const modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
+    closeButton.classList.toggle('show');
+    closeButton.setAttribute('style', 'display:none');
+    modalBackdrop.remove();
+  }
 }

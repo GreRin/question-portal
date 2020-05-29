@@ -10,6 +10,7 @@ import { constants } from '../../../common/utils/constants';
   templateUrl: './signin-signup.component.html',
   styleUrls: ['./signin-signup.component.css']
 })
+
 export class SigninSignupComponent implements OnInit {
 
 	email: string;
@@ -22,7 +23,7 @@ export class SigninSignupComponent implements OnInit {
 		public authService: AuthService,
 	) {}
 
-  ngOnInit(): void {
+  	ngOnInit(): void {
 		this.form = new FormGroup({
 			mail: new FormControl("", [Validators.required, Validators.email]),
 			pass: new FormControl("", [Validators.required, Validators.minLength(6)])

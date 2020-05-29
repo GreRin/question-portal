@@ -240,8 +240,8 @@
 				[routerLink]="['/main', question.id]"
 				*ngFor="let question of questionData | sortData: isActive
 				                                     | filterData: filterTerm
-				                                     | answered: isAnswerActive
-				                                     | timeDuration: isTimePipeActive"
+				                                     | timeDuration: isTimePipeActive
+				                                     | answered: isAnswerActive"
 		>
 			<div class="card-body">
         <h5 class="card-title">{{  question.title }}</h5>
@@ -260,8 +260,8 @@
 			</div>
       <div class="line-bottom"></div>
       <div class="card-buttons">
-        <button class="btn btn-primary">Approve</button>
-        <button class="btn btn-primary" (click)="deleteQuestion()">Delete</button>
+<!--        <button class="btn btn-primary">Approve</button>-->
+<!--        <button class="btn btn-primary">Delete</button>-->
       </div>
 		</div>
 	</div>
