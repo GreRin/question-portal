@@ -67,7 +67,6 @@ export class EditQuestionComponent implements OnInit {
     }
 
     this.crudService.updateQuestion(this.questionData);
-    // this.editQuestionForm.reset();
     this.closePopup();
   }
 

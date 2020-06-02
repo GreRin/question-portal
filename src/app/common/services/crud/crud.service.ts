@@ -19,7 +19,7 @@ export class CrudService {
 	editableQuestion: QuestionData;
 	resolveComment: boolean;
 
-  constructor(
+  	constructor(
 		private firestore: AngularFirestore,
 		private afAuth: AngularFireAuth,
 	) {
@@ -29,12 +29,12 @@ export class CrudService {
 		this.avatar = this.afAuth.auth.currentUser.photoURL;
 	 }
 
-  createNewQuestion(value) {
-    return this.firestore.collection('newQuestion').add(value);
+  	createNewQuestion(value) {
+    	return this.firestore.collection('newQuestion').add(value);
 	}
 
 	getQuestions() {
-    return this.firestore.collection('newQuestion').snapshotChanges();
+    	return this.firestore.collection('newQuestion').snapshotChanges();
 	}
 
 	updateQuestion(editableQuestion) {
@@ -47,12 +47,12 @@ export class CrudService {
 
 	getDate() {
 		const timestamp = (+new Date());
-    return timestamp;
+    	return timestamp;
 	}
 
 	addComment(id, value) {
-    return this.firestore.collection('newQuestion').doc(id).update({
-      comments: value
-  	});
+		return this.firestore.collection('newQuestion').doc(id).update({
+			comments: value
+		});
 	}
 }

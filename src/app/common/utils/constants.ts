@@ -6,5 +6,9 @@ export const constants = {
 		GOOGLE: 'google',
 		FACEBOOK: 'facebook',
 		GITHUB: 'github'
-	}
+	},
+}
+
+export let 	admin = {
+	admin: false
 }

@@ -18,6 +18,7 @@ export class SigninSignupComponent implements OnInit {
 	form: FormGroup;
 	providers = constants.providers;
 	modes = constants.modes;
+	admin: boolean = false;
 
 	constructor(
 		public authService: AuthService,

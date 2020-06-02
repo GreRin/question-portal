@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
+import { AngularFirestore  } from '@angular/fire/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { constants } from '../../utils/constants';
+import { admin, constants } from '../../utils/constants';
 import { auth } from 'firebase/app';
 
 @Injectable({
@@ -15,6 +16,7 @@ export class AuthService {
 
 	constructor(
 		private afAuth: AngularFireAuth,
+		private firestore: AngularFirestore,
 	) {}
 
 	private getProviderInstance(provider: string) {
@@ -39,13 +41,29 @@ export class AuthService {
 	signIn(mode: string, provider: string) {
 		if(mode === constants.modes.POPUP) {
 			this.afAuth.auth.signInWithPopup(this.getProviderInstance(provider)).then((ref) => {
-				// console.log(ref.user.uid)
+				console.log(ref)
+				console.log(admin.admin)
+				this.firestore.collection('admins').snapshotChanges()
+				.subscribe(result => {
+					result.map(e => {
+						e.payload.doc.data()
+						console.log(e.payload.doc.data())
+					}).find(e => { ref.user.email
+						admin.admin = true;
+						console.log("Wow !" + admin.admin)
+					})
+				});
+
+				this.firestore.collection('admins').get()
+				if(ref.user.email) {
+
+				}
 			}).catch(function(error) {
 				console.log('Failed: ' + error);
 			})
 		} else {
 			this.afAuth.auth.signInWithRedirect(this.getProviderInstance(provider)).then((ref) => {
-				// console.log(ref);
+				console.log(ref);
 			}).catch((error) => {
 				console.log('Failed: ' + error);
 			})
@@ -55,13 +73,13 @@ export class AuthService {
 	signInOrSignUp(email, password) {
 		if(this.signInMode) {
 			this.afAuth.auth.signInWithEmailAndPassword(email, password).then((ref) => {
-				console.log(ref);
+				console.log(ref.user.email);
 			}).catch((error) => {
 				console.log('Failed: ' + error);
 			});
 		} else {
 			this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((ref) => {
-				console.log(ref);
+				console.log(ref.user.email);
 			}).catch((error) => {
 				console.log('Failed: ' + error);
 			});
