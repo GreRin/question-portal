@@ -41,52 +41,54 @@ export class AuthService {
 	signIn(mode: string, provider: string) {
 		if(mode === constants.modes.POPUP) {
 			this.afAuth.auth.signInWithPopup(this.getProviderInstance(provider)).then((ref) => {
-				console.log(ref)
-				console.log(admin.admin)
-				this.firestore.collection('admins').snapshotChanges()
-				.subscribe(result => {
-					result.map(e => {
-						e.payload.doc.data()
-						console.log(e.payload.doc.data())
-					}).find(e => { ref.user.email
-						admin.admin = true;
-						console.log("Wow !" + admin.admin)
-					})
-				});
-
-				this.firestore.collection('admins').get()
-				if(ref.user.email) {
-
-				}
+				this.isAdmin(ref.user.email);
 			}).catch(function(error) {
-				console.log('Failed: ' + error);
+				console.error('Failed: ' + error);
 			})
-		} else {
-			this.afAuth.auth.signInWithRedirect(this.getProviderInstance(provider)).then((ref) => {
-				console.log(ref);
-			}).catch((error) => {
-				console.log('Failed: ' + error);
-			})
-		}
+		} 
+		// else {
+		// 	this.afAuth.auth.signInWithRedirect(this.getProviderInstance(provider)).then((ref) => {
+		// 		this.isAdmin(ref.user.email);
+		// 	}).catch((error) => {
+		// 		console.log('Failed: ' + error);
+		// 	})
+		// }
 	}
 
 	signInOrSignUp(email, password) {
 		if(this.signInMode) {
 			this.afAuth.auth.signInWithEmailAndPassword(email, password).then((ref) => {
-				console.log(ref.user.email);
+				this.isAdmin(email);
 			}).catch((error) => {
-				console.log('Failed: ' + error);
+				console.error('Failed: ' + error);
 			});
 		} else {
 			this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((ref) => {
 				console.log(ref.user.email);
 			}).catch((error) => {
-				console.log('Failed: ' + error);
+				console.error('Failed: ' + error);
 			});
 		}
 	}
 
 	logOut() {
-		this.afAuth.auth.signOut();
+		this.afAuth.auth.signOut()
+		.then(() => {
+			admin.admin = false;
+		})
+	}
+
+	isAdmin(email) {
+		this.firestore.collection('admins',ref=> ref.where('email','==', email)).snapshotChanges()
+		.subscribe(results => {
+			if(results.length) {
+				results.forEach((result: any) => {
+					let res = result.payload.doc.data()
+					if(email === res.email) {
+						admin.admin = true;
+					}
+				})
+			}
+		});
 	}
 }
