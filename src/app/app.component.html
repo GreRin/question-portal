@@ -2,13 +2,10 @@
 	<app-header></app-header>
 </header>
 <main>
-	<ng-template #loginOptions>
-		<div class="wrapper">
-			<div class="form">
-				<app-signin-signup></app-signin-signup>
-			</div>
-		</div>
-	</ng-template>
+	<div class="main-wrapper" *ngIf='auth; else login'>
+		<router-outlet></router-outlet>
+		<app-new-question></app-new-question>
+	</div>
 
 	<ng-template #login>
 		<div class="wrapper">
@@ -18,8 +15,11 @@
 		</div>
 	</ng-template>
 
-	<div class="main-wrapper" *ngIf='afAuth.authState | async as user; else login'>
-		<router-outlet></router-outlet>
-		<app-new-question></app-new-question>
-	</div>
+	<ng-template #loginOptions>
+		<div class="wrapper">
+			<div class="form">
+				<app-signin-signup></app-signin-signup>
+			</div>
+		</div>
+	</ng-template>
 </main>

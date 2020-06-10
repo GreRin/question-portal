@@ -37,7 +37,6 @@ export class MainPageComponent implements OnInit {
 	  	this.authService.isAdmin().subscribe(
 			(data: any) => {
 				this.admin = this.authService.admin;
-				console.log(this.admin)
 			},
 			error => console.error('error:', error)
 			
