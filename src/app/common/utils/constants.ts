@@ -8,7 +8,3 @@ export const constants = {
 		GITHUB: 'github'
 	},
 }
-
-export let 	admin = {
-	admin: false
-}

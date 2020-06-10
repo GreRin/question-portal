@@ -234,7 +234,7 @@
   </div>
 </div>
 
-<section class="questions" [style.background]="this.color">
+<section class="questions" [style.background]="this.color" *ngIf="admin">
 	<div class="row">
 		<div class="{{ tiledToggle }} card"
 				[routerLink]="['/main', question.id]"

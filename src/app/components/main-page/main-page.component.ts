@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CrudService } from '../../common/services/crud/crud.service';
+import { AuthService } from '../../common/services/auth/auth.service';
 
 import { QuestionData } from 'src/app/common/utils/question-data.model';
 
@@ -18,19 +19,29 @@ export class MainPageComponent implements OnInit {
 	tiled = true;
 	tiledToggle: string;
 	questionData: QuestionData[];
-  isActive:boolean = false;
-  isAnswerActive:string;
-  isTimePipeActive:string;
-  filterTerm: string;
-  resolveComment: boolean
+	isActive:boolean = false;
+	isAnswerActive:string;
+	isTimePipeActive:string;
+	filterTerm: string;
+	resolveComment: boolean;
+	admin: boolean;
 
 	constructor(
 		public crudService: CrudService,
+		public authService: AuthService,
 	) {
     this.resolveComment = this.crudService.resolveComment;
   }
 
   ngOnInit(): void {
+	  	this.authService.isAdmin().subscribe(
+			(data: any) => {
+				this.admin = this.authService.admin;
+				console.log(this.admin)
+			},
+			error => console.error('error:', error)
+			
+		  );
 		this.getDataFromDatabase()
 	}
 
