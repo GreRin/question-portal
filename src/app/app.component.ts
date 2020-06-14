@@ -6,7 +6,6 @@ import { WindowService } from './common/services/window/window.service';
 import { AuthService } from './common/services/auth/auth.service';
 
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +17,7 @@ export class AppComponent implements OnInit {
 
 	windowRef: any;
 	user: any;
-	auth: boolean;
+	auth: any;
 
 	constructor (
 		public afAuth: AngularFireAuth,
@@ -31,32 +30,13 @@ export class AppComponent implements OnInit {
 		this.isAuth();
 	}
 
-	isAuth() : Observable<firebase.User> {
-		if(this.user !== null && this.user !== undefined) {
-			return of(this.user)
-		}
-		const data = this.afAuth.authState;
-		data.subscribe(res => {
-			if(res) {
+	isAuth() {
+		this.afAuth.authState.subscribe(res => {
+			if(res && res.uid) {
 				return this.auth = true;
 			} else {
-				return this.auth = false;
+				this.afAuth.auth.signOut();
 			}
 		})
-		// const data = this.firestore.collection('admins',ref=> ref.where('email','==', this.email)).snapshotChanges();
-		// return data.pipe(map(results => {
-		// 		if(results.length) {
-		// 			results.forEach((result: any) => {
-		// 				let res = result.payload.doc.data()
-		// 				if(this.email === res.email) {
-		// 					this.admin = true;
-		// 				} else {
-		// 					this.admin = false;
-		// 				}
-		// 				return this.admin;
-		// 			})
-		// 		}
-		// 	})
-		// );
 	}
 }
