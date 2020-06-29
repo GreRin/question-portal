@@ -18,7 +18,7 @@ import { UserDetailsComponent } from './components/user-profile/user-details.com
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { NewQuestionComponent } from './components/new-question/new-question.component';
 
-import { AuthRoutingModule } from './auth-routing-module';
+import { AppRoutingModule } from './app-routing-module';
 import { HeaderComponent } from './components/header/header.component';
 
 import { ColorPickerModule } from 'ngx-color-picker';
@@ -52,7 +52,7 @@ import { TimeDurationPipe } from './common/pipes/time-duration.pipe';
 		AngularFireModule.initializeApp(environment.firebase),
 		FormsModule,
 		ReactiveFormsModule,
-		AuthRoutingModule,
+    AppRoutingModule,
 		AngularFirestoreModule,
 		ColorPickerModule
 	],

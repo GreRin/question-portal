@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AngularFirestore  } from '@angular/fire/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -22,6 +23,7 @@ export class AuthService {
 	constructor(
 		private afAuth: AngularFireAuth,
 		private firestore: AngularFirestore,
+		private router: Router
 	) {
 		this.admin = false;
 	}
@@ -51,6 +53,7 @@ export class AuthService {
 			.then((ref) => {
 				this.email = ref.user.email
 				this.isAdmin();
+				this.router.navigate(['/main']);
 			}).catch(function(error) {
 				console.error('Failed: ' + error);
 			})
@@ -61,6 +64,7 @@ export class AuthService {
 		if(this.signInMode) {
 			this.afAuth.auth.signInWithEmailAndPassword(email, password).then(() => {
 				this.isAdmin();
+				this.router.navigate(['/main']);
 			}).catch((error) => {
 				console.error('Failed: ' + error);
 			});
@@ -77,6 +81,7 @@ export class AuthService {
 		this.afAuth.auth.signOut()
 		.then(() => {
 			this.admin = null;
+			this.router.navigate(['/login']);
 		})
 	}
 

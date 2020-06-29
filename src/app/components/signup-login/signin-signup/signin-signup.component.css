@@ -4,6 +4,16 @@ form {
 	flex-direction: column;
 }
 
+
+.form {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
 .fa-angrycreative {
 	font-size: 4.5rem;
 	color: #9e8978;

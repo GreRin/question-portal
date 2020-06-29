@@ -43,20 +43,5 @@ export class AppComponent implements OnInit {
 				return this.auth = false;
 			}
 		})
-		// const data = this.firestore.collection('admins',ref=> ref.where('email','==', this.email)).snapshotChanges();
-		// return data.pipe(map(results => {
-		// 		if(results.length) {
-		// 			results.forEach((result: any) => {
-		// 				let res = result.payload.doc.data()
-		// 				if(this.email === res.email) {
-		// 					this.admin = true;
-		// 				} else {
-		// 					this.admin = false;
-		// 				}
-		// 				return this.admin;
-		// 			})
-		// 		}
-		// 	})
-		// );
 	}
 }
