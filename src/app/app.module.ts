@@ -29,6 +29,7 @@ import { SortDataPipe } from './common/pipes/sort-data.pipe';
 import { FilterDataPipe } from './common/pipes/filter-data.pipe';
 import { AnsweredPipe } from './common/pipes/answered.pipe';
 import { TimeDurationPipe } from './common/pipes/time-duration.pipe';
+import { AuthGuard } from './common/services/auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { TimeDurationPipe } from './common/pipes/time-duration.pipe';
     SortDataPipe,
     FilterDataPipe,
     AnsweredPipe,
-    TimeDurationPipe
+    TimeDurationPipe,
   ],
   imports: [
 		BrowserModule,
@@ -62,7 +63,8 @@ import { TimeDurationPipe } from './common/pipes/time-duration.pipe';
 	],
   providers: [
 		AuthService,
-		WindowService,
+    WindowService,
+    AuthGuard,
 	],
   bootstrap: [AppComponent]
 })

@@ -39,8 +39,7 @@ export class MainPageComponent implements OnInit {
 				this.admin = this.authService.admin;
 			},
 			error => console.error('error:', error)
-			
-		  );
+		);
 		this.getDataFromDatabase()
 	}
 
