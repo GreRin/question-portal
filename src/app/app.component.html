@@ -2,9 +2,8 @@
 	<app-header></app-header>
 </header>
 <main>
-	<div *ngIf='auth; else login'>
+	<div class="main-wrapper" *ngIf='auth; else login'>
 		<router-outlet></router-outlet>
-		<app-new-question></app-new-question>
 	</div>
 
 	<ng-template #login>

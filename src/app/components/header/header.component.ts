@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from 'src/app/common/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
   constructor(
 		public afAuth: AngularFireAuth,
 		public authService: AuthService,
+		private router: Router
 	) { }
 
   ngOnInit(): void {
@@ -25,6 +27,12 @@ export class HeaderComponent implements OnInit {
 
 	showAddQuestionButton() {
 		this.toggleAddQuestionBtn = true;
+		if(this.afAuth.user) {
+			debugger
+			this.router.navigate(['/main']);
+		} else {
+			this.router.navigate(['/login']);
+		}
 	}
 	
 	

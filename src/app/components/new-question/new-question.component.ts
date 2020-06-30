@@ -77,10 +77,9 @@ export class NewQuestionComponent implements OnInit {
     this.crudService.createNewQuestion(this.questionData)
       .then(
         res => {
-          console.log("1", res)
           this.newQuestionForm.reset()
           this.closePopup();
-          this.router.navigate(['/']);
+          this.router.navigate(['/main']);
         },
         err => {
           console.log(err);

@@ -5,7 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { WindowService } from './common/services/window/window.service';
 import { AuthService } from './common/services/auth/auth.service';
 
-import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
 		public afAuth: AngularFireAuth,
 		public authService: AuthService,
 		private windowService: WindowService,
+		private router: Router
 	) {}
 
   	ngOnInit() {
@@ -33,9 +34,10 @@ export class AppComponent implements OnInit {
 	isAuth() {
 		this.afAuth.authState.subscribe(res => {
 			if(res && res.uid) {
-				return this.auth = true;
+				this.auth = true;
 			} else {
-				this.afAuth.auth.signOut();
+				this.auth = false;
+				this.router.navigate(['/login']);
 			}
 		})
 	}

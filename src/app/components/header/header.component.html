@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-light">
-	<i class="fab fa-angrycreative" routerLink="/" (click)="showAddQuestionButton()"></i>
+	<i class="fab fa-angrycreative" (click)="showAddQuestionButton()"></i>
 	
 	<button class="btn btn-primary" (click)="toggleSignInMode()" *ngIf="hideLoginButton()">
 		<i class="far fa-envelope"></i> {{ authService.signInMode ? "Sign Up":"Sign In" }}
