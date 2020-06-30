@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -23,21 +23,17 @@ export class AppComponent implements OnInit {
 		public afAuth: AngularFireAuth,
 		public authService: AuthService,
 		private windowService: WindowService,
-		private router: Router
+		private router: Router,
+		private ngzone: NgZone
 	) {}
 
   	ngOnInit() {
 		this.windowRef = this.windowService.windowRef;
-		this.isAuth();
-	}
-
-	isAuth() {
-		this.afAuth.authState.subscribe(res => {
-			if(res && res.uid) {
-				this.auth = true;
+		this.authService.isAuth().subscribe(res => {
+			if(res === true) {
+				this.ngzone.run(() => this.router.navigate(['/main']));
 			} else {
-				this.auth = false;
-				this.router.navigate(['/login']);
+				this.ngzone.run(() => this.router.navigate(['/login']));
 			}
 		})
 	}

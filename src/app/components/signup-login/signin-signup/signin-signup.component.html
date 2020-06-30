@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="!authService.phoneSignIn">
 	<div class="form">
 		<form [formGroup]="form">
 			<i class="fab fa-angrycreative"></i>
@@ -58,3 +58,11 @@
 		</form>
 	</div>
 </div>
+
+<ng-template *ngIf="authService.phoneSignIn">
+	<div class="wrapper">
+		<div class="row">
+			<app-phone-signin></app-phone-signin>
+		</div>
+	</div>
+</ng-template>

@@ -11,8 +11,7 @@ import { QuestionData } from '../../common/utils/question-data.model';
 @Component({
   selector: 'app-new-question',
   templateUrl: './new-question.component.html',
-	styleUrls: ['./new-question.component.css'],
-	providers: [CrudService]
+	styleUrls: ['./new-question.component.css']
 })
 
 export class NewQuestionComponent implements OnInit {

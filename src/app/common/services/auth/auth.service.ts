@@ -19,6 +19,7 @@ export class AuthService {
 	phoneSignIn = false;
 	admin: boolean;
 	email: string;
+	isUser: boolean;
 
 	constructor(
 		private afAuth: AngularFireAuth,
@@ -104,5 +105,17 @@ export class AuthService {
 				}
 			})
 		);
+	}
+
+	isAuth() {
+		return this.afAuth.authState.pipe(map(res => {
+			if(res && res.uid) {
+				this.isUser = true;
+				return this.isUser;
+			} else {
+				this.isUser = false;
+				return this.isUser;
+			}
+		}))
 	}
 }

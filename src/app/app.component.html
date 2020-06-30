@@ -2,19 +2,7 @@
 	<app-header></app-header>
 </header>
 <main>
-	<div class="main-wrapper" *ngIf='auth; else login'>
+	<div class="main-wrapper">
 		<router-outlet></router-outlet>
 	</div>
-
-	<ng-template #login>
-		<div class="wrapper">
-			<div class="row" *ngIf="authService.phoneSignIn; else loginOptions">
-				<app-phone-signin></app-phone-signin>
-			</div>
-		</div>
-	</ng-template>
-
-	<ng-template #loginOptions>
-		<router-outlet></router-outlet>
-	</ng-template>
 </main>

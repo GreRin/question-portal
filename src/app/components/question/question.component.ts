@@ -9,8 +9,7 @@ import { QuestionData } from '../../common/utils/question-data.model';
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
-	styleUrls: ['./question.component.css'],
-	providers: [CrudService]
+	styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
 	id: string;
@@ -55,7 +54,7 @@ export class QuestionComponent implements OnInit {
 
 	deleteQuestion() {
 		this.crudService.deleteQuestion(this.id);
-		this.router.navigate(['/']);
+		this.router.navigate(['/main']);
 	}
 
 	createComment() {

@@ -11,7 +11,7 @@ import { SigninSignupComponent } from './components/signup-login/signin-signup/s
 const routes: Routes = [
     { path: 'login', component: SigninSignupComponent, pathMatch: 'full' },
 		{ path: 'user-profile', component: UserDetailsComponent, pathMatch: 'full' },
-		{ path: 'main', component: MainPageComponent, pathMatch: 'full' },
+		{ path: 'main', component: MainPageComponent, canActivate: [AuthGuard], pathMatch: 'full' },
 		{ path: 'main/:id', component: QuestionComponent, pathMatch: 'full' },
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent }
