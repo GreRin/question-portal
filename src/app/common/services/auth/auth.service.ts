@@ -19,7 +19,7 @@ export class AuthService {
 	phoneSignIn = false;
 	admin: boolean;
 	email: string;
-	isUser: boolean;
+	author: boolean;
 
 	constructor(
 		private afAuth: AngularFireAuth,
@@ -27,6 +27,7 @@ export class AuthService {
 		private router: Router
 	) {
 		this.admin = false;
+		this.author = false;
 	}
 
 	private getProviderInstance(provider: string) {

@@ -3,12 +3,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { CrudService } from 'src/app/common/services/crud/crud.service';
+import { AuthService } from 'src/app/common/services/auth/auth.service';
 
 import { QuestionData } from '../../common/utils/question-data.model';
 
 @Component({
-  selector: 'app-question',
-  templateUrl: './question.component.html',
+	selector: 'app-question',
+	templateUrl: './question.component.html',
 	styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
@@ -18,18 +19,26 @@ export class QuestionComponent implements OnInit {
 	newComment: FormGroup;
 	currentQuestion: QuestionData;
 	openEditModal: boolean;
+	admin: boolean;
 
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
 		public crudService: CrudService,
+		public authService: AuthService
 	) {}
 
-  ngOnInit(): void {
+  	ngOnInit(): void {
 		this.route.params.subscribe((params: Params) => {
 			this.id = params['id'];
 			this.getDataFromDatabase();
 		});
+		this.authService.isAdmin().subscribe(
+			(data: any) => {
+				this.admin = this.authService.admin;
+			},
+			error => console.error('error:', error)
+		);
 		this.createComment();
 	}
 

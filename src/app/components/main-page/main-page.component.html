@@ -1,3 +1,4 @@
+
 <div class="filters">
 	<div class="btn-group">
 		<button type="button"
@@ -234,44 +235,45 @@
   </div>
 </div>
 
-<section class="questions" [style.background]="this.color">
-	<div class="row">
-		<div class="{{ tiledToggle }} card"
-				[routerLink]="['/main', question.id]"
-				*ngFor="let question of questionData | sortData: isActive
-				                                     | filterData: filterTerm
-				                                     | timeDuration: isTimePipeActive
-				                                     | answered: isAnswerActive"
-		>
-			<div class="card-body">
-        <h5 class="card-title">{{  question.title }}</h5>
-				<div class="card-wrapper">
-					<div class="line"></div>
-					<div class="card-category-date">
-						<p class="card-text"><strong>Category:</strong></p>
-						<p class="card-date visible">{{ question.currentDate | date:"dd.MM.yyyy hh:mm" }}</p>
-					</div>
-					<div class="card-category">
-						<ul>
-							<li *ngFor="let technology of question.categories" class="card-text">{{ technology }}</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-      <div class="line-bottom"></div>
-      <div class="card-buttons" *ngIf="admin">
-       <button class="btn btn-primary">Approve</button>
-       <button class="btn btn-primary">Delete</button>
+<div class="main-wrapper">
+  <section class="questions" [style.background]="this.color">
+    <div class="row">
+      <div class="{{ tiledToggle }} card"
+          [routerLink]="['/main', question.id]"
+          *ngFor="let question of questionData | sortData: isActive
+                                              | filterData: filterTerm
+                                              | timeDuration: isTimePipeActive
+                                              | answered: isAnswerActive"
+      >
+        <div class="card-body">
+          <h5 class="card-title">{{  question.title }}</h5>
+          <div class="card-wrapper">
+            <div class="line"></div>
+            <div class="card-category-date">
+              <p class="card-text"><strong>Category:</strong></p>
+              <p class="card-date visible">{{ question.currentDate | date:"dd.MM.yyyy hh:mm" }}</p>
+            </div>
+            <div class="card-category">
+              <ul>
+                <li *ngFor="let technology of question.categories" class="card-text">{{ technology }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="line-bottom"></div>
+        <div class="card-buttons" *ngIf="admin">
+        <button class="btn btn-primary">Approve</button>
+        <button class="btn btn-primary" *ngIf="admin">Delete</button>
+        </div>
       </div>
-		</div>
-	</div>
-	<button class="btn btn-primary plus"
-          data-toggle="modal"
-          data-target="#exampleModal"
-          data-dismiss="modal"
-  >
-		<i class="fas fa-plus"></i>
-	</button>
-</section>
-
+    </div>
+    <button class="btn btn-primary plus"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            data-dismiss="modal"
+    >
+      <i class="fas fa-plus"></i>
+    </button>
+  </section>
+</div>
 <app-new-question></app-new-question>

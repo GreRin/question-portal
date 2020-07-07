@@ -11,13 +11,13 @@
 				<div class="card-category-btn">
 					<div class="card-category">
 						<ul>
-              <li *ngFor="let technology of currentQuestion.categories" class="card-text">{{ technology }}</li>
+              				<li *ngFor="let technology of currentQuestion.categories" class="card-text">{{ technology }}</li>
 						</ul>
 					</div>
 					<div class="card-buttons">
 						<button class="btn btn-primary" data-toggle="modal" data-target="#editModal" (click)="editQuestion()">Edit</button>
-						<button class="btn btn-primary">Approve</button>
-						<button class="btn btn-primary" (click)="deleteQuestion()">Delete</button>
+						<button class="btn btn-primary" *ngIf="admin">Approve</button>
+						<button class="btn btn-primary" (click)="deleteQuestion()" *ngIf="admin">Delete</button>
 					</div>
 				</div>
 		</div>
