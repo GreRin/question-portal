@@ -20,6 +20,7 @@ export class QuestionComponent implements OnInit {
 	currentQuestion: QuestionData;
 	openEditModal: boolean;
 	admin: boolean;
+	author: boolean;
 
 	constructor(
 		private router: Router,
@@ -33,12 +34,21 @@ export class QuestionComponent implements OnInit {
 			this.id = params['id'];
 			this.getDataFromDatabase();
 		});
+
 		this.authService.isAdmin().subscribe(
 			(data: any) => {
 				this.admin = this.authService.admin;
 			},
 			error => console.error('error:', error)
 		);
+
+		this.authService.isAuthor().subscribe(
+			(data: any) => {
+				this.author = this.authService.author;
+			},
+			error => console.error('error:', error)
+		);
+		
 		this.createComment();
 	}
 

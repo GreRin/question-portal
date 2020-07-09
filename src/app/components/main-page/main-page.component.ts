@@ -62,14 +62,14 @@ export class MainPageComponent implements OnInit {
 	}
 
 	togglePipeActivation() {
-    this.isActive = !this.isActive;
-  }
+		this.isActive = !this.isActive;
+	}
 
-  togglePipeAnswered($event) {
-    this.isAnswerActive = $event.target.value;
-  }
+	togglePipeAnswered($event) {
+		this.isAnswerActive = $event.target.value;
+	}
 
-  togglePipeTime($event) {
-    this.isTimePipeActive = $event.target.value;
-  }
+	togglePipeTime($event) {
+		this.isTimePipeActive = $event.target.value;
+	}
 }
