@@ -13,21 +13,25 @@ import { QuestionData } from '../../common/utils/question-data.model';
 	styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-	id: string;
 
+	id: string;
 	message: any;
 	newComment: FormGroup;
 	currentQuestion: QuestionData;
 	openEditModal: boolean;
 	admin: boolean;
 	author: boolean;
+	userEmail: string;
 
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
 		public crudService: CrudService,
 		public authService: AuthService
-	) {}
+	) {
+		this.userEmail = this.authService.email;
+		this.author = false;
+	}
 
   	ngOnInit(): void {
 		this.route.params.subscribe((params: Params) => {
@@ -38,13 +42,6 @@ export class QuestionComponent implements OnInit {
 		this.authService.isAdmin().subscribe(
 			(data: any) => {
 				this.admin = this.authService.admin;
-			},
-			error => console.error('error:', error)
-		);
-
-		this.authService.isAuthor().subscribe(
-			(data: any) => {
-				this.author = this.authService.author;
 			},
 			error => console.error('error:', error)
 		);
@@ -62,12 +59,16 @@ export class QuestionComponent implements OnInit {
 				}
 			}).find(e => {
 				return e.id === this.id
-			})
+			});
+			if(this.currentQuestion.user.email === this.authService.email || 
+			   this.currentQuestion.user.ownerId === this.authService.userId) {
+					this.author = true;
+			}
 		});
 	}
 
 	editQuestion() {
-	  this.openEditModal = true;
+	  	this.openEditModal = true;
 		this.crudService.editableQuestion = this.currentQuestion;
 	}
 
@@ -83,21 +84,21 @@ export class QuestionComponent implements OnInit {
 	}
 
 	onSubmit(value) {
-    if(!this.newComment.value) {
-      return false;
+		if(!this.newComment.value) {
+		return false;
 		}
 
-    this.currentQuestion.comments.push(
-      {
-        message: value.message,
-        currentDate: this.crudService.getDate(),
-        resolveComment: false,
-        user: {
-          ownerId: this.crudService.id,
-          displayName: this.crudService.name,
-          email: this.crudService.email,
-          avatar: this.crudService.avatar
-      }
+    	this.currentQuestion.comments.push(
+		{
+			message: value.message,
+			currentDate: this.crudService.getDate(),
+			resolveComment: false,
+			user: {
+			ownerId: this.crudService.id,
+			displayName: this.crudService.name,
+			email: this.crudService.email,
+			avatar: this.crudService.avatar
+		}
     })
 
     this.crudService.addComment(this.id, this.currentQuestion.comments)

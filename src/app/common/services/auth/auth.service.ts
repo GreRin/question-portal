@@ -68,6 +68,7 @@ export class AuthService {
 	signInOrSignUp(email, password) {
 		if(this.signInMode) {
 			this.afAuth.auth.signInWithEmailAndPassword(email, password).then(() => {
+				this.email = email;
 				this.isAdmin();
 				this.router.navigate(['/main']);
 			}).catch((error) => {
@@ -97,7 +98,7 @@ export class AuthService {
 		const data = this.firestore.collection('admins',ref=> ref.where('email','==', this.email)).snapshotChanges();
 		return data.pipe(map(results => {
 				if(results.length) {
-					results.forEach((result: any) => {
+					results.find((result: any) => {
 						let res = result.payload.doc.data()
 						if(this.email === res.email) {
 							this.admin = true;
@@ -105,30 +106,6 @@ export class AuthService {
 							this.admin = false;
 						}
 						return this.admin;
-					})
-				}
-			})
-		);
-	}
-
-	
-	isAuthor() : Observable<any> {
-		debugger
-		if(this.author !== null && this.author !== undefined) {
-			return of(this.author)
-		}
-		const data = this.firestore.collection('newQuestion',ref=> ref.where('email','==', this.userId)).snapshotChanges();
-		return data.pipe(map(results => {
-				if(results.length) {
-					results.forEach((result: any) => {
-						debugger
-						let res = result.payload.doc.data()
-						if(this.userId === res.user.ownerId) {
-							this.author = true;
-						} else {
-							this.author = false;
-						}
-						return this.author;
 					})
 				}
 			})
