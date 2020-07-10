@@ -25,7 +25,8 @@
 							Edit
 						</button>
 						<button 
-							class="btn btn-primary" 
+							class="btn btn-primary"
+							(click)="approveQuestion()"
 							*ngIf="admin"
 						>
 							Approve
@@ -62,7 +63,7 @@
       <div class="comment-date">
         <p>{{ comment.currentDate | date:"dd.MM.yyyy hh:mm" }}</p>
         <p class="check" *ngIf="comment.resolveComment"><i class="fas fa-check"></i></p>
-        <div class="checkbox-resolve">
+        <div class="checkbox-resolve" *ngIf="author">
           <input type="checkbox" id="resolve" (change)="resComment($event, i)" [checked]="comment.resolveComment">
           <label for="resolve">resolve</label>
         </div>
@@ -81,7 +82,7 @@
                 formControlName="message"
                 rows="5"
                 required>
-      </textarea>
+      		</textarea>
 			<button type="submit"
               class="btn btn-primary btn-answer"
               [disabled]="!newComment.valid"

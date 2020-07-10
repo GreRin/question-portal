@@ -9,4 +9,5 @@ export class QuestionData {
 	categories: string[];
 	user?: User;
 	comments?: Comments[];
+	approved: boolean;
 }

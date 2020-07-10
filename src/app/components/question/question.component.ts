@@ -61,7 +61,7 @@ export class QuestionComponent implements OnInit {
 				return e.id === this.id
 			});
 			if(this.currentQuestion.user.email === this.authService.email || 
-			   this.currentQuestion.user.ownerId === this.authService.userId) {
+			    this.currentQuestion.user.ownerId === this.authService.userId) {
 					this.author = true;
 			}
 		});
@@ -85,7 +85,7 @@ export class QuestionComponent implements OnInit {
 
 	onSubmit(value) {
 		if(!this.newComment.value) {
-		return false;
+			return false;
 		}
 
     	this.currentQuestion.comments.push(
@@ -94,29 +94,33 @@ export class QuestionComponent implements OnInit {
 			currentDate: this.crudService.getDate(),
 			resolveComment: false,
 			user: {
-			ownerId: this.crudService.id,
-			displayName: this.crudService.name,
-			email: this.crudService.email,
-			avatar: this.crudService.avatar
-		}
-    })
+				ownerId: this.crudService.id,
+				displayName: this.crudService.name,
+				email: this.crudService.email,
+				avatar: this.crudService.avatar
+			}
+    	})
 
-    this.crudService.addComment(this.id, this.currentQuestion.comments)
-      .then(
-        res => {
-          this.newComment.reset()
-        }
-      )
-  }
+		this.crudService.addComment(this.id, this.currentQuestion.comments)
+			.then(
+				res => {
+					this.newComment.reset()
+				}
+			)
+	}
 
-  resComment(event: any, i: number) {
-    this.currentQuestion.comments.map( (data, index) => {
-      if(index === i) {
-        data.resolveComment = event.target.checked;
-        this.crudService.resolveComment = event.target.checked;
-      }
-    })
+  	resComment(event: any, i: number) {
+		this.currentQuestion.comments.map( (data, index) => {
+			if(index === i) {
+				data.resolveComment = event.target.checked;
+				this.crudService.resolveComment = event.target.checked;
+			}
+		})
 
-    this.crudService.addComment(this.id, this.currentQuestion.comments)
-  }
+		this.crudService.addComment(this.id, this.currentQuestion.comments)
+	}
+	  
+	approveQuestion() {
+		this.currentQuestion.approved = true;
+	}
 }

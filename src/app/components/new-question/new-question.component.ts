@@ -60,6 +60,7 @@ export class NewQuestionComponent implements OnInit {
     );
 
     this.questionData = {
+      approved: false,
       title: value.title,
       text: value.text,
       categories: this.sortedQuestions,
