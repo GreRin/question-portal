@@ -25,6 +25,7 @@ export class MainPageComponent implements OnInit {
 	filterTerm: string;
 	resolveComment: boolean;
 	admin: boolean;
+	approvedQuestion: boolean;
 
 	constructor(
 		public crudService: CrudService,
@@ -37,10 +38,10 @@ export class MainPageComponent implements OnInit {
 	  	this.authService.isAdmin().subscribe(
 			(data: any) => {
 				this.admin = this.authService.admin;
+				this.getDataFromDatabase()
 			},
 			error => console.error('error:', error)
 		);
-		this.getDataFromDatabase()
 	}
 
 	getDataFromDatabase() {
@@ -52,7 +53,7 @@ export class MainPageComponent implements OnInit {
 					...item.payload.doc.data() as QuestionData
 				}
 			}),
-          error => { error.message; console.log("Something wrong with data!" + error) };
+         	error => { error.message; console.log("Something wrong with data!" + error) };
 		})
 	}
 

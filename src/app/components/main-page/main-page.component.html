@@ -243,7 +243,8 @@
           *ngFor="let question of questionData | sortData: isActive
                                                | filterData: filterTerm
                                                | timeDuration: isTimePipeActive
-                                               | answered: isAnswerActive"
+                                               | answered: isAnswerActive
+                                               | approved: admin"
       >
         <div class="card-body">
           <h5 class="card-title">{{  question.title }}</h5>

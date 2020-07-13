@@ -30,6 +30,7 @@ import { FilterDataPipe } from './common/pipes/filter-data.pipe';
 import { AnsweredPipe } from './common/pipes/answered.pipe';
 import { TimeDurationPipe } from './common/pipes/time-duration.pipe';
 import { AuthGuard } from './common/services/auth/auth.guard';
+import { ApprovedPipe } from './common/pipes/approved.pipe';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AuthGuard } from './common/services/auth/auth.guard';
     FilterDataPipe,
     AnsweredPipe,
     TimeDurationPipe,
+    ApprovedPipe,
   ],
   imports: [
 		BrowserModule,
