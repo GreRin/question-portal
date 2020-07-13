@@ -38,7 +38,7 @@ export class CrudService {
 	}
 
 	updateQuestion(editableQuestion) {
-		this.firestore.collection('newQuestion').doc(this.editableQuestion.id).update(editableQuestion);
+		this.firestore.doc(`newQuestion/${this.editableQuestion.id}`).update(editableQuestion);
 	}
 
 	deleteQuestion(questionId) {

@@ -22,6 +22,7 @@ export class QuestionComponent implements OnInit {
 	admin: boolean;
 	author: boolean;
 	userEmail: string;
+	questionData: QuestionData;
 
 	constructor(
 		private router: Router,
@@ -121,6 +122,12 @@ export class QuestionComponent implements OnInit {
 	}
 	  
 	approveQuestion() {
-		this.currentQuestion.approved = true;
+		this.questionData = {
+			id: this.id,
+            approved: true,
+            currentDate: this.crudService.getDate()
+        }
+
+        this.crudService.updateQuestion(this.questionData);
 	}
 }
