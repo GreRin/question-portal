@@ -28,7 +28,6 @@ export class AuthService {
 		private firestore: AngularFirestore,
 		private router: Router
 	) {
-		this.admin = false;
 		this.author = false;
 	}
 
@@ -115,6 +114,7 @@ export class AuthService {
 	isAuth() {
 		return this.afAuth.authState.pipe(map(res => {
 			if(res && res.uid) {
+				this.email = res.email;
 				this.isUser = true;
 				return this.isUser;
 			} else {

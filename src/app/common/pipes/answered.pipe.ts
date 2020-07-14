@@ -11,7 +11,7 @@ export class AnsweredPipe implements PipeTransform {
       return items;
     }
     if(resolve === 'answered') {
-      return items.filter(item => item.comments.some(item => item));
+      return items.filter(item => item.comments.some(item => item.resolveComment));
     } else if (resolve === 'all') {
       return items
     }

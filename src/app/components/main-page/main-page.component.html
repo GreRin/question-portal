@@ -240,11 +240,12 @@
     <div class="row">
       <div class="{{ tiledToggle }} card"
           [routerLink]="['/main', question.id]"
-          *ngFor="let question of questionData | sortData: isActive
+          *ngFor="let question of questionData | approved: admin
+                                               | sortData: isActive
                                                | filterData: filterTerm
                                                | timeDuration: isTimePipeActive
-                                               | answered: isAnswerActive
-                                               | approved: admin"
+                                               | answered: isAnswerActive"
+                                               
       >
         <div class="card-body">
           <h5 class="card-title">{{  question.title }}</h5>
@@ -252,7 +253,7 @@
             <div class="line"></div>
             <div class="card-category-date">
               <p class="card-text"><strong>Category:</strong></p>
-              <p class="card-date visible">{{ question.currentDate | date:"dd.MM.yyyy hh:mm" }}</p>
+              <p class="card-date visible">{{ question.currentDate | date:"dd.MM.yyyy hh:mm a" }}</p>
             </div>
             <div class="card-category">
               <ul>
@@ -262,10 +263,6 @@
           </div>
         </div>
         <div class="line-bottom"></div>
-        <!-- <div class="card-buttons" *ngIf="admin">
-          <button class="btn btn-primary">Approve</button>
-          <button class="btn btn-primary">Delete</button>
-        </div> -->
       </div>
     </div>
     <button class="btn btn-primary plus"

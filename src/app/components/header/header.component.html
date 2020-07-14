@@ -2,7 +2,7 @@
 	<i class="fab fa-angrycreative" (click)="showAddQuestionButton()"></i>
 	
 	<button class="btn btn-primary" (click)="toggleSignInMode()" *ngIf="hideLoginButton()">
-		<i class="far fa-envelope"></i> {{ authService.signInMode ? "Sign Up":"Sign In" }}
+		<i class="far fa-envelope"></i> {{ authService.signInMode ? "Sign In":"Sign Up" }}
 	</button>
 
 	<div class="add-question" *ngIf='afAuth.authState | async as user'>
