@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-	toggleAddQuestionBtn: boolean = true;
+	toggleAddQuestionBtn: boolean = true;z
 
   constructor(
 		public afAuth: AngularFireAuth,

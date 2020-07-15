@@ -135,9 +135,21 @@ ul {
 	background-color: #fff;
 }
 
+.moderator {
+	position: fixed;
+	bottom: 50px;
+	left: 50px;
+}
+
 .fa-plus {
 	font-size: 3rem;
 	color: #3da0af;
+	margin: 3px 0;
+}
+
+.fa-monero, .fa-user {
+	font-size: 4rem;
+	color: #9e8978;;
 	margin: 3px 0;
 }
 
@@ -184,20 +196,13 @@ ul {
 		display: flex;
 	}
 
-	.plus {
-		position: fixed;
-		bottom: 50px;
-		right: 50px;
-		background-color: transparent;
-		border-radius: 50%;
-		border: 2px solid #9e8978;
-		background-color: #fff;
-	}
 
 	.fa-plus {
 		font-size: 1rem;
-		color: #3da0af;
-		margin: 3px 0;
+	}
+
+	.fa-monero, .fa-user {
+		font-size: 2rem;
 	}
 }
 

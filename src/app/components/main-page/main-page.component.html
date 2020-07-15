@@ -241,10 +241,10 @@
       <div class="{{ tiledToggle }} card"
            [routerLink]="['/main', question.id]"
            *ngFor="let question of questionData | approved: admin
-                                               | sortData: isActive
-                                               | filterData: filterTerm
-                                               | timeDuration: isTimePipeActive
-                                               | answered: isAnswerActive"                                  
+                                                | sortData: isActive
+                                                | filterData: filterTerm
+                                                | timeDuration: isTimePipeActive
+                                                | answered: isAnswerActive"                                  
       >
         <div class="card-body">
           <h5 class="card-title">{{  question.title }}</h5>
@@ -264,6 +264,8 @@
         <div class="line-bottom"></div>
       </div>
     </div>
+    <i class="fab fa-monero moderator" *ngIf="admin"></i>
+		<i class="fas fa-user moderator" *ngIf="!admin"></i>
     <button class="btn btn-primary plus"
             data-toggle="modal"
             data-target="#exampleModal"
