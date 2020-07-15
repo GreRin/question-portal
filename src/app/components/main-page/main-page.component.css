@@ -41,12 +41,13 @@
 	display: flex;
 	width: 18rem;
 	margin: 20px;
+	padding: 20px;
 }
 
 .card-body {
 	display: flex;
 	flex-direction: column;
-  padding: 1.25rem 1.25rem 0 1.25rem;
+	padding: 0;
 }
 
 .card-wrapper {
@@ -80,7 +81,6 @@
 }
 
 .card-row .card-body .card-wrapper {
-	display: inline-flex;
 	justify-content: space-around;
 	align-items: center;
 }
@@ -90,7 +90,7 @@
 }
 
 .card-row .card-body .card-wrapper .hidden {
-	display: inline-flex;
+	display: flex;
 	justify-content: space-between;
 	margin: 0 30px;
 }
@@ -120,7 +120,7 @@ ul {
 }
 
 .line-bottom {
-  margin: 1rem 1.25rem;
+  margin: 1rem 0rem;
   border: 0;
   border-top: 1px solid rgba(0,0,0,.1);
 }

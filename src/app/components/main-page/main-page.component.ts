@@ -16,7 +16,7 @@ export class MainPageComponent implements OnInit {
 
 	id: string;
 	color = '#f5f5f5';
-	tiled = true;
+	tiled: boolean = true;
 	tiledToggle: string;
 	questionData: QuestionData[];
 	isActive:boolean = false;
@@ -59,7 +59,7 @@ export class MainPageComponent implements OnInit {
 
 	tiledRowToggle() {
 		this.tiled = !this.tiled;
-		this.tiledToggle = this.tiled ? "col-sm-4 col-md-3 col-xl-2" : "col-sm-10 col-md-10 col-xl-10 card-row";
+		this.tiledToggle = this.tiled ? "col-sm-4 col-md-4 col-xl-2" : "col-sm-10 col-md-10 col-xl-10 card-row";
 	}
 
 	togglePipeActivation() {

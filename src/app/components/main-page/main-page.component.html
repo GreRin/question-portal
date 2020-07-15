@@ -239,21 +239,20 @@
   <section class="questions" [style.background]="this.color">
     <div class="row">
       <div class="{{ tiledToggle }} card"
-          [routerLink]="['/main', question.id]"
-          *ngFor="let question of questionData | approved: admin
+           [routerLink]="['/main', question.id]"
+           *ngFor="let question of questionData | approved: admin
                                                | sortData: isActive
                                                | filterData: filterTerm
                                                | timeDuration: isTimePipeActive
-                                               | answered: isAnswerActive"
-                                               
+                                               | answered: isAnswerActive"                                  
       >
         <div class="card-body">
           <h5 class="card-title">{{  question.title }}</h5>
           <div class="card-wrapper">
             <div class="line"></div>
             <div class="card-category-date">
-              <p class="card-text"><strong>Category:</strong></p>
-              <p class="card-date visible">{{ question.currentDate | date:"dd.MM.yyyy hh:mm a" }}</p>
+              <p class="card-text" ><strong>Category:</strong></p>
+              <p class="card-date" [ngClass]="{ visible: tiled }">{{ question.currentDate | date:"dd.MM.yyyy hh:mm a" }}</p>
             </div>
             <div class="card-category">
               <ul>
