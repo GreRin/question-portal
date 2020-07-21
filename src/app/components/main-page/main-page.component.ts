@@ -26,8 +26,9 @@ export class MainPageComponent implements OnInit {
 	resolveComment: boolean;
 	admin: boolean;
 	approvedQuestion: boolean;
-	filterModeration: boolean;
-	filterMyQuestions: boolean;
+	filterModeration: string;
+	filterMyQuestions: string;
+	unfilterQuestions: string;
 	userId: string;
 	email: string;
 
@@ -92,5 +93,9 @@ export class MainPageComponent implements OnInit {
 
 	userQuestions($event) {
 		this.filterMyQuestions = $event.target.value;
+	}
+
+	unFilter($event) {
+		this.unfilterQuestions = $event.target.value;
 	}
 }

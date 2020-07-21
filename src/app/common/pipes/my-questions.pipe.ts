@@ -5,11 +5,11 @@ import { QuestionData } from '../utils/question-data.model';
   name: 'myQuestions'
 })
 export class MyQuestionsPipe implements PipeTransform {
-
-  transform(items: QuestionData[], myQuestions: boolean, userId: string, email: string): QuestionData[] {
-    if(!myQuestions) {
+  transform(items: QuestionData[], myQuestions: string, userId: string, email: string): QuestionData[] {
+    if(myQuestions === "userQuestions") {
+      return items.filter(item => item.user.ownerId === userId || item.user.email === email);
+    } else {
       return items;
     }
-    return items.filter(item => item.user.ownerId === userId || item.user.email === email);
   }
 }

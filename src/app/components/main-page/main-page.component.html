@@ -110,6 +110,19 @@
             On moderation
           </label>
         </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                type="radio"
+                name="questions"
+                value="false"
+                id="unfilter"
+                checked
+                (change)="unFilter($event)"
+          >
+          <label class="form-check-label" for="unfilter">
+            Disable filter
+          </label>
+        </div>
       </button>
     </div>
   </div>
@@ -253,6 +266,19 @@
             On moderation
           </label>
         </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                type="radio"
+                name="resolve"
+                value="false"
+                id="unfilter"
+                checked
+                (change)="unFilter($event)"
+          >
+          <label class="form-check-label" for="unfilter">
+            Disable filter
+          </label>
+        </div>
       </button>
 		</div>
 	</div>
@@ -304,8 +330,7 @@
                                                 | filterData: filterTerm
                                                 | timeDuration: isTimePipeActive
                                                 | answered: isAnswerActive
-                                                | moderation: filterModeration
-                                                | myQuestions: filterMyQuestions :userId :email"                                  
+                                                | moderation: filterModeration :filterMyQuestions: unfilterQuestions :userId :email"                                  
       >
         <div class="card-body">
           <h5 class="card-title">{{  question.title }}</h5>
