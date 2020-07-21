@@ -49,7 +49,8 @@
           <input class="form-check-input"
                  name="date" type="radio"
                  value="day"
-                 id="day" checked
+                 id="day" 
+                 checked
                  (change)="togglePipeTime($event)"
           >
           <label class="form-check-label" for="day">
@@ -78,6 +79,37 @@
           >
           <label class="form-check-label" for="month">
             Month
+          </label>
+        </div>
+      </button>
+
+      <button
+        class="dropdown-item"
+        type="button"
+      >
+        <div class="form-check">
+          <input class="form-check-input"
+                type="radio"
+                name="questions"
+                value="userQuestions"
+                id="userQuestions"
+                checked
+                (change)="userQuestions($event)"
+          >
+          <label class="form-check-label" for="userQuestions">
+            My questions
+          </label>
+        </div>
+        <div class="form-check" *ngIf="admin">
+          <input class="form-check-input"
+                type="radio"
+                name="questions"
+                value="onModeration"
+                id="onModeration"
+                (change)="onModeration($event)"
+          >
+          <label class="form-check-label" for="onModeration">
+            On moderation
           </label>
         </div>
       </button>
@@ -192,6 +224,36 @@
           >
           <label class="form-check-label" for="month">
             Month
+          </label>
+        </div>
+      </button>
+      <button
+        class="dropdown-item"
+        type="button"
+      >
+        <div class="form-check">
+          <input class="form-check-input"
+                type="radio"
+                name="questions"
+                value="userQuestions"
+                id="userQuestions"
+                checked
+                (change)="userQuestions($event)"
+          >
+          <label class="form-check-label" for="userQuestions">
+            My questions
+          </label>
+        </div>
+        <div class="form-check" *ngIf="admin">
+          <input class="form-check-input"
+                type="radio"
+                name="questions"
+                value="onModeration"
+                id="onModeration"
+                (change)="onModeration($event)"
+          >
+          <label class="form-check-label" for="onModeration">
+            On moderation
           </label>
         </div>
       </button>

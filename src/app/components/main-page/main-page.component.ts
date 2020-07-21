@@ -26,6 +26,8 @@ export class MainPageComponent implements OnInit {
 	resolveComment: boolean;
 	admin: boolean;
 	approvedQuestion: boolean;
+	moderation: boolean;
+	myQuestion: boolean;
 
 	constructor(
 		public crudService: CrudService,
@@ -72,5 +74,13 @@ export class MainPageComponent implements OnInit {
 
 	togglePipeTime($event) {
 		this.isTimePipeActive = $event.target.value;
+	}
+
+	onModeration($event) {
+		this.moderation = $event.target.value;
+	}
+
+	userQuestions($event) {
+		this.myQuestion = $event.target.value;
 	}
 }
