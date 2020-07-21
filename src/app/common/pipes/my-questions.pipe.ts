@@ -7,10 +7,9 @@ import { QuestionData } from '../utils/question-data.model';
 export class MyQuestionsPipe implements PipeTransform {
 
   transform(items: QuestionData[], myQuestions: boolean, userId: string, email: string): QuestionData[] {
-    if(myQuestions) {
-      return items.filter(item => item.user.ownerId === userId || item.user.email === email)
+    if(!myQuestions) {
+      return items;
     }
-    return items;
+    return items.filter(item => item.user.ownerId === userId || item.user.email === email);
   }
-
 }

@@ -136,9 +136,8 @@ ul {
 }
 
 .moderator {
-	position: fixed;
-	bottom: 50px;
-	left: 50px;
+	position: absolute;
+	right: 20px;
 }
 
 .fa-plus {
@@ -147,8 +146,8 @@ ul {
 	margin: 3px 0;
 }
 
-.fa-monero, .fa-user {
-	font-size: 4rem;
+.fa-monero {
+	font-size: 1.5rem;
 	color: #9e8978;;
 	margin: 3px 0;
 }
@@ -201,8 +200,8 @@ ul {
 		font-size: 1rem;
 	}
 
-	.fa-monero, .fa-user {
-		font-size: 2rem;
+	.fa-monero {
+		font-size: 1.5rem;
 	}
 }
 

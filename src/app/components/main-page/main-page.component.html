@@ -309,6 +309,7 @@
       >
         <div class="card-body">
           <h5 class="card-title">{{  question.title }}</h5>
+          <i class="fab fa-monero moderator" *ngIf="!question.approved"></i>
           <div class="card-wrapper">
             <div class="line"></div>
             <div class="card-category-date">
@@ -325,8 +326,6 @@
         <div class="line-bottom"></div>
       </div>
     </div>
-    <i class="fab fa-monero moderator" *ngIf="admin"></i>
-		<i class="fas fa-user moderator" *ngIf="!admin"></i>
     <button class="btn btn-primary plus"
             data-toggle="modal"
             data-target="#exampleModal"
