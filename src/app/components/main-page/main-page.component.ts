@@ -26,7 +26,7 @@ export class MainPageComponent implements OnInit {
 	resolveComment: boolean;
 	admin: boolean;
 	approvedQuestion: boolean;
-	moderation: boolean;
+	filterModeration: boolean;
 	myQuestion: boolean;
 
 	constructor(
@@ -77,7 +77,7 @@ export class MainPageComponent implements OnInit {
 	}
 
 	onModeration($event) {
-		this.moderation = $event.target.value;
+		this.filterModeration = $event.target.value;
 	}
 
 	userQuestions($event) {
