@@ -27,7 +27,9 @@ export class MainPageComponent implements OnInit {
 	admin: boolean;
 	approvedQuestion: boolean;
 	filterModeration: boolean;
-	myQuestion: boolean;
+	filterMyQuestions: boolean;
+	userId: string;
+	email: string;
 
 	constructor(
 		public crudService: CrudService,
@@ -41,6 +43,14 @@ export class MainPageComponent implements OnInit {
 			(data: any) => {
 				this.admin = this.authService.admin;
 				this.getDataFromDatabase()
+			},
+			error => console.error('error:', error)
+		);
+
+		this.authService.isAuth().subscribe(
+			(data: any) => {
+				this.userId = this.authService.userId;
+				this.email = this.authService.email;
 			},
 			error => console.error('error:', error)
 		);
@@ -81,6 +91,6 @@ export class MainPageComponent implements OnInit {
 	}
 
 	userQuestions($event) {
-		this.myQuestion = $event.target.value;
+		this.filterMyQuestions = $event.target.value;
 	}
 }

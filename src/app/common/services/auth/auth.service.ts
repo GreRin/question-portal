@@ -115,6 +115,7 @@ export class AuthService {
 		return this.afAuth.authState.pipe(map(res => {
 			if(res && res.uid) {
 				this.email = res.email;
+				this.userId = res.uid;
 				this.isUser = true;
 				return this.isUser;
 			} else {

@@ -20,6 +20,7 @@
                  type="radio"
                  name="resolve"
                  value="all"
+                 checked
                  id="notanswered"
                  (change)="togglePipeAnswered($event)"
           >
@@ -33,7 +34,6 @@
                  name="resolve"
                  value="answered"
                  id="answered"
-                 checked
                  (change)="togglePipeAnswered($event)"
           >
           <label class="form-check-label" for="answered">
@@ -50,7 +50,6 @@
                  name="date" type="radio"
                  value="day"
                  id="day" 
-                 checked
                  (change)="togglePipeTime($event)"
           >
           <label class="form-check-label" for="day">
@@ -93,7 +92,6 @@
                 name="questions"
                 value="userQuestions"
                 id="userQuestions"
-                checked
                 (change)="userQuestions($event)"
           >
           <label class="form-check-label" for="userQuestions">
@@ -195,9 +193,9 @@
       >
         <div class="form-check">
           <input class="form-check-input"
-                 name="date" type="radio"
+                 name="resolve" 
+                 type="radio"
                  value="day"
-                 checked
                  (change)="togglePipeTime($event)"
           >
           <label class="form-check-label" for="day">
@@ -206,7 +204,7 @@
         </div>
         <div class="form-check">
           <input class="form-check-input"
-                 name="date"
+                 name="resolve"
                  type="radio"
                  value="week"
                  (change)="togglePipeTime($event)"
@@ -217,7 +215,7 @@
         </div>
         <div class="form-check">
           <input class="form-check-input"
-                 name="date"
+                 name="resolve"
                  type="radio"
                  value="month"
                  (change)="togglePipeTime($event)"
@@ -234,10 +232,9 @@
         <div class="form-check">
           <input class="form-check-input"
                 type="radio"
-                name="questions"
+                name="resolve"
                 value="userQuestions"
                 id="userQuestions"
-                checked
                 (change)="userQuestions($event)"
           >
           <label class="form-check-label" for="userQuestions">
@@ -247,7 +244,7 @@
         <div class="form-check" *ngIf="admin">
           <input class="form-check-input"
                 type="radio"
-                name="questions"
+                name="resolve"
                 value="onModeration"
                 id="onModeration"
                 (change)="onModeration($event)"
@@ -307,7 +304,8 @@
                                                 | filterData: filterTerm
                                                 | timeDuration: isTimePipeActive
                                                 | answered: isAnswerActive
-                                                | moderation: filterModeration"                                  
+                                                | moderation: filterModeration
+                                                | myQuestions: filterMyQuestions :userId :email"                                  
       >
         <div class="card-body">
           <h5 class="card-title">{{  question.title }}</h5>
