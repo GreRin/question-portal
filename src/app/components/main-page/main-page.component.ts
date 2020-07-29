@@ -26,9 +26,9 @@ export class MainPageComponent implements OnInit {
 	resolveComment: boolean;
 	admin: boolean;
 	approvedQuestion: boolean;
-	filterModeration: string;
-	filterMyQuestions: string;
-	unfilterQuestions: string;
+	filterModeration: boolean;
+	filterMyQuestions: boolean;
+	unfilterQuestions: boolean;
 	userId: string;
 	email: string;
 
@@ -88,14 +88,26 @@ export class MainPageComponent implements OnInit {
 	}
 
 	onModeration($event) {
-		this.filterModeration = $event.target.value;
+		if($event.target.value === "userQuestions") {
+			this.filterModeration = true;
+			this.filterMyQuestions = false;
+			this.unfilterQuestions = false
+		} else if ($event.target.value === "onModeration") {
+			this.filterModeration = false;
+			this.filterMyQuestions = true;
+			this.unfilterQuestions = false
+		} else if ($event.target.value === "all") {
+			this.filterModeration = false;
+			this.filterMyQuestions = false;
+			this.unfilterQuestions = true
+		}	
 	}
 
-	userQuestions($event) {
-		this.filterMyQuestions = $event.target.value;
-	}
+	// userQuestions($event) {
+	// 	this.filterMyQuestions = $event.target.value;
+	// }
 
-	unFilter($event) {
-		this.unfilterQuestions = $event.target.value;
-	}
+	// unFilter($event) {
+	// 	this.unfilterQuestions = $event.target.value;
+	// }
 }

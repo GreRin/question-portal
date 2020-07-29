@@ -92,7 +92,7 @@
                 name="questions"
                 value="userQuestions"
                 id="userQuestions"
-                (change)="userQuestions($event)"
+                (change)="onModeration($event)"
           >
           <label class="form-check-label" for="userQuestions">
             My questions
@@ -116,7 +116,7 @@
                 name="questions"
                 value="all"
                 id="unfilter"
-                (change)="unFilter($event)"
+                (change)="onModeration($event)"
           >
           <label class="form-check-label" for="unfilter">
             Disable filter
@@ -247,7 +247,7 @@
                 name="resolve"
                 value="userQuestions"
                 id="userQuestions"
-                (change)="userQuestions($event)"
+                (change)="onModeration($event)"
           >
           <label class="form-check-label" for="userQuestions">
             My questions
@@ -272,7 +272,7 @@
                 value="all"
                 id="unfilter"
                 checked
-                (change)="unFilter($event)"
+                (change)="onModeration($event)"
           >
           <label class="form-check-label" for="unfilter">
             Disable filter
