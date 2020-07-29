@@ -32,7 +32,6 @@ import { TimeDurationPipe } from './common/pipes/time-duration.pipe';
 import { AuthGuard } from './common/services/auth/auth.guard';
 import { ApprovedPipe } from './common/pipes/approved.pipe';
 import { ModerationPipe } from './common/pipes/moderation.pipe';
-import { MyQuestionsPipe } from './common/pipes/my-questions.pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +51,6 @@ import { MyQuestionsPipe } from './common/pipes/my-questions.pipe';
     TimeDurationPipe,
     ApprovedPipe,
     ModerationPipe,
-    MyQuestionsPipe,
   ],
   imports: [
 		BrowserModule,

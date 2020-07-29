@@ -5,14 +5,16 @@ import { QuestionData } from '../utils/question-data.model';
   name: 'moderation'
 })
 export class ModerationPipe implements PipeTransform {
-
   transform(items: QuestionData[], filterModeration: string, filterMyQuestions: string, unfilterQuestions: string, userId: string, email: string): QuestionData[] {
-    if (unfilterQuestions === 'false' && filterModeration === undefined && filterMyQuestions === undefined) {
+    if (!items && !filterModeration && !filterMyQuestions) {
       return items;
-    } else if (filterModeration === 'onModeration') {
+    }
+    if (filterModeration === 'onModeration') {
       return items.filter(item => item.approved === false);
     } else if(filterMyQuestions === "userQuestions") {
       return items.filter(item => item.user.ownerId === userId || item.user.email === email);
+    } else if (unfilterQuestions === 'all') {
+      return items;
     }
   }
 }
