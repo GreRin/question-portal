@@ -326,11 +326,11 @@
       <div class="{{ tiledToggle }} card"
            [routerLink]="['/main', question.id]"
            *ngFor="let question of questionData | approved: admin
-                                                | sortData: isActive
                                                 | filterData: filterTerm
                                                 | timeDuration: isTimePipeActive
                                                 | answered: isAnswerActive
-                                                | moderation: filterModeration :filterMyQuestions: unfilterQuestions :userId :email"                                  
+                                                | moderation: filterModeration :filterMyQuestions: unfilterQuestions :userId :email
+                                                | sortData: isActive"                                  
       >
         <div class="card-body">
           <h5 class="card-title">{{  question.title }}</h5>

@@ -88,11 +88,11 @@ export class MainPageComponent implements OnInit {
 	}
 
 	onModeration($event) {
-		if($event.target.value === "userQuestions") {
+		if($event.target.value === "onModeration") {
 			this.filterModeration = true;
 			this.filterMyQuestions = false;
 			this.unfilterQuestions = false
-		} else if ($event.target.value === "onModeration") {
+		} else if ($event.target.value === "userQuestions") {
 			this.filterModeration = false;
 			this.filterMyQuestions = true;
 			this.unfilterQuestions = false

@@ -8,10 +8,11 @@ import {QuestionData} from '../utils/question-data.model';
 export class SortDataPipe implements PipeTransform {
 
   transform(items: QuestionData[], ASC: boolean): QuestionData[] {
-    if(items) {
-      items.sort((a, b) => ASC? a.currentDate - b.currentDate : b.currentDate - a.currentDate)
+    let arr = [...items];
+    if(arr) {
+      arr.sort((a, b) => ASC? a.currentDate - b.currentDate : b.currentDate - a.currentDate)
     }
-    return items;
+    return arr;
   }
 
 }

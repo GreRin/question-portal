@@ -6,6 +6,7 @@ import { QuestionData } from '../utils/question-data.model';
 })
 export class ModerationPipe implements PipeTransform {
   transform(items: QuestionData[], filterModeration: boolean, filterMyQuestions: boolean, unfilterQuestions: boolean, userId: string, email: string): QuestionData[] {
+
     if (!items && !filterModeration && !filterMyQuestions) {
       return items;
     };
