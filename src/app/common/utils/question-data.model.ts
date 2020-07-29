@@ -1,4 +1,4 @@
-import { User } from '../utils/usert';
+import { User } from './user';
 import {Comments} from './comments';
 
 export class QuestionData {

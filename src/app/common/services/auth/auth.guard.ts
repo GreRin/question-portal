@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 
 import { AuthService } from './auth.service';
 import { map } from 'rxjs/operators';
+import { User } from '../../utils/user';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -16,12 +17,12 @@ export class AuthGuard implements CanActivate {
         private router: Router
     ) {}
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | boolean {
         return this.authService.isAuth().pipe(map(res => {
-            if(res === false) {
+            if(res.isUser === false) {
                 this.router.navigate(['/login']);
             }
-            return res;
+            return res.isUser;
         }));
     }
 }

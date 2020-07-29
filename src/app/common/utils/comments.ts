@@ -1,4 +1,4 @@
-import { User } from './usert';
+import { User } from './user';
 
 export interface	Comments {
     message: string;

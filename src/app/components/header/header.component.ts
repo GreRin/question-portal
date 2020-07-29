@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
 
 	showAddQuestionButton() {
 		this.toggleAddQuestionBtn = true;
-		if(this.authService.isUser) {
+		if(this.authService.user.isUser) {
 			this.router.navigate(['/main']);
 		} else {
 			this.router.navigate(['/login']);

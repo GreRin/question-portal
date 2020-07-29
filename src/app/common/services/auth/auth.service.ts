@@ -8,6 +8,7 @@ import { auth } from 'firebase/app';
 
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from '../../utils/user';
 
 @Injectable({
 	providedIn: 'root'
@@ -22,6 +23,7 @@ export class AuthService {
 	isUser: boolean;
 	author: boolean;
 	userId: string;
+	user: User;
 
 	constructor(
 		private afAuth: AngularFireAuth,
@@ -54,8 +56,10 @@ export class AuthService {
 		if(mode === constants.modes.POPUP) {
 			this.afAuth.auth.signInWithPopup(this.getProviderInstance(provider))
 			.then((ref) => {
-				this.email = ref.user.email;
-				this.userId = ref.user.uid;
+				this.user = {
+					email: ref.user.email,
+					ownerId: ref.user.uid,
+				}
 				this.isAdmin();
 				this.router.navigate(['/main']);
 			}).catch(function(error) {
@@ -94,12 +98,12 @@ export class AuthService {
 		if(this.admin !== null && this.admin !== undefined) {
 			return of(this.admin)
 		}
-		const data = this.firestore.collection('admins',ref=> ref.where('email','==', this.email)).snapshotChanges();
+		const data = this.firestore.collection('admins',ref=> ref.where('email','==', this.user.email)).snapshotChanges();
 		return data.pipe(map(results => {
 				if(results.length) {
 					results.find((result: any) => {
 						let res = result.payload.doc.data()
-						if(this.email === res.email) {
+						if(this.user.email === res.email) {
 							this.admin = true;
 						} else {
 							this.admin = false;
@@ -114,13 +118,17 @@ export class AuthService {
 	isAuth() {
 		return this.afAuth.authState.pipe(map(res => {
 			if(res && res.uid) {
-				this.email = res.email;
-				this.userId = res.uid;
-				this.isUser = true;
-				return this.isUser;
+				this.user = {
+					email: res.email,
+					ownerId: res.uid,
+					isUser: true
+				}
+				return this.user;
 			} else {
-				this.isUser = false;
-				return this.isUser;
+				this.user = {
+					isUser: false
+				}
+				return this.user;
 			}
 		}))
 	}

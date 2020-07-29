@@ -23,6 +23,7 @@
                  checked
                  id="notanswered"
                  (change)="togglePipeAnswered($event)"
+                 checked
           >
           <label class="form-check-label" for="notanswered">
             All questions
@@ -117,6 +118,7 @@
                 value="all"
                 id="unfilter"
                 (change)="onModeration($event)"
+                checked
           >
           <label class="form-check-label" for="unfilter">
             Disable filter
@@ -180,7 +182,6 @@
                  type="radio"
                  name="resolve"
                  value="all"
-                 checked
                  (change)="togglePipeAnswered($event)"
           >
           <label class="form-check-label" for="notanswered">
@@ -271,8 +272,8 @@
                 name="resolve"
                 value="all"
                 id="unfilter"
-                checked
                 (change)="onModeration($event)"
+                checked
           >
           <label class="form-check-label" for="unfilter">
             Disable filter

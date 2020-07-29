@@ -50,8 +50,8 @@ export class MainPageComponent implements OnInit {
 
 		this.authService.isAuth().subscribe(
 			(data: any) => {
-				this.userId = this.authService.userId;
-				this.email = this.authService.email;
+				this.userId = this.authService.user.ownerId;
+				this.email = this.authService.user.email;
 			},
 			error => console.error('error:', error)
 		);
@@ -102,12 +102,4 @@ export class MainPageComponent implements OnInit {
 			this.unfilterQuestions = true
 		}	
 	}
-
-	// userQuestions($event) {
-	// 	this.filterMyQuestions = $event.target.value;
-	// }
-
-	// unFilter($event) {
-	// 	this.unfilterQuestions = $event.target.value;
-	// }
 }

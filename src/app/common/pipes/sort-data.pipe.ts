@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import {QuestionData} from '../utils/question-data.model';
 
 @Pipe({
-  name: 'sortData'
+  name: 'sortData',
+  pure: false
 })
 export class SortDataPipe implements PipeTransform {
 
