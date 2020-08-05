@@ -41,6 +41,10 @@ input.ng-invalid.ng-touched {
 	border-color: red;
 }
 
+.used {
+	color: red;
+}
+
 input.ng-valid.ng-touched {
 	border-color: green;
 }

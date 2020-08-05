@@ -76,12 +76,15 @@ export class AuthService {
 				this.router.navigate(['/main']);
 			}).catch((error) => {
 				console.error('Failed: ' + error);
+				alert("Password is invalid!");
 			});
 		} else {
 			this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((ref) => {
 				console.log(ref.user.email);
+				alert("Athorized succesfully!");
 			}).catch((error) => {
 				console.error('Failed: ' + error);
+				alert("Authorization failed :(");
 			});
 		}
 	}

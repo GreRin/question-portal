@@ -10,11 +10,12 @@
 					type="text" 
 					class="form-control"
 					[(ngModel)]="email"
-					formControlName="mail"
+					formControlName="email"
 					required
 				>
-				<p *ngIf="form.get('mail').invalid && form.get('mail').touched">
-					<span *ngIf="form.get('mail').errors['required']">Email required.</span>
+				<p *ngIf="form.get('email').invalid && form.get('email').touched">
+					<span *ngIf="form.get('email').errors['required']">Email required.</span>
+					<span class="used" *ngIf="form.get('email').errors['emailIsUsed']">Email is used.</span>
 				</p>
 			</div>
 			<div class="form-group">

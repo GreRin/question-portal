@@ -19,6 +19,7 @@ export class SigninSignupComponent implements OnInit {
 	providers = constants.providers;
 	modes = constants.modes;
 	admin: boolean = false;
+	isUserExist: boolean = false;
 
 	constructor(
 		public authService: AuthService,
@@ -26,9 +27,9 @@ export class SigninSignupComponent implements OnInit {
 
   	ngOnInit(): void {
 		this.form = new FormGroup({
-			mail: new FormControl("", [Validators.required, Validators.email]),
+			email: new FormControl("", [Validators.required, Validators.email]),
 			pass: new FormControl("", [Validators.required, Validators.minLength(6)])
-		})
+		});
 	}
 
 	signInOrSignUp() {
