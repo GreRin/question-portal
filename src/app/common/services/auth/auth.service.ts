@@ -82,6 +82,7 @@ export class AuthService {
 			this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((ref) => {
 				console.log(ref.user.email);
 				alert("Athorized succesfully!");
+				this.router.navigate(['/main']);
 			}).catch((error) => {
 				console.error('Failed: ' + error);
 				alert("Authorization failed :(");
