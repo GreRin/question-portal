@@ -6,5 +6,5 @@ export const constants = {
 		GOOGLE: 'google',
 		FACEBOOK: 'facebook',
 		GITHUB: 'github'
-	}
+	},
 }

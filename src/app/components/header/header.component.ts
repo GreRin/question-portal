@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from 'src/app/common/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +10,12 @@ import { AuthService } from 'src/app/common/services/auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-	toggleAddQuestionBtn: boolean = true;
+	toggleAddQuestionBtn: boolean = true;z
 
   constructor(
 		public afAuth: AngularFireAuth,
 		public authService: AuthService,
+		private router: Router
 	) { }
 
   ngOnInit(): void {
@@ -25,6 +27,11 @@ export class HeaderComponent implements OnInit {
 
 	showAddQuestionButton() {
 		this.toggleAddQuestionBtn = true;
+		if(this.authService.user.isUser) {
+			this.router.navigate(['/main']);
+		} else {
+			this.router.navigate(['/login']);
+		}
 	}
 	
 	

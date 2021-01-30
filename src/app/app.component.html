@@ -2,24 +2,5 @@
 	<app-header></app-header>
 </header>
 <main>
-	<ng-template #loginOptions>
-		<div class="wrapper">
-			<div class="form">
-				<app-signin-signup></app-signin-signup>
-			</div>
-		</div>
-	</ng-template>
-
-	<ng-template #login>
-		<div class="wrapper">
-			<div class="row" *ngIf="authService.phoneSignIn; else loginOptions">
-				<app-phone-signin></app-phone-signin>
-			</div>
-		</div>
-	</ng-template>
-
-	<div class="main-wrapper" *ngIf='afAuth.authState | async as user; else login'>
-		<router-outlet></router-outlet>
-		<app-new-question></app-new-question>
-	</div>
+	<router-outlet></router-outlet>
 </main>

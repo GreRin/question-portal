@@ -1,3 +1,7 @@
+:host {
+	width: 100%;
+}
+
 .card {
 	margin-top: 30px;
 }
@@ -9,10 +13,16 @@
 	border-top: 1px solid rgba(0,0,0,.1);
 }
 
-.card-author-date, .card-category-btn {
+.card-author-date {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  flex-direction: column;
+	text-align: right;
+}
+
+.card-category-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 h5 {
@@ -30,7 +40,7 @@ h5 {
 	margin-right: 10px;
 }
 
-.btn-primary:nth-child(2) {
+.btn-primary:nth-child(2), .btn-primary:nth-child(3) {
 	margin-left: 20px;
 }
 
@@ -49,10 +59,20 @@ form {
 	margin: 20px 0 !important;
 }
 
+.check {
+  position: absolute;
+  right: 1.25rem;
+}
+
+.fa-check {
+  color: green;
+}
+
 .comment-body {
 	display: inline-flex;
 	justify-content: space-between;
 	align-items: center;
+  padding: 0 1.25rem 0 1.25rem;
 }
 
 .comment-body p {
@@ -66,10 +86,16 @@ form {
 	padding-top: 10px;
 }
 
+.comment-text {
+  align-self: flex-start;
+  padding: 0 1.25rem;
+}
+
 .checkbox-resolve {
 	display: inline-flex;
 	width: 100%;
 	align-items: center;
+	margin-right: 20px;
 }
 
 .comment-date label {
@@ -95,7 +121,7 @@ form {
 		justify-content: space-between;
 		align-items: center;
 	}
-	
+
 	.comment-img-name {
 		flex-direction: row;
 		justify-content: space-between;
@@ -110,11 +136,30 @@ form {
 		justify-content: space-between;
 		align-items: flex-start;
 	}
-	
+
 	.checkbox-resolve {
 		display: inline-flex;
 		width: 100%;
 		justify-content: flex-end;
 		align-items: center;
 	}
+}
+
+@media(max-width: 460px) {
+  .card-date, .card-wrapper p, .card-text, .comment-text, .comment-date p, .checkbox-resolve label {
+    font-size: 0.8rem;
+  }
+
+  .card-title {
+    margin: 12px 0;
+  }
+
+  .card-buttons {
+    display: inline-flex;
+    justify-content: space-between;
+  }
+
+  .btn-primary {
+    font-size: 0.8rem;
+  }
 }

@@ -6,13 +6,14 @@ import { Router } from '@angular/router';
 import { CrudService } from '../../common/services/crud/crud.service';
 
 import { mycategory } from '../../common/utils/category';
+import { QuestionData } from '../../common/utils/question-data.model';
 
 @Component({
   selector: 'app-new-question',
   templateUrl: './new-question.component.html',
-	styleUrls: ['./new-question.component.css'],
-	providers: [CrudService]
+	styleUrls: ['./new-question.component.css']
 })
+
 export class NewQuestionComponent implements OnInit {
 
   mycat = mycategory;
@@ -20,8 +21,9 @@ export class NewQuestionComponent implements OnInit {
 	title: any;
 	text: any;
 	isSubmitted = false;
-	selectedCategoryNames: string[];
 	newQuestionForm: FormGroup;
+  questionData: QuestionData;
+  sortedQuestions: string[];
 
   constructor(
 		private router: Router,
@@ -42,24 +44,55 @@ export class NewQuestionComponent implements OnInit {
 
 	createCategory(categoryInputs) {
 		const arr = categoryInputs.map(category => {
-			return new FormControl(category.selected || false)
+        return new FormControl(category.selected || false)
 		});
 		return new FormArray(arr);
-	}
-	
+  }
+
 	onSubmit(value) {
-		this.isSubmitted = true;
-    if(!this.newQuestionForm.value) {
+    this.isSubmitted = true;
+    if (!this.newQuestionForm.valid) {
       return false;
-		}
-		
-		this.crudService.createNewQuestion(value)
-		.then(
-			res => {
-				this.newQuestionForm.reset()
-				this.router.navigate(['/']);
-			}
-		)
-	}
-	
+    }
+
+    this.sortedQuestions = mycategory.filter(
+      (el, index) => value.categories[index] === true
+    );
+
+    this.questionData = {
+      approved: false,
+      title: value.title,
+      text: value.text,
+      categories: this.sortedQuestions,
+      currentDate: this.crudService.getDate(),
+      user: {
+        ownerId: this.crudService.id,
+        displayName: this.crudService.name,
+        email: this.crudService.email,
+        avatar: this.crudService.avatar,
+      },
+      comments: []
+    }
+
+    this.crudService.createNewQuestion(this.questionData)
+      .then(
+        res => {
+          this.newQuestionForm.reset()
+          this.closePopup();
+          this.router.navigate(['/main']);
+        },
+        err => {
+          console.log(err);
+          alert('Responce fail!');
+        }
+      )
+  }
+
+  closePopup() {
+    const closeButton = document.getElementById('exampleModal');
+    const modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
+    closeButton.classList.toggle('show');
+    closeButton.setAttribute('style', 'display:none');
+    modalBackdrop.remove();
+  }
 }

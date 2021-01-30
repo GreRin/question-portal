@@ -18,11 +18,20 @@ import { UserDetailsComponent } from './components/user-profile/user-details.com
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { NewQuestionComponent } from './components/new-question/new-question.component';
 
-import { AuthRoutingModule } from './auth-routing-module';
+import { AppRoutingModule } from './app-routing-module';
 import { HeaderComponent } from './components/header/header.component';
 
 import { ColorPickerModule } from 'ngx-color-picker';
 import { QuestionComponent } from './components/question/question.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { EditQuestionComponent } from './components/edit-question/edit-question.component';
+import { SortDataPipe } from './common/pipes/sort-data.pipe';
+import { FilterDataPipe } from './common/pipes/filter-data.pipe';
+import { AnsweredPipe } from './common/pipes/answered.pipe';
+import { TimeDurationPipe } from './common/pipes/time-duration.pipe';
+import { AuthGuard } from './common/services/auth/auth.guard';
+import { ApprovedPipe } from './common/pipes/approved.pipe';
+import { ModerationPipe } from './common/pipes/moderation.pipe';
 
 @NgModule({
   declarations: [
@@ -33,14 +42,22 @@ import { QuestionComponent } from './components/question/question.component';
     MainPageComponent,
     NewQuestionComponent,
     HeaderComponent,
-    QuestionComponent
+    QuestionComponent,
+    NotFoundComponent,
+    EditQuestionComponent,
+    SortDataPipe,
+    FilterDataPipe,
+    AnsweredPipe,
+    TimeDurationPipe,
+    ApprovedPipe,
+    ModerationPipe,
   ],
   imports: [
 		BrowserModule,
 		AngularFireModule.initializeApp(environment.firebase),
 		FormsModule,
 		ReactiveFormsModule,
-		AuthRoutingModule,
+    AppRoutingModule,
 		AngularFirestoreModule,
 		ColorPickerModule
 	],
@@ -50,7 +67,8 @@ import { QuestionComponent } from './components/question/question.component';
 	],
   providers: [
 		AuthService,
-		WindowService,
+    WindowService,
+    AuthGuard,
 	],
   bootstrap: [AppComponent]
 })

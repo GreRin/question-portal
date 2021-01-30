@@ -1,20 +1,140 @@
+
 <div class="filters">
 	<div class="btn-group">
-		<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<button type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
 			<i class="fas fa-filter"></i>
 			Filters
 		</button>
 		<div class="dropdown-menu dropdown-menu-left">
-			<button class="dropdown-item" type="button">Answered/Not answered</button>
-			<button class="dropdown-item" type="button">Category</button>
-			<button class="dropdown-item" type="button">Time</button>
-		</div>
-	</div>
+      <input type="text" class="form-control" placeholder="Filter By Categories" [(ngModel)]="filterTerm" >
+      <button
+        class="dropdown-item"
+        type="button"
+      >
+        <div class="form-check">
+          <input class="form-check-input"
+                 type="radio"
+                 name="resolve"
+                 value="all"
+                 checked
+                 id="notanswered"
+                 (change)="togglePipeAnswered($event)"
+                 checked
+          >
+          <label class="form-check-label" for="notanswered">
+            All questions
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                 type="radio"
+                 name="resolve"
+                 value="answered"
+                 id="answered"
+                 (change)="togglePipeAnswered($event)"
+          >
+          <label class="form-check-label" for="answered">
+            Answered questions
+          </label>
+        </div>
+      </button>
+
+			<button class="dropdown-item"
+              type="button"
+      >
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="date" type="radio"
+                 value="day"
+                 id="day" 
+                 (change)="togglePipeTime($event)"
+          >
+          <label class="form-check-label" for="day">
+            Day
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="date"
+                 type="radio"
+                 value="week"
+                 id="week"
+                 (change)="togglePipeTime($event)"
+          >
+          <label class="form-check-label" for="week">
+            Week
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="date"
+                 type="radio"
+                 value="month"
+                 id="month"
+                 (change)="togglePipeTime($event)"
+          >
+          <label class="form-check-label" for="month">
+            Month
+          </label>
+        </div>
+      </button>
+
+      <button
+        class="dropdown-item"
+        type="button"
+      >
+        <div class="form-check">
+          <input class="form-check-input"
+                type="radio"
+                name="questions"
+                value="userQuestions"
+                id="userQuestions"
+                (change)="onModeration($event)"
+          >
+          <label class="form-check-label" for="userQuestions">
+            My questions
+          </label>
+        </div>
+        <div class="form-check" *ngIf="admin">
+          <input class="form-check-input"
+                type="radio"
+                name="questions"
+                value="onModeration"
+                id="onModeration"
+                (change)="onModeration($event)"
+          >
+          <label class="form-check-label" for="onModeration">
+            On moderation
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                type="radio"
+                name="questions"
+                value="all"
+                id="unfilter"
+                (change)="onModeration($event)"
+                checked
+          >
+          <label class="form-check-label" for="unfilter">
+            Disable filter
+          </label>
+        </div>
+      </button>
+    </div>
+  </div>
 
 	<div class="btn-group">
-		<button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="fas fa-sort-amount-down-alt"></i>
-			<i class="fas fa-sort-amount-up"></i>
+		<button type="button"
+            class="btn btn-secondary"
+            (click)="togglePipeActivation()"
+    >
+			<i class="fas fa-sort-amount-down-alt" *ngIf="isActive"></i>
+			<i class="fas fa-sort-amount-up" *ngIf="!isActive"></i>
 			Sort
 		</button>
 	</div>
@@ -25,11 +145,14 @@
 			Settings
 		</button>
 		<div class="dropdown-menu dropdown-menu-right">
-			<button class="dropdown-item" type="button" (click)="tiledRowToggle()">Tiled/Row</button>
+			<button class="dropdown-item"
+              type="button"
+              (click)="tiledRowToggle()"
+      >Tiled/Row</button>
 			<hr>
 			<p>Color theme</p>
-			<input class="color-picker" class="colorTheme" 
-				[(colorPicker)]="color" 
+			<input class="color-picker" class="colorTheme"
+				[(colorPicker)]="color"
 				[style.background]="color"
 				[cpPosition]="'left'"
 				[value]=color
@@ -40,67 +163,201 @@
 
 <div class="filters-hidden">
 	<div class="btn-group">
-		<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<button type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+    >
 			<i class="fas fa-filter"></i>
 		</button>
 		<div class="dropdown-menu dropdown-menu-left">
-			<button class="dropdown-item" type="button">Answered/Not answered</button>
-			<button class="dropdown-item" type="button">Category</button>
-			<button class="dropdown-item" type="button">Time</button>
+      <input type="text" class="form-control" placeholder="Filter By Categories" [(ngModel)]="filterTerm" >
+      <button
+        class="dropdown-item"
+        type="button"
+      >
+        <div class="form-check">
+          <input class="form-check-input"
+                 type="radio"
+                 name="resolve"
+                 value="all"
+                 (change)="togglePipeAnswered($event)"
+          >
+          <label class="form-check-label" for="notanswered">
+            All questions
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                 type="radio"
+                 name="resolve"
+                 value="answered"
+                 (change)="togglePipeAnswered($event)"
+          >
+          <label class="form-check-label" for="answered">
+            Answered questions
+          </label>
+        </div>
+      </button>
+
+      <button class="dropdown-item"
+              type="button"
+      >
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="resolve" 
+                 type="radio"
+                 value="day"
+                 (change)="togglePipeTime($event)"
+          >
+          <label class="form-check-label" for="day">
+            Day
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="resolve"
+                 type="radio"
+                 value="week"
+                 (change)="togglePipeTime($event)"
+          >
+          <label class="form-check-label" for="week">
+            Week
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                 name="resolve"
+                 type="radio"
+                 value="month"
+                 (change)="togglePipeTime($event)"
+          >
+          <label class="form-check-label" for="month">
+            Month
+          </label>
+        </div>
+      </button>
+      <button
+        class="dropdown-item"
+        type="button"
+      >
+        <div class="form-check">
+          <input class="form-check-input"
+                type="radio"
+                name="resolve"
+                value="userQuestions"
+                id="userQuestions"
+                (change)="onModeration($event)"
+          >
+          <label class="form-check-label" for="userQuestions">
+            My questions
+          </label>
+        </div>
+        <div class="form-check" *ngIf="admin">
+          <input class="form-check-input"
+                type="radio"
+                name="resolve"
+                value="onModeration"
+                id="onModeration"
+                (change)="onModeration($event)"
+          >
+          <label class="form-check-label" for="onModeration">
+            On moderation
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"
+                type="radio"
+                name="resolve"
+                value="all"
+                id="unfilter"
+                (change)="onModeration($event)"
+                checked
+          >
+          <label class="form-check-label" for="unfilter">
+            Disable filter
+          </label>
+        </div>
+      </button>
 		</div>
 	</div>
 
 	<div class="btn-group">
-		<button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="fas fa-sort-amount-down-alt"></i>
-			<i class="fas fa-sort-amount-up"></i>
-		</button>
+    <button type="button"
+            class="btn btn-secondary"
+            (click)="togglePipeActivation()"
+    >
+      <i class="fas fa-sort-amount-down-alt" *ngIf="isActive"></i>
+      <i class="fas fa-sort-amount-up" *ngIf="!isActive"></i>
+      Sort
+    </button>
 	</div>
 
-	<div class="btn-group">
-		<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="fas fa-cogs"></i>
-		</button>
-		<div class="dropdown-menu dropdown-menu-right">
-			<button class="dropdown-item" type="button">Tiled/Row</button>
-			<button class="dropdown-item" type="button">Color theme</button>
-		</div>
-	</div>
+  <div class="btn-group">
+    <button type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
+      <i class="fas fa-cogs"></i>
+      Settings
+    </button>
+    <div class="dropdown-menu dropdown-menu-right">
+      <button class="dropdown-item"
+              type="button"
+              (click)="tiledRowToggle()"
+      >Tiled/Row</button>
+      <hr>
+      <p>Color theme</p>
+      <input class="color-picker" class="colorTheme"
+             [(colorPicker)]="color"
+             [style.background]="color"
+             [cpPosition]="'left'"
+             [value]=color
+      >
+    </div>
+  </div>
 </div>
 
-<section class="questions" [style.background]="this.color">
-	<div class="row">
-		<div class="{{ tiledToggle }} card" 
-				[routerLink]="['/', question.id]" 
-				*ngFor="let question of questionData"
-		>
-			<div class="card-body">
-				<h5 class="card-title">{{  question.title }}</h5>
-				<div class="card-wrapper">
-					<div class="line"></div>
-					<div class="card-category-date">
-						<p class="card-date hidden">{{ question.currentDate }}</p>
-						<p class="card-text"><strong>Category:</strong></p>
-						<p class="card-date visible">{{ question.currentDate }}</p>
-					</div>
-					<div class="card-category">
-						<ul>
-							<!-- <li *ngFor="let technology of question.categories; let i=index;" class="card-text">{{ technology[i] }}</li> -->
-							<li *ngIf="question.java" class="card-text">Java</li>
-							<li *ngIf="question.salesforce" class="card-text">Salesforce</li>
-							<li *ngIf="question.frontend" class="card-text">Frontend</li>
-						</ul>
-					</div>
-					<div class="line"></div>
-					<div class="card-buttons">
-						<button class="btn btn-primary">Approve</button>
-						<button class="btn btn-primary" (click)="deleteDataFromDatabase()">Delete</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<button class="btn btn-primary plus" data-toggle="modal" data-target="#exampleModal">
-		<i class="fas fa-plus"></i>
-	</button>
-</section>
+<div class="main-wrapper">
+  <section class="questions" [style.background]="this.color">
+    <div class="row">
+      <div class="{{ tiledToggle }} card"
+           [routerLink]="['/main', question.id]"
+           *ngFor="let question of questionData | approved: admin
+                                                | filterData: filterTerm
+                                                | timeDuration: isTimePipeActive
+                                                | answered: isAnswerActive
+                                                | moderation: filterModeration :filterMyQuestions: unfilterQuestions :userId :email
+                                                | sortData: isActive"                                  
+      >
+        <div class="card-body">
+          <h5 class="card-title">{{  question.title }}</h5>
+          <i class="fab fa-monero moderator" *ngIf="!question.approved"></i>
+          <div class="card-wrapper">
+            <div class="line"></div>
+            <div class="card-category-date">
+              <p class="card-text" ><strong>Category:</strong></p>
+              <p class="card-date" [ngClass]="{ visible: tiled }">{{ question.currentDate | date:"dd.MM.yyyy hh:mm a" }}</p>
+            </div>
+            <div class="card-category">
+              <ul>
+                <li *ngFor="let technology of question.categories" class="card-text">{{ technology }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="line-bottom"></div>
+      </div>
+    </div>
+    <button class="btn btn-primary plus"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            data-dismiss="modal"
+    >
+      <i class="fas fa-plus"></i>
+    </button>
+  </section>
+</div>
+<app-new-question></app-new-question>

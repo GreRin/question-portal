@@ -1,89 +1,133 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { CrudService } from 'src/app/common/services/crud/crud.service';
+import { AuthService } from 'src/app/common/services/auth/auth.service';
 
 import { QuestionData } from '../../common/utils/question-data.model';
 
 @Component({
-  selector: 'app-question',
-  templateUrl: './question.component.html',
-	styleUrls: ['./question.component.css'],
-	providers: [CrudService]
+	selector: 'app-question',
+	templateUrl: './question.component.html',
+	styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-	id: string;
 
+	id: string;
 	message: any;
 	newComment: FormGroup;
-	messageData: any;
-	isComments = false;
-
 	currentQuestion: QuestionData;
+	openEditModal: boolean;
+	admin: boolean;
+	author: boolean;
+	userEmail: string;
+	questionData: QuestionData;
 
 	constructor(
+		private router: Router,
 		private route: ActivatedRoute,
 		public crudService: CrudService,
-	) {}
+		public authService: AuthService
+	) {
+		this.userEmail = this.authService.email;
+		this.author = false;
+	}
 
-  ngOnInit(): void {
+  	ngOnInit(): void {
 		this.route.params.subscribe((params: Params) => {
 			this.id = params['id'];
 			this.getDataFromDatabase();
 		});
+
+		this.authService.isAdmin().subscribe(
+			(data: any) => {
+				this.admin = this.authService.admin;
+			},
+			error => console.error('error:', error)
+		);
+		
 		this.createComment();
-		// this.getComments();
 	}
 
 	getDataFromDatabase() {
 		this.crudService.getQuestions()
 		.subscribe(result => {
 			this.currentQuestion = result.map(e => {
-				console.log(this.id)
 				return {
 					id: e.payload.doc.id,
 					...e.payload.doc.data() as QuestionData
 				}
 			}).find(e => {
 				return e.id === this.id
-			})
-			console.log(this.currentQuestion)
+			});
+			if(this.currentQuestion.user.email === this.authService.email || 
+			    this.currentQuestion.user.ownerId === this.authService.userId) {
+					this.author = true;
+			}
 		});
+	}
+
+	editQuestion() {
+	  	this.openEditModal = true;
+		this.crudService.editableQuestion = this.currentQuestion;
 	}
 
 	deleteQuestion() {
-		console.log(this.id)
 		this.crudService.deleteQuestion(this.id);
+		this.router.navigate(['/main']);
 	}
-
 
 	createComment() {
 		this.newComment = new FormGroup({
-			message: new FormControl()
+			message: new FormControl("",[Validators.required, Validators.minLength(1)])
 		});
 	}
 
-	// getComments() {
-	// 	return this.crudService.getComments(this.id)
-	// 	.subscribe((result) => {
-	// 		if(result.data().comments) {
-	// 			this.messageData = result.data().comments;
-	// 			console.log(this.messageData);
-	// 		}
-	// 	})
-	// }
-
 	onSubmit(value) {
-    if(!this.newComment.value) {
-      return false;
+		if(!this.newComment.value) {
+			return false;
 		}
-		console.log(this.id);
-		this.crudService.addComment(this.id, value)
-		.then(
-			res => {
-				this.newComment.reset()
+
+    	this.currentQuestion.comments.push(
+		{
+			message: value.message,
+			currentDate: this.crudService.getDate(),
+			resolveComment: false,
+			user: {
+				ownerId: this.crudService.id,
+				displayName: this.crudService.name,
+				email: this.crudService.email,
+				avatar: this.crudService.avatar
 			}
-		)
+    	})
+
+		this.crudService.addComment(this.id, this.currentQuestion.comments)
+			.then(
+				res => {
+					this.newComment.reset()
+				}
+			)
+	}
+
+  	resComment(event: any, i: number) {
+		this.currentQuestion.comments.map( (data, index) => {
+			if(index === i) {
+				data.resolveComment = event.target.checked;
+				this.crudService.resolveComment = event.target.checked;
+			}
+		})
+
+		this.crudService.addComment(this.id, this.currentQuestion.comments)
+	}
+	  
+	approveQuestion() {
+		this.questionData = {
+			id: this.id,
+            approved: true,
+            currentDate: this.crudService.getDate()
+        }
+
+        this.crudService.updateQuestion(this.questionData);
 	}
 }

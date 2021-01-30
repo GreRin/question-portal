@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { CrudService } from '../../common/services/crud/crud.service';
+import { AuthService } from '../../common/services/auth/auth.service';
 
 import { QuestionData } from 'src/app/common/utils/question-data.model';
+
+import {  } from '../question/question.component';
 
 @Component({
   selector: 'app-main-page',
@@ -12,21 +14,47 @@ import { QuestionData } from 'src/app/common/utils/question-data.model';
 })
 export class MainPageComponent implements OnInit {
 
-	id;
+	id: string;
 	color = '#f5f5f5';
-	tiled = true;
-	tiledToggle;
-	row = "col-xl-12";
-
+	tiled: boolean = true;
+	tiledToggle: string;
 	questionData: QuestionData[];
+	isActive:boolean = false;
+	isAnswerActive:string;
+	isTimePipeActive:string;
+	filterTerm: string;
+	resolveComment: boolean;
+	admin: boolean;
+	approvedQuestion: boolean;
+	filterModeration: boolean;
+	filterMyQuestions: boolean;
+	unfilterQuestions: boolean;
+	userId: string;
+	email: string;
 
 	constructor(
-		private router: Router,
 		public crudService: CrudService,
-	) {}
+		public authService: AuthService,
+	) {
+    this.resolveComment = this.crudService.resolveComment;
+  }
 
   ngOnInit(): void {
-		this.getDataFromDatabase()
+	  	this.authService.isAdmin().subscribe(
+			(data: any) => {
+				this.admin = this.authService.admin;
+				this.getDataFromDatabase()
+			},
+			error => console.error('error:', error)
+		);
+
+		this.authService.isAuth().subscribe(
+			(data: any) => {
+				this.userId = this.authService.user.ownerId;
+				this.email = this.authService.user.email;
+			},
+			error => console.error('error:', error)
+		);
 	}
 
 	getDataFromDatabase() {
@@ -37,20 +65,41 @@ export class MainPageComponent implements OnInit {
 					id: item.payload.doc.id,
 					...item.payload.doc.data() as QuestionData
 				}
-			})
+			}),
+         	error => { error.message; console.log("Something wrong with data!" + error) };
 		})
-	}
-
-	deleteDataFromDatabase() {
-		console.log("Deleted");
 	}
 
 	tiledRowToggle() {
 		this.tiled = !this.tiled;
-		this.tiledToggle = this.tiled ? "col-sm-4 col-md-3 col-xl-2" : "col-sm-12 col-md-12 col-xl-12 card-row";
+		this.tiledToggle = this.tiled ? "col-sm-4 col-md-4 col-xl-2" : "col-sm-10 col-md-10 col-xl-10 card-row";
 	}
-	
-	openMainPage() {
-		this.router.navigate(['/']);
+
+	togglePipeActivation() {
+		this.isActive = !this.isActive;
+	}
+
+	togglePipeAnswered($event) {
+		this.isAnswerActive = $event.target.value;
+	}
+
+	togglePipeTime($event) {
+		this.isTimePipeActive = $event.target.value;
+	}
+
+	onModeration($event) {
+		if($event.target.value === "onModeration") {
+			this.filterModeration = true;
+			this.filterMyQuestions = false;
+			this.unfilterQuestions = false
+		} else if ($event.target.value === "userQuestions") {
+			this.filterModeration = false;
+			this.filterMyQuestions = true;
+			this.unfilterQuestions = false
+		} else if ($event.target.value === "all") {
+			this.filterModeration = false;
+			this.filterMyQuestions = false;
+			this.unfilterQuestions = true
+		}	
 	}
 }

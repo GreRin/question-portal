@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 
-import { AngularFireAuth } from 'angularfire2/auth';
-
-import { WindowService } from './common/services/window/window.service';
-import { AuthService } from './common/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,21 +10,12 @@ import { AuthService } from './common/services/auth/auth.service';
 
 export class AppComponent implements OnInit {
 
-	phoneSignIn: boolean = true;
-	windowRef: any;
-	toggleAddQuestionBtn: boolean = true;
-
 	constructor (
-		public afAuth: AngularFireAuth,
-		public authService: AuthService,
-		private windowService: WindowService,
+		private router: Router,
+		private ngzone: NgZone
 	) {}
 
-  ngOnInit() {
-		this.windowRef = this.windowService.windowRef;
-	}
-
-	hideAddQuestionButton() {
-		this.toggleAddQuestionBtn = false;
+  	ngOnInit() {
+		this.ngzone.run(() => this.router.navigate(['/main']));
 	}
 }
